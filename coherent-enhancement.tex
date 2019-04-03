@@ -9,8 +9,6 @@
 \usepackage{parskip} % add vertical space between paragraphs
 \usepackage[section]{placeins} % keep figures inside their sections
 
-\def\non{\nonumber\\}
-
 % Colors
 \newcommand{\bl}[1]{{\color{blue}{#1}}}
 \newcommand{\pn}[1]{{\color{red}{#1}}}
@@ -277,10 +275,10 @@ and violates the shift symmetry. Including $W_{sb}$ the axionic potential can be
 where $V_{\text{slow}}(b_-)$ which depends only on $b_-$ enters in slow roll and is relevant for inflation.
 An explicit form of this potential is given by
 \begin{align}
-  {V}_{\text{slow}} (b_-) = & \sum_{k = 1}^{2} \Big[ 2 \sum_{r = 1}^{q} r  \left( {A}_{k  r} {f}^{r - 1}  \sum_{l = 1}^{q} l  {A}_{k  l} {f}^{l - 1} + {\overline{A}}_{k  r}  {{f}}^{r - 1} \sum_{l = 1}^{q} l  \overline{{A}}_{k  l} {{f}}^{l - 1} \right) \times \non
+  {V}_{\text{slow}} (b_-) = & \sum_{k = 1}^{2} \Big[ 2 \sum_{r = 1}^{q} r  \left( {A}_{k  r} {f}^{r - 1}  \sum_{l = 1}^{q} l  {A}_{k  l} {f}^{l - 1} + {\overline{A}}_{k  r}  {{f}}^{r - 1} \sum_{l = 1}^{q} l  \overline{{A}}_{k  l} {{f}}^{l - 1} \right) \times \nonumber\\
                             & \left( 1 - \text{cos} \left( \frac{r}{ \sqrt 2 f}
     {b}_{-}\right) \right)
-    - 2 \sum_{l = 1}^{q} \sum_{r = l + 1}^{q} l  r  \left( {A}_{k  l} {A}_{k  r} {f}^{l + r - 2} + {\overline{A}}_{k  l} {\overline{A}}_{k  r} {{f}}^{l + r - 2} \right)\non
+    - 2 \sum_{l = 1}^{q} \sum_{r = l + 1}^{q} l  r  \left( {A}_{k  l} {A}_{k  r} {f}^{l + r - 2} + {\overline{A}}_{k  l} {\overline{A}}_{k  r} {{f}}^{l + r - 2} \right)\nonumber\\
                             & \times \left( 1 - \text{cos} \left( \frac{r - l}{\sqrt 2 f } {b}_{-}\right) \right) \Big]\,.
   \label{slow1}
 \end{align}
@@ -359,10 +357,10 @@ at the end of inflation. In this case the slow roll part of the potential which 
 \begin{align}
   V(b_-) & =
   e^{2f^2}\Big[
-    2\sum_{n=1}^q\sum_{m=1}^q  c_nc_mB_nB_m \left(1- 2 \cos(\frac{\gamma_n b_-}{\sqrt 2 f}) + \cos((\gamma_n-\gamma_m) \frac{b}{\sqrt 2 f})\right)\nonumber \\
+    2\sum_{n=1}^q\sum_{m=1}^q  c_nc_mB_nB_m \left(1- 2 \cos(\frac{\gamma_n b_-}{\sqrt 2 f}) + \cos((\gamma_n-\gamma_m) \frac{b}{\sqrt 2 f})\right)\nonumber\\umber \\
          & + \sum_{n=1}^q\sum_{m=1}^q
     (16 f^2  + 8 \sqrt 2 f c_n -12)B_nB_m
-    \Big(1-  \cos(\gamma_n b_-/ \sqrt 2f)-  \cos(\gamma_m b_-/ \sqrt 2f) \nonumber                                                                          \\
+    \Big(1-  \cos(\gamma_n b_-/ \sqrt 2f)-  \cos(\gamma_m b_-/ \sqrt 2f) \nonumber\\umber                                                                          \\
          & +\frac{1}{2} \cos((\gamma_n-\gamma_m) b_-/ \sqrt 2f)+ \frac{1}{2}  \cos((\gamma_n+\gamma_m) b_-/ \sqrt 2f)
     \Big)
     \Big]\,.
@@ -376,14 +374,14 @@ The above potential consists of a superposition of six cosines so that
 where $C_k$ are given by
 
 \begin{align}
-  C_1 = & - \frac{1}{f^2} (4  {e}^{2  {f}^{2} + 2}  ( - 2  {A}_{1}^{2}  \left( 4  {f}^{4} + {f}^{2} + 1 \right) - e  {A}_{1}  \left( {A}_{2}  \left( 4  {f}^{2} + 3 \right)  {f}^{2} + 2  e  {A}_{3}  \left( 4  {f}^{4} + 5  {f}^{2} + 3 \right) \right) \non
-        & + {e}^{3}  {A}_{2}  {A}_{3}  \left( 4  {f}^{4} + 7  {f}^{2} + 12 \right) ))\non
-  C_2=  & + \frac{1}{f^2}(2  {e}^{2  {f}^{2} + 2}  ( {A}_{1}^{2}  \left( - \left( 4  {f}^{4} + {f}^{2} \right) \right) + 2  e  {A}_{1}  \left( {A}_{2}  \left( 8  {f}^{4} + 6  {f}^{2} + 4 \right) - e  {A}_{3}  \left( 4  {f}^{4} + 5  {f}^{2} + 6 \right) \right) \non
-        & + 4  {e}^{2}  {A}_{2}  \left( {A}_{2}  \left( 4  {f}^{4} + 5  {f}^{2} + 4 \right) + e  {A}_{3}  \left( 4  {f}^{4} + 7  {f}^{2} + 6 \right) \right) ))\non
-  C_3=  & + \frac{1}{f^2}(4  {e}^{2  {f}^{2} + 3}  ( {A}_{1}  \left( 2  e  {A}_{3}  \left( 4  {f}^{4} + 5  {f}^{2} + 3 \right) - {A}_{2}  {f}^{2}  \left( 4  {f}^{2} + 3 \right) \right) \non
-        & + 2  {e}^{2}  {A}_{3}  \left( {A}_{2}  \left( 4  {f}^{4} + 7  {f}^{2} + 6 \right) + e  {A}_{3}  \left( 4  {f}^{4} + 9  {f}^{2} + 9 \right) \right) ))\non
-  C_4=  & - 2  \left( {A}_{2}^{2} + 2  {A}_{1}  {A}_{3} \right)  {e}^{2  {f}^{2} + 4}  \left( 4  {f}^{2} + 5 \right) \non
-  C_5=  & - 4  {A}_{2}  {A}_{3}  {e}^{2  {f}^{2} + 5}  \left( 4  {f}^{2} + 7 \right) \non
+  C_1 = & - \frac{1}{f^2} (4  {e}^{2  {f}^{2} + 2}  ( - 2  {A}_{1}^{2}  \left( 4  {f}^{4} + {f}^{2} + 1 \right) - e  {A}_{1}  \left( {A}_{2}  \left( 4  {f}^{2} + 3 \right)  {f}^{2} + 2  e  {A}_{3}  \left( 4  {f}^{4} + 5  {f}^{2} + 3 \right) \right) \nonumber\\
+        & + {e}^{3}  {A}_{2}  {A}_{3}  \left( 4  {f}^{4} + 7  {f}^{2} + 12 \right) ))\nonumber\\
+  C_2=  & + \frac{1}{f^2}(2  {e}^{2  {f}^{2} + 2}  ( {A}_{1}^{2}  \left( - \left( 4  {f}^{4} + {f}^{2} \right) \right) + 2  e  {A}_{1}  \left( {A}_{2}  \left( 8  {f}^{4} + 6  {f}^{2} + 4 \right) - e  {A}_{3}  \left( 4  {f}^{4} + 5  {f}^{2} + 6 \right) \right) \nonumber\\
+        & + 4  {e}^{2}  {A}_{2}  \left( {A}_{2}  \left( 4  {f}^{4} + 5  {f}^{2} + 4 \right) + e  {A}_{3}  \left( 4  {f}^{4} + 7  {f}^{2} + 6 \right) \right) ))\nonumber\\
+  C_3=  & + \frac{1}{f^2}(4  {e}^{2  {f}^{2} + 3}  ( {A}_{1}  \left( 2  e  {A}_{3}  \left( 4  {f}^{4} + 5  {f}^{2} + 3 \right) - {A}_{2}  {f}^{2}  \left( 4  {f}^{2} + 3 \right) \right) \nonumber\\
+        & + 2  {e}^{2}  {A}_{3}  \left( {A}_{2}  \left( 4  {f}^{4} + 7  {f}^{2} + 6 \right) + e  {A}_{3}  \left( 4  {f}^{4} + 9  {f}^{2} + 9 \right) \right) ))\nonumber\\
+  C_4=  & - 2  \left( {A}_{2}^{2} + 2  {A}_{1}  {A}_{3} \right)  {e}^{2  {f}^{2} + 4}  \left( 4  {f}^{2} + 5 \right) \nonumber\\
+  C_5=  & - 4  {A}_{2}  {A}_{3}  {e}^{2  {f}^{2} + 5}  \left( 4  {f}^{2} + 7 \right) \nonumber\\
   C_6=  & - 2  {A}_{3}^{2}  {e}^{2  {f}^{2} + 6}  \left( 4  {f}^{2} + 9 \right)
   \label{c1}
 \end{align}
@@ -416,7 +414,7 @@ For the \K potential of Eq.(\ref{kklt1}) the scalar potential Eq. (\ref{sugra1})
 \end{align}
 An  explicit computation of $V$ gives
 \begin{align}
-  V= & \frac{1}{6\tau} \Big [  \sum_{i} A^2_i q^2_i  e^{- 2q_i \tau } + 2 \sum_{i>j} A_iA_j q_iq_j e^{-(q_i+q_j)\tau} \cos\left((q_i-q_j) \theta\right)\non
+  V= & \frac{1}{6\tau} \Big [  \sum_{i} A^2_i q^2_i  e^{- 2q_i \tau } + 2 \sum_{i>j} A_iA_j q_iq_j e^{-(q_i+q_j)\tau} \cos\left((q_i-q_j) \theta\right)\nonumber\\
      & +  \frac{3}{\tau}  W_0 \sum_i A_i q_i e^{-q_i \tau} \cos(q_i \theta)
     +  \frac{3}{\tau} \
     \sum_{i,j}  A_i A_j q_j  e^{-(q_i + q_j) \tau} \cos((q_i -q_j)\theta)
@@ -448,7 +446,7 @@ we can  define the axion decay constant  so that  $f=  \frac{\sqrt 3}{\sqrt 2 \t
 The potential for the normalized axion field expanded around the stabilized moduli gives
 \begin{align}
   V(a)= & \frac{1}{6\tau_0} \Big [  \sum_{i} A^2_i q^2_i  e^{- 2q_i \tau_0 } + 2 \sum_{i>j} A_iA_j q_iq_j e^{-(q_i+q_j)\tau_0}
-    \cos\left(\frac{(q_i-q_j) a}{f}\right)\non
+    \cos\left(\frac{(q_i-q_j) a}{f}\right)\nonumber\\
         & +  \frac{3}{\tau_0}  W_0 \sum_i A_i q_i e^{-q_i \tau_0} \cos(\frac{q_i a}{f})
     +  \frac{3}{\tau_0} \
     \sum_{i,j}  A_i A_j q_j  e^{-(q_i + q_j) \tau_0} \cos\left(\frac{(q_i -q_j)a}{f}\right)
@@ -492,11 +490,11 @@ The computation of the $V$ in this case gives
 
 
 \begin{align}
-  V= & \frac{2 W_0}{S_1 \mathcal{V}^2} \sum_i (\tau_b q_b^i +\tau_s q_s^i) A_i e^{- q_b^i \tau_b - q_s^i \tau_s} \cos(q_b^i \theta_s + q^i_s \theta_s) \non
+  V= & \frac{2 W_0}{S_1 \mathcal{V}^2} \sum_i (\tau_b q_b^i +\tau_s q_s^i) A_i e^{- q_b^i \tau_b - q_s^i \tau_s} \cos(q_b^i \theta_s + q^i_s \theta_s) \nonumber\\
      & + \frac{1}{3 S_1\mathcal{V}^2} \sum_{i,j} \Big[3 \tau_b (q^i_b +q^j_b)
     + 3\tau_s (q_s^i +q_s^j)
-    + 2 (\tau_b^2 + 2 \sqrt \tau_b \tau_s^{3/2}) q_b^i q_b^j \non
-     & + 2(\tau^2_s+2 \sqrt{\tau_s} \tau^{3/2}_b) q_s^i q_s^j + 6 \tau_b \tau_s (q_b^i q_s^j + q_b^j q_s^i) \big]\non
+    + 2 (\tau_b^2 + 2 \sqrt \tau_b \tau_s^{3/2}) q_b^i q_b^j \nonumber\\
+     & + 2(\tau^2_s+2 \sqrt{\tau_s} \tau^{3/2}_b) q_s^i q_s^j + 6 \tau_b \tau_s (q_b^i q_s^j + q_b^j q_s^i) \big]\nonumber\\
      & \times
   A_i A_j  e^{ -(q_b^i + q_b^j) \tau_b - (q_s^i + q_s^j)\tau_s} \cos\left((q_b^i -q_b^j)\theta_b + (q_s^i -q_s^j)\theta_s\right) + \Delta V
 \end{align}
@@ -551,7 +549,7 @@ where
 \end{align}
 and $P$ and $Q$ are assumed to have the following forms
 \begin{align}
-  P & = (\partial_a\phi_1 \partial^a \phi^*_1 + \partial_a\phi_2 \partial^a \phi^*_2)/T, \non
+  P & = (\partial_a\phi_1 \partial^a \phi^*_1 + \partial_a\phi_2 \partial^a \phi^*_2)/T, \nonumber\\
   Q & = \Big(
   \alpha_1\partial_a \phi_1 \partial^a \phi_1 \partial_b \phi^*_1 \partial^b \phi^*_1
   + \alpha_1 \partial_a \phi_2 \partial^a \phi_2 \partial_b \phi^*_2 \partial^b \phi^*_2
@@ -582,12 +580,12 @@ Integration over the Grassmann variables gives rise to the following Lagranian\\
 \begin{align}
   \mathcal{L}
    & =
-  T - T \sqrt{(1+A)^2 - B}+ F_1 F^*_1 + F_2 F^*_2\non
+  T - T \sqrt{(1+A)^2 - B}+ F_1 F^*_1 + F_2 F^*_2\nonumber\\
    & + G(\phi) \Big[ \alpha_1(-2 F_1 F^*_1 \partial_a\phi_1 \partial^a \phi^*_1
-    + F_1^2 {F^*_1}^2)\non
+    + F_1^2 {F^*_1}^2)\nonumber\\
    & + \alpha_1 (-2 F_2 F^*_2 \partial_a\phi_2 \partial^a \phi^*_2
     + F_2^2 {F^*_2}^2)\Big]
-  \non
+  \nonumber\\
    & + \left(\frac{\partial W}{\partial \phi_1}F_1+ \frac{\partial W}{\partial \phi_2}F_2 + h.c.\right).
   \label{Lag.23}
 \end{align}
