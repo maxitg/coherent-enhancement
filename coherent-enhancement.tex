@@ -455,59 +455,67 @@ The imposition of Eqs.~(\ref{eq:KKLT:stabilization}) and (\ref{eq:KKLT:zeroVacuu
 % TODO(maxitg): Simulation part needs to be added here.
 
 \section{Inflation in Large Volume Scenario (LVS) \label{sec:LVS}}
-
-Next we consider the Large Volume Scenario (LVS) \cite{Balasubramanian:2005zx}
-where the K\"ahler potential has the form
-
+Next we consider the Large Volume Scenario (LVS)~\cite{Balasubramanian:2005zx} where the K\"ahler potential has the form
 \begin{equation}
-  K = - \, \text{log} (S+ \bar{S}) -2 \, \text{log} (\mathcal{V} +\alpha)
-  + K_{cs} (U, \bar{U})  \, ,
+  K = - \log\left(S + \bar S\right)
+      - 2 \log\left(\mathcal{V} + \alpha\right)
+      + K_{cs}\left(U, \bar U\right)\,.
 \end{equation}
-Here $S$ is the dilation, $U$ are the complex moduli. For moduli stabilization we need $\alpha$-correction to the K\"ahler potential where
-and $\alpha = \frac{1}{2} \xi S_1^{3/2}$ where $\xi = -\zeta (3) \chi/2 (2\pi)^3$, and $\chi$ is the topological Euler characteristic of $X$ of the compact manifold. For $\mathcal{V}$ we consider a Kahler moduli space
-with $h^{1,1}(X)=2$ and in this case one may write $\mathcal{V}$ in the form
+Here $S$ is the dilation, $U$ are the complex moduli.
+For moduli stabilization we need $\alpha$-correction to the K\"ahler potential where and $\alpha = \frac{1}{2} \xi S_1^{3 / 2}$ where $\xi = -\zeta\left(3\right) \chi / 2 \left(2 \pi\right)^3$, and $\chi$ is the topological Euler characteristic of $X$ of the compact manifold.
+For $\mathcal{V}$ we consider a K\"ahler moduli space with $h^{1, 1}\left(X\right) = 2$ and in this case one may write $\mathcal{V}$ in the form
 \begin{equation}
-  \mathcal{V} = \eta \,( \tau_b^{3/2} - \tau_s^{3/2}) \, .
+  \mathcal{V} = \eta \left(\tau_b^{3 / 2} - \tau_s^{3 / 2}\right)\,.
 \end{equation}
-In the analysis we will assume that $S$ and $U$ have been stabilized at large scales and thus these will play no role in the
-inflation analysis. We will thus focus on the stabilization of the remaining moduli. Here we assume a superpotential of the form
-
-\begin{align}
-  W= W_0 +\sum_i A_i e^{-q^i_b \tau_b -q^i_s \tau_s}
-\end{align}
+In the analysis we will assume that $S$ and $U$ have been stabilized at large scales and thus these will play no role in the inflation analysis.
+We will thus focus on the stabilization of the remaining moduli.
+Here we assume a superpotential of the form
+\begin{equation}
+  W = W_0 + \sum_i A_i e^{-q^i_b \tau_b - q^i_s \tau_s}\,.
+\end{equation}
 The computation of the $V$ in this case gives
+\begin{equation}
+  \begin{aligned}
+    V = &\frac{2 W_0}{S_1 \mathcal{V}^2} \sum_i \left(\tau_b q_b^i + \tau_s q_s^i\right)
+          A_i e^{-q_b^i \tau_b - q_s^i \tau_s} \cos\left(q_b^i \theta_s + q^i_s \theta_s\right)\\
+        & + \frac{1}{3 S_1 \mathcal{V}^2} \sum_{i, j} \left[
+              3 \tau_b \left(q^i_b + q^j_b\right)
+            + 3 \tau_s \left(q_s^i + q_s^j\right)
+            + 2 \left(\tau_b^2 + 2 \sqrt{\tau_b} \tau_s^{3 / 2}\right) q_b^i q_b^j\right.\\
+            &~~~~~~ \left.{}
+            + 2 \left(\tau^2_s + 2 \sqrt{\tau_s} \tau^{3 / 2}_b\right) q_s^i q_s^j
+            + 6 \tau_b \tau_s \left(q_b^i q_s^j + q_b^j q_s^i\right)
+        \right]\\
+        &~~~ \times A_i A_j
+          e^{-\left(q_b^i + q_b^j\right) \tau_b - \left(q_s^i + q_s^j\right) \tau_s}
+          \cos\left(
+              \left(q_b^i - q_b^j\right) \theta_b
+            + \left(q_s^i - q_s^j\right) \theta_s
+          \right)
+        + \Delta V\,,
+  \end{aligned}
+\end{equation}
+where $\Delta V$ contains $\alpha'$ corrections.
+Next to stabilize the moduli we use the condition
+\begin{equation}
+  D_i W = 0, i = \tau_b, \tau_s, \theta_b, \theta_s\,.
+\end{equation}
+The stabilization leads to $\left<\theta_b\right> = \left<\theta_s\right> = 0$, $\left<\tau_b\right> = \tau_{b, 0}$ and $\left<\tau_s\right> = \tau_{s, 0}$ where $\tau_{s, 0}$ and $\tau_{b, 0}$ are constrained by
+\begin{equation} \label{eq:LVS:stabilization}
+  \sum_i q^i_b A_i e^{-q_b^i \tau_{b, 0} - q^i_s \tau_{s, 0}}
+  + \frac{3 \sqrt{\tau_{b, 0}}}{2 \left(\tau^{3 / 2}_{b, 0} - \tau^{3 / 2}_{s, 0}\right)} \left(
+    W_0 + \sum_i A_i e^{-q^i_b \tau_{b, 0} - q_s^i \tau_{s, 0}}
+  \right) = 0\,.
+\end{equation}
+Further, for vanishing of the vacuum energy at the end of inflation we impose the constraint $\left<W\right> = 0$ which gives
+\begin{equation}
+  W_0 + \sum_i A_i e^{-q_b^i \tau_{b, 0} - q_s^i \tau_{s, 0}} = 0\,.
+\end{equation}
+For $\Delta V$, which is needed to achieve stability, we choose the conventional LVS correction to the potential, i.e.,
+\begin{equation}
+  \Delta V = \xi \frac{3 \left|W_0\right|^2 \sqrt{S_1}}{8 \mathcal{V}^3}\,.
+\end{equation}
 
-
-\begin{align}
-  V= & \frac{2 W_0}{S_1 \mathcal{V}^2} \sum_i (\tau_b q_b^i +\tau_s q_s^i) A_i e^{- q_b^i \tau_b - q_s^i \tau_s} \cos(q_b^i \theta_s + q^i_s \theta_s) \nonumber\\
-     & + \frac{1}{3 S_1\mathcal{V}^2} \sum_{i,j} \Big[3 \tau_b (q^i_b +q^j_b)
-    + 3\tau_s (q_s^i +q_s^j)
-    + 2 (\tau_b^2 + 2 \sqrt \tau_b \tau_s^{3/2}) q_b^i q_b^j \nonumber\\
-     & + 2(\tau^2_s+2 \sqrt{\tau_s} \tau^{3/2}_b) q_s^i q_s^j + 6 \tau_b \tau_s (q_b^i q_s^j + q_b^j q_s^i) \big]\nonumber\\
-     & \times
-  A_i A_j e^{ -(q_b^i + q_b^j) \tau_b - (q_s^i + q_s^j)\tau_s} \cos\left((q_b^i -q_b^j)\theta_b + (q_s^i -q_s^j)\theta_s\right) + \Delta V
-\end{align}
-where $\Delta V$ contains $\alpha'$ corrections. Next to stabilize the moduli we use the condition
-\begin{align}
-  D_i W==0, i= \tau_b, \tau_s, \theta_b, \theta_s\,.
-\end{align}
-The stabilization leads to $<\theta_b>=<\theta_s>=0$, $<\tau_b>=\tau_{b0}$ and $<\tau_{s}>= \tau_{s0}$ where
-$\tau_{s_0}$ and $\tau_{b0}$ are constrained by
-
-\begin{align}
-  \sum_i q^i_b A_i e^{-q_b^i \tau_{b0} - q^i_s \tau_{s0}} +
-  \frac{3 \sqrt {\tau_{b0}}}{2 (\tau^{3/2}_{b0}- \tau^{3/2}_{s0})} \left( W_0 + \sum_i A_i e^{-q^i_b \tau_{b0} - q_s^i \tau_{s0}} \right) =0.
-  \label{lvs-stabiltiy-1}
-\end{align}
-Further, for vanishing of the vacuum energy at the end of inflation we impose the constraint $<W>=0$ which gives
-\begin{align}
-  W_0 + \sum_i A_i e^{- q_b^i \tau_{b0} - q_s^i \tau_{s0}} =0.
-\end{align}
-For $\Delta V$, which is needed to achieve stability,
-we choose the conventional LVS correction to the potential, i.e.,
-\begin{align}
-  \Delta V= \xi \frac{3 |W_0|^2 \sqrt {S_1}}{8 \mathcal{V}^3}
-\end{align}
 % TODO(maxitg): Simulation part needs to be added here.
 
 \section{Coherent Enhancement Mechanism for Dirac-Born-Infeld \label{sec:DBI}}
