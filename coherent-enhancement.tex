@@ -268,99 +268,122 @@ Eq.~(\ref{eq:supersymmetry:Vslow}) will be used in our computations.
 
 % TODO(maxitg): Simulation part needs to be added here.
 
-\section{\bf Enhancement mechanism in supergravity \label{sec:Supergravity}}
-We now extend the analysis to supergravity where the scalar potential has the form~\cite{Chamseddine:1982jx,Cremmer:1982en}
-is given by
-\begin{align}
-  V= e^K [ D_i W K^{-1}_{ij^*} D_{j^*} W^* - 3 |W|^2] + V_D\,,
-  \label{sugra1}
-\end{align}
-where $K$ is the K\"ahler potential, $W$ as before is the superpotential $D_iW$ is defined by
-
-\begin{align}
-  D_i W= \frac{\partial W}{\partial \phi_i} + \frac{\partial K}{\partial \phi_i} W\,.
-  \label{sugra2}
-\end{align}
+\section{Enhancement mechanism in supergravity \label{sec:Supergravity}}
+We now extend the analysis to supergravity where the scalar potential has the form~\cite{Chamseddine:1982jx, Cremmer:1982en} is given by
+\begin{equation} \label{eq:supergravity:potential}
+  V = e^K \left[D_i W K^{-1}_{ij^*} D_{j^*} W^* - 3 \left|W\right|^2\right] + V_D\,,
+\end{equation}
+where $K$ is the K\"ahler potential, $W$ as before is the superpotential $D_i W$ is defined by
+\begin{equation} \label{eq:supergravity:DW}
+  D_i W = \frac{\partial W}{\partial \phi_i} + \frac{\partial K}{\partial \phi_i} W\,.
+\end{equation}
 $V_D$, which is the $D$-term of the potential will play no role in our analysis and will we dropped from here on.
-In order to avoid the so-called $\eta$ -problem of supergravity we choose the K\"ahler potential to be of the form
-\begin{align}
-  K = \sum_{i} \frac{1}{2} (\Phi_i+ \Phi_i^\dagger)^2\,,
-\end{align}
-where as in the global supersymmetry model we consider a pair of chiral fields $\Phi_i$ (i=1,2).
-We parametrize the complex scalar component of the fields so that
-$\phi_i$ of $\Phi_i, i=1,2$ so that
-\begin{align}
-  \phi_i = (\rho_i + i a_i)/\sqrt 2,~ i=1,2\,,
-\end{align}
-where $ a_i$ have the shift property
-\begin{align}
-  a_1\to a_1 + \lambda, ~~a_2\to a_2 - \lambda\,,
-\end{align}
-and $\rho_i$ are the saxion fields. It is then easily checked the the kinetic energy for $\phi_i$ and $a_i$ are
-canonically normalized.
-As in the global supersymmetry case we choose $W$ of the form Eq.~(\ref{eq:supersymmetry:W})  where, however, we write
-\begin{align}
-  W_s = W_s^{\text{vis})} + W_0
-\end{align}
-Where $W_s$ is invariant under the shift symmetry with $W_s^{\text{vis})}$ asking from the visible sector
-and $W_0$ arising from the hidden sector. For supergravity analysis the saxion can be stabilized by imposition of spontaneous symmetry breaking
-conditions~\cite{Nath:1983aw}
-\begin{align}
-  D_iW =0, i=1,2
-\end{align}
+In order to avoid the so-called $\eta$-problem of supergravity we choose the K\"ahler potential to be of the form
+\begin{equation}
+  K = \sum_i \frac{1}{2} \left(\Phi_i + \Phi_i^\dagger\right)^2\,,
+\end{equation}
+where as in the global supersymmetry model we consider a pair of chiral fields $\Phi_i, i = 1, 2$.
+We parametrize the complex scalar component of the fields so that $\phi_i$ of $\Phi_i, i = 1, 2$ so that
+\begin{equation}
+  \phi_i = \left(\rho_i + i a_i\right) / \sqrt 2,
+  ~~~ i = 1, 2\,,
+\end{equation}
+where $a_i$ have the shift property
+\begin{equation}
+  a_1 \to a_1 + \lambda,
+  ~~~ a_2 \to a_2 - \lambda\,,
+\end{equation}
+and $\rho_i$ are the saxion fields.
+It is then easily checked the the kinetic energy for $\phi_i$ and $a_i$ are canonically normalized.
+As in the global supersymmetry case we choose $W$ of the form Eq.~(\ref{eq:supersymmetry:W}) where, however, we write
+\begin{equation}
+  W_s = W_s^\text{vis} + W_0\,,
+\end{equation}
+where $W_s$ is invariant under the shift symmetry with $W_s^\text{vis}$ asking from the visible sector and $W_0$ arising from the hidden sector.
+For supergravity analysis the saxion can be stabilized by imposition of spontaneous symmetry breaking conditions~\cite{Nath:1983aw}
+\begin{equation}
+  D_i W = 0,
+  ~~~ i = 1, 2\,.
+\end{equation}
 For shift symmetry breaking we assume
-\begin{align}
-  W_{sb} = \sum_{n=1}^q A_n \left ( e^{c_n\Phi_1} + e^{c_n\Phi_2}\right)\,.
-\end{align}
-and as in the global supersymmetry case we make a change of basis from $a_1, a_2$ to $b_+, b_-$ as given by
-Eq.(\ref{eq:b+-}).
-Next we expand around the minimum of the saxion potential and retain only $b_-$ which controls the
-the slow roll part of the potential. To that end
-$W_{sb}$ takes the form
-\begin{align}
-  W_{sb}= -\sum_{n=1}^q B_n (e^{i\gamma_n\frac{b}{\sqrt 2 f}} + e^{-i\gamma_n \frac{b}{\sqrt 2f}})\,.
-\end{align}
-where $B_n= - A_n e^{c_n f/\sqrt 2}$ and $\gamma_n = c_n f/\sqrt 2$.
-in addition to the stabilization of the saxions we also impose vanishing of the vacuum energy
-at the end of inflation. In this case the slow roll part of the potential which involves only the field $b_-$ takes the form
-
-\begin{align}
-  V(b_-) & =
-  e^{2f^2}\Big[
-    2\sum_{n=1}^q\sum_{m=1}^q c_nc_mB_nB_m \left(1- 2 \cos(\frac{\gamma_n b_-}{\sqrt 2 f}) + \cos((\gamma_n-\gamma_m) \frac{b}{\sqrt 2 f})\right)\nonumber\\
-         & + \sum_{n=1}^q\sum_{m=1}^q
-    (16 f^2 + 8 \sqrt 2 f c_n -12)B_nB_m
-    \Big(1- \cos(\gamma_n b_-/ \sqrt 2f)- \cos(\gamma_m b_-/ \sqrt 2f) \nonumber\\
-         & +\frac{1}{2} \cos((\gamma_n-\gamma_m) b_-/ \sqrt 2f)+ \frac{1}{2} \cos((\gamma_n+\gamma_m) b_-/ \sqrt 2f)
-    \Big)
-    \Big]\,.
-  \label{sugrapot}
-\end{align}
+\begin{equation}
+  W_{sb} = \sum_{n = 1}^q A_n \left(e^{c_n \Phi_1} + e^{c_n \Phi_2}\right)\,,
+\end{equation}
+and as in the global supersymmetry case we make a change of basis from $a_1, a_2$ to $b_+, b_-$ as given by Eq.~(\ref{eq:b+-}).
+Next we expand around the minimum of the saxion potential and retain only $b_-$ which controls the the slow roll part of the potential.
+To that end $W_{sb}$ takes the form
+\begin{equation}
+  W_{sb} = -\sum_{n = 1}^q B_n \left(
+      e^{i \gamma_n \frac{b}{\sqrt{2} f}}
+    + e^{-i \gamma_n \frac{b}{\sqrt{2} f}}
+  \right)\,,
+\end{equation}
+where $B_n = -A_n e^{c_n f / \sqrt{2}}$ and $\gamma_n = c_n f / \sqrt{2}$.
+In addition to the stabilization of the saxions we also impose vanishing of the vacuum energy at the end of inflation.
+In this case the slow roll part of the potential which involves only the field $b_-$ takes the form
+\begin{equation} \label{eq:supergravity:Vslow}
+  \begin{aligned}
+    V\left(b_-\right) = e^{2 f^2} &\left[
+      2 \sum_{n = 1}^q \sum_{m = 1}^q c_n c_m B_n B_m \left(
+          1
+        - 2 \cos\left(\frac{\gamma_n b_-}{\sqrt{2} f}\right)
+        + \cos\left(\left(\gamma_n - \gamma_m\right) \frac{b}{\sqrt{2} f}\right)
+      \right)\right.\\
+      & + \sum_{n = 1}^q \sum_{m = 1}^q \left(16 f^2 + 8 \sqrt{2} f c_n - 12\right) B_n B_m \left(
+          1
+        - \cos\left(\gamma_n b_- / \sqrt{2} f\right)
+        - \cos\left(\gamma_m b_- / \sqrt{2} f\right)\right.\\
+      & ~~~ \left.\left.{}
+        + \frac{1}{2} \cos\left(\left(\gamma_n - \gamma_m\right) b_- / \sqrt{2} f\right)
+        + \frac{1}{2} \cos\left(\left(\gamma_n + \gamma_m\right) b_- / \sqrt{2} f\right)
+      \right)
+    \right]\,.
+  \end{aligned}
+\end{equation}
 The above potential consists of a superposition of six cosines so that
-
-\begin{align}
-  V(b_-)= \sum_{k=1}^{6} C_k \left(1-\cos(\frac{kb_-}{\sqrt 2 f})\right)
-\end{align}
+\begin{equation} \label{eq:supergravity:Vslow3}
+  V\left(b_-\right)
+    = \sum_{k = 1}^6 C_k \left(1 - \cos\left(\frac{k b_-}{\sqrt{2} f}\right)\right)\,,
+\end{equation}
 where $C_k$ are given by
-
-\begin{align}
-  C_1 = & - \frac{1}{f^2} (4 {e}^{2 {f}^{2} + 2} ( - 2 {A}_{1}^{2} \left( 4 {f}^{4} + {f}^{2} + 1 \right) - e {A}_{1} \left( {A}_{2} \left( 4 {f}^{2} + 3 \right)  {f}^{2} + 2 e {A}_{3} \left( 4 {f}^{4} + 5 {f}^{2} + 3 \right) \right) \nonumber\\
-        & + {e}^{3} {A}_{2} {A}_{3} \left( 4 {f}^{4} + 7 {f}^{2} + 12 \right) ))\nonumber\\
-  C_2= & + \frac{1}{f^2}(2 {e}^{2 {f}^{2} + 2} ( {A}_{1}^{2} \left( - \left( 4 {f}^{4} + {f}^{2} \right) \right) + 2 e {A}_{1} \left( {A}_{2} \left( 8 {f}^{4} + 6 {f}^{2} + 4 \right) - e {A}_{3} \left( 4 {f}^{4} + 5 {f}^{2} + 6 \right) \right) \nonumber\\
-        & + 4 {e}^{2} {A}_{2} \left( {A}_{2} \left( 4 {f}^{4} + 5 {f}^{2} + 4 \right) + e {A}_{3} \left( 4 {f}^{4} + 7 {f}^{2} + 6 \right) \right) ))\nonumber\\
-  C_3= & + \frac{1}{f^2}(4 {e}^{2 {f}^{2} + 3} ( {A}_{1} \left( 2 e {A}_{3} \left( 4 {f}^{4} + 5 {f}^{2} + 3 \right) - {A}_{2} {f}^{2} \left( 4 {f}^{2} + 3 \right) \right) \nonumber\\
-        & + 2 {e}^{2} {A}_{3} \left( {A}_{2} \left( 4 {f}^{4} + 7 {f}^{2} + 6 \right) + e {A}_{3} \left( 4 {f}^{4} + 9 {f}^{2} + 9 \right) \right) ))\nonumber\\
-  C_4= & - 2 \left( {A}_{2}^{2} + 2 {A}_{1} {A}_{3} \right)  {e}^{2 {f}^{2} + 4} \left( 4 {f}^{2} + 5 \right) \nonumber\\
-  C_5= & - 4 {A}_{2} {A}_{3} {e}^{2 {f}^{2} + 5} \left( 4 {f}^{2} + 7 \right) \nonumber\\
-  C_6= & - 2 {A}_{3}^{2} {e}^{2 {f}^{2} + 6} \left( 4 {f}^{2} + 9 \right)
-  \label{c1}
-\end{align}
+\begin{equation} \label{eq:supergravity:Vslow3Coefficients}
+  \begin{aligned}
+    C_1 &= -\frac{1}{f^2} \left(4 e^{2 f^2 + 2} \left(
+      - 2 A_1^2 \left(4 f^4 + f^2 + 1\right)
+      - e A_1 \left(A_2 \left(4 f^2 + 3\right) f^2
+      + 2 e A_3 \left(4 f^4 + 5 f^2 + 3\right)\right)\right.\right.\\
+      &~~~~~~ \left.\left.{} + e^3 A_2 A_3 \left(4 f^4 + 7 f^2 + 12\right)
+    \right)\right)\,,\\
+    C_2 &= +\frac{1}{f^2} \left(2 e^{2 f^2 + 2} \left(
+        A_1^2 \left(-\left(4 f^4 + f^2\right)\right)
+      + 2 e A_1 \left(
+          A_2 \left(8 f^4 + 6 f^2 + 4\right)
+        - e A_3 \left(4 f^4 + 5 f^2 + 6\right)
+      \right)\right.\right.\\
+      &~~~~~~ \left.\left.{} + 4 e^2 A_2 \left(
+          A_2 \left(4 f^4 + 5 f^2 + 4\right)
+        + e A_3 \left(4 f^4 + 7 f^2 + 6\right)
+      \right)\right)\right)\,,\\
+    C_3 &= +\frac{1}{f^2}\left(4 e^{2 f^2 + 3} \left(
+      A_1 \left(
+          2 e A_3 \left(4 f^4 + 5 f^2 + 3\right)
+        - A_2 f^2 \left(4 f^2 + 3\right)
+      \right)\right.\right.\\
+      &~~~~~~ \left.\left.{} + 2 e^2 A_3 \left(
+          A_2 \left(4 f^4 + 7 f^2 + 6\right)
+        + e A_3 \left(4 f^4 + 9 f^2 + 9\right)
+      \right)\right)\right)\,,\\
+    C_4 &= -2 \left(A_2^2 + 2 A_1 A_3\right) e^{2 f^2 + 4} \left(4 f^2 + 5\right)\,,\\
+    C_5 &= -4 A_2 A_3 e^{2 f^2 + 5} \left(4 f^2 + 7 \right)\,,\\
+    C_6 &= -2 A_3^2 e^{2 f^2 + 6} \left(4 f^2 + 9\right)\,.
+  \end{aligned}
+\end{equation}
 
 % TODO(maxitg): Simulation part needs to be added here.
 
 \section{Coherent axion enhancement in KKLT\label{sec:KKLT}}
 We wish to discuss coherent enhancement of the decay constant in KKLT~\cite{Kachru:2003aw}.
-The scalar potential of the theory is as given by Eq.(\ref{sugra1}) and Eq.(\ref{sugra2}).
+The scalar potential of the theory is as given by Eq.~(\ref{eq:supergravity:potential}) and Eq.~(\ref{eq:supergravity:DW}).
 In the KKLT analysis we consider a K\"ahler potential with a single modulus $T$ so that
 
 \begin{align}
@@ -376,7 +399,7 @@ and we take $W$ to have the form
   \label{w0A}
 \end{align}
 where the modulus $T$ appears only in the exponent and where $A_i$ and $q_i$ are assumed real.
-For the K\"ahler potential of Eq.(\ref{kklt1}) the scalar potential Eq. (\ref{sugra1}) takes the form
+For the K\"ahler potential of Eq.(\ref{kklt1}) the scalar potential Eq.~(\ref{eq:supergravity:potential}) takes the form
 
 \begin{align}
   V= e^K K^{T\bar T} \left[\partial_TW \partial_{\bar T} \bar W +
@@ -680,7 +703,7 @@ This research was supported in part by the NSF Grant PHY-1620575.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{figs/figsugra.png}
-  \caption{ Comparison of true vs. enhanced axion decay constants for model Eq. (\ref{c1}). Data corresponds to Figs.(9, 10) of [7]. The number of points is 846. Note that while all true decay constants are smaller than $M_P$, all enhanced decay constants are larger than
+  \caption{ Comparison of true vs. enhanced axion decay constants for model Eq. (\ref{eq:supergravity:Vslow3}). Data corresponds to Figs.(9, 10) of [7]. The number of points is 846. Note that while all true decay constants are smaller than $M_P$, all enhanced decay constants are larger than
     $4.5 M_P$, which is necessary for produce the number of e-foldings in the desired range.}
   \label{figsugra}
 \end{figure}
