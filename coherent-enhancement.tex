@@ -265,6 +265,15 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
 \end{equation}
 Eq.~(\ref{eq:supersymmetry:Vslow}) will be used in our computations.
 
+\begin{figure} \label{fig:supersymmetry} % TODO(maxitg): Placeholder figure.
+  \centering
+  \includegraphics[width = 0.8 \textwidth]{figs/figsusy.png}
+  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.~(\ref{eq:supersymmetry:Vslow}) with $G_6 = 0$ (left panel) and $G_6 \neq 0$ (right panel).
+    Data corresponds to Figs.~(3, 5) of~\cite{Nath:2017ihp}.
+    The number of points is 939 on the left, and 102492 on the right panel.
+    Note that while there are points with true decay constants below $M_\text{P}$, all of the enhanced decay constants are larger than $4.5 M_\text{P}$, which is necessary to produce a sufficient number of e-foldings in Natural Inflation.}
+\end{figure}
+
 % TODO(maxitg): Simulation part needs to be added here.
 
 \section{Enhancement mechanism in supergravity \label{sec:Supergravity}}
@@ -377,6 +386,15 @@ where $C_k$ are given by
     C_6 &= -2 A_3^2 e^{2 f^2 + 6} \left(4 f^2 + 9\right)\,.
   \end{aligned}
 \end{equation}
+
+\begin{figure} \label{fig:supergravity} % TODO(maxitg): Placeholder figure.
+  \centering
+  \includegraphics[width = 0.8 \textwidth]{figs/figsugra.png}
+  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.~(\ref{eq:supergravity:Vslow3}).
+    Data corresponds to Figs.~(9,~10) of~\cite{Nath:2017ihp}.
+    The number of points is $846$.
+    Note that while all true decay constants are smaller than $M_\text{P}$, all enhanced decay constants are larger than $4.5 M_\text{P}$, which is necessary to produce the number of e-foldings in the desired range.}
+\end{figure}
 
 % TODO(maxitg): Simulation part needs to be added here.
 
@@ -715,7 +733,23 @@ in which case Eqs.~(\ref{eq:lambdaSlowRoll}, \ref{eq:feSlowRoll}, \ref{eq:fieldI
 
 To demonstrate the validity of our procedure, we sample the parameter space of the model Eq.~(\ref{eq:dbi:lagrangian}) by setting $T = 1$, $\mathcal{G}_1 = \mathcal{G}_2 = \mathcal{G}_3 = 0$, $\mathcal{G}_4 = 1$, and varying $\mathcal{G}_5$, $\mathcal{G}_6$, $\alpha_1$, $f$, $\tilde\beta$, and the pivot e-foldings count $N_\text{pivot}$.
 This corresponds to Fig.~(1) of~\cite{Nath:2018xxe}.
-We then select parameter choices than produced at least $N_\text{pivot}$ number of e-foldings, and plot the true axion decay constant $f$ vs. the effective axion decay constant $f_e$ on Fig.~(\ref{Figure:fig.enhancement.sim}).
+We then select parameter choices than produced at least $N_\text{pivot}$ number of e-foldings, and plot the true axion decay constant $f$ vs. the effective axion decay constant $f_e$ on Fig.~(\ref{fig:DBI:parameters}).
+
+\begin{figure} \label{fig:DBI:parameters} % TODO(maxitg): Placeholder figure.
+  \centering
+  \includegraphics[width = 0.5 \textwidth]{figs/fige.pdf}
+  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.~(\ref{eq:dbi:lagrangian}), $33418$ points shown ($13$ points for which $\eta - 2\epsilon < 0$ are excluded from analysis).
+    Note that while the true decay constants vary from $\sim 0.01$ to $\sim 2000$, all of the enhanced decay constants are larger than $4.6$, and have an average of $8.4$.
+    Note further than the minimal value of $f_e$ in Natural Inflation required to produce experimentally consistent inflation is $f_e \approx 6.9$~\cite{Ade:2015lrj}.}
+\end{figure}
+
+\begin{figure} \label{fig:DBI:observables} % TODO(maxitg): Placeholder figure.
+  \centering
+  \includegraphics[width = 0.5 \textwidth]{figs/figc.pdf}
+  \caption{Comparison of parameter region $\left(\phi_0, f\right)$ for points from Fig.~(\ref{fig:DBI:parameters}) (blue) vs. the corresponding parameter region for true Natural Inflation (gray).
+    In both cases the pivot number of e-foldings is between $50$ and $60$.
+    The systematic shift may be specific to considered DBI model.}
+\end{figure}
 
 % TODO(maxitg): Simulation part needs to be added here.
 
@@ -733,41 +767,6 @@ One of the interesting results of the analysis is that the effective decay const
 This research was supported in part by the NSF Grant PHY-1620575.
 
 \clearpage
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/figsusy.png}
-  \caption{ Comparison of true vs. enhanced axion decay constants for model Eq.(13) with $G_6 = 0$ (left panel) and
-    $G_6 \neq 0$ (right panel). Data corresponds to Figs. (3, 5) of \cite{Nath:2017ihp}.
-    The number of points is 939 on the left, and 102492 on the right panel.
-    Note that while there are points with true decay constants below
-    MP, all of the enhanced decay constants are larger than $4.5 M_P$, which is
-    necessary for produce a sufficient number of e-foldings in Natural Inflation.}
-  \label{figsusy}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/figsugra.png}
-  \caption{ Comparison of true vs. enhanced axion decay constants for model Eq. (\ref{eq:supergravity:Vslow3}). Data corresponds to Figs.(9, 10) of [7]. The number of points is 846. Note that while all true decay constants are smaller than $M_P$, all enhanced decay constants are larger than
-    $4.5 M_P$, which is necessary for produce the number of e-foldings in the desired range.}
-  \label{figsugra}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.5\textwidth]{figs/fige.pdf}
-  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.(\ref{eq:dbi:lagrangian}), $33418$ points shown ($13$ points for which $\eta - 2\epsilon < 0$ are excluded from analysis). Note that while the true decay constants vary from $\sim 0.01$ to $\sim 2000$, all of the enhanced decay constants are larger than $4.6$, and have an average of $8.4$. Note further than the minimal value of ${f}_{e}$ in Natural Inflation required to produce experimentally consistent inflation is ${f}_{e} \approx 6.9$ \cite{Ade:2015lrj}.}
-  \label{Figure:fig.enhancement.sim}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.5\textwidth]{figs/figc.pdf}
-  \caption{Comparison of parameter region $\left({\phi}_{0}, f\right)$ for points from Fig.(\ref{Figure:fig.enhancement.sim}) (blue) vs. the corresponding parameter region for true Natural Inflation (gray). In both cases the pivot number of e-foldings is between $50$ and $60$. The systematic shift may be specific to considered DBI model.}
-  \label{fig.comparison.sim}
-\end{figure}
-
 
 \begin{thebibliography}{99}
 
