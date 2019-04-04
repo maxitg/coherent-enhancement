@@ -138,15 +138,14 @@ Finally, it is also possible to express the effective decay constant in terms of
 \end{equation}
 
 By combining these with Eqs.~(\ref{eq:lambdaFromPotential}, \ref{eq:feFromPotential}, \ref{eq:fieldInitialFromPotential}), we obtain
-\begin{equation} \label{eq:lambdaSlowRoll}
-  \Lambda = V\left(\phi_0\right) \frac{2 \epsilon - \eta}{2 \epsilon - 2 \eta}\,,
-\end{equation}
-\begin{equation} \label{eq:feSlowRoll}
-  f_e = \frac{1}{\sqrt{2 \left(\epsilon - \eta\right)}}\,,
-\end{equation}
-\begin{equation} \label{eq:FieldInitialSlowRoll}
-  \cos\left(\frac{\varphi_0}{f_e}\right) = \frac{\eta}{2 \epsilon - \eta}\,.
-\end{equation}
+\begin{align} % keep each equation numbered separately
+  \label{eq:lambdaSlowRoll}
+  \Lambda &= V\left(\phi_0\right) \frac{2 \epsilon - \eta}{2 \epsilon - 2 \eta}\,,\\
+  \label{eq:feSlowRoll}
+  f_e &= \frac{1}{\sqrt{2 \left(\epsilon - \eta\right)}}\,,\\
+  \label{eq:fieldInitialSlowRoll}
+  \cos\left(\frac{\varphi_0}{f_e}\right) &= \frac{\eta}{2 \epsilon - \eta}\,.
+\end{align}
 
 The spectral indices $n_s$ and $n_t$ are related to the inflationary parameters so that
 \begin{equation} \label{eq:observablesSlowRoll}
@@ -519,159 +518,204 @@ For $\Delta V$, which is needed to achieve stability, we choose the conventional
 % TODO(maxitg): Simulation part needs to be added here.
 
 \section{Coherent Enhancement Mechanism for Dirac-Born-Infeld \label{sec:DBI}}
-Supersymmetric DBI actions have been investigated by a number of authors
-(see, e.g., \cite{Khoury:2010gb,Khoury:2011da,Baumann:2011nk,Baumann:2011nm,Rocek:1997hi,Tseytlin:1999dj,Ito:2007hy,Billo:2008sp,Sasaki:2012ka,Aoki:2016tod}.
+Supersymmetric DBI actions have been investigated by a number of authors (see, e.g.,~\cite{Khoury:2010gb, Khoury:2011da, Baumann:2011nk, Baumann:2011nm, Rocek:1997hi, Tseytlin:1999dj, Ito:2007hy, Billo:2008sp, Sasaki:2012ka, Aoki:2016tod}.
 Here we discuss the supersymmetric DBI in the context of axion inflation.
-Inflation in a single field DBI has discussed in \cite{Sasaki:2012ka} and for the case of two fields in~\cite{Nath:2018xxe}.
+Inflation in a single field DBI has discussed in~\cite{Sasaki:2012ka} and for the case of two fields in~\cite{Nath:2018xxe}.
 Here we discuss the coherent enhancement mechanism in the context of the two fields.
-Thus as in our analysis in sections 4 and 5 we consider a pair of chiral superfields $\Phi_1$ and $\Phi_2$ which carry opposite
-charges under a global $U(1)$ symmetry.
+Thus as in our analysis in sections 4 and 5 we consider a pair of chiral superfields $\Phi_1$ and $\Phi_2$ which carry opposite charges under a global $U\left(1\right)$ symmetry.
 The supersymmetric Lagrangian involving $\Phi_1$ and $\Phi_2$ is given by
-\begin{equation}
-  \mathcal{L}= \mathcal{L}_D+\mathcal{L}_{F},
-  \label{1.1}
+\begin{equation} \label{eq:DBI:lagrangianTerms}
+  \mathcal{L} = \mathcal{L}_D + \mathcal{L}_F\,,
 \end{equation}
-where $\mathcal{L}_D$ is the D-part of the Lagrangian and $\mathcal{L}_{F}$ is the F-part. Here $\mathcal{L}_D$
-consists of a part which is quadratic in the fields and a part which is quartic in the fields so that
-\begin{align}
-  \mathcal{L}_D
-   & = \int d^4\theta \left(\Phi_1 \Phi_1^\dagger + \Phi_2 \Phi_2^\dagger \right)+ \int d^4\theta
-  \frac{\alpha_1}{16T}\left(D^\alpha \Phi_1 D_\alpha \Phi_1\right)\left({\bar{D}}^{\dot{\alpha}}\Phi_1^\dagger {\bar{D}}_{\dot{\alpha}}\Phi_1^\dagger \right)
-  G(\phi),
-  \label{Lag.11}
-\end{align}
+where $\mathcal{L}_D$ is the $D$-part of the Lagrangian and $\mathcal{L}_F$ is the $F$-part.
+Here $\mathcal{L}_D$ consists of a part which is quadratic in the fields and a part which is quartic in the fields so that
+\begin{equation} \label{eq:DBI:lagrangianD}
+  \mathcal{L}_D = \int d^4 \theta \left(\Phi_1 \Phi_1^\dagger + \Phi_2 \Phi_2^\dagger\right)
+    + \int d^4 \theta \frac{\alpha_1}{16 T}
+      \left(D^\alpha \Phi_1 D_\alpha \Phi_1\right)
+      \left({\bar D}^{\dot\alpha} \Phi_1^\dagger {\bar D}_{\dot\alpha} \Phi_1^\dagger\right)
+      G\left(\phi\right)\,,
+\end{equation}
 where
-\begin{align}
-  G(\phi) = \frac{1}{T}\frac{1}{1+ P +\sqrt{(1+P)^2 -Q}},
-\end{align}
+\begin{equation}
+  G\left(\phi\right) = \frac{1}{T} \frac{1}{1 + P + \sqrt{\left(1 + P\right)^2 - Q}}\,,
+\end{equation}
 and $P$ and $Q$ are assumed to have the following forms
-\begin{align}
-  P & = (\partial_a\phi_1 \partial^a \phi^*_1 + \partial_a\phi_2 \partial^a \phi^*_2)/T, \nonumber\\
-  Q & = \Big(
-  \alpha_1\partial_a \phi_1 \partial^a \phi_1 \partial_b \phi^*_1 \partial^b \phi^*_1
-  + \alpha_1 \partial_a \phi_2 \partial^a \phi_2 \partial_b \phi^*_2 \partial^b \phi^*_2
-  \Big) / T^2.
-  \label{Lag.22}
-\end{align}
-We note that the Lagrangian of Eq.~(\ref{Lag.11}) is a direct generalization of the Lagrangian for the single field
-case which can be derived from a more basic 3-brane action
-(see, e.g., \cite{Rocek:1997hi,Tseytlin:1999dj,Sasaki:2012ka} and the references
-therein). Here we simply extend the analysis to two fields
-in the most general supersymmetric form involving four covariant derivatives. In writing Eq.~(\ref{Lag.11}) we imposed
-an additional constraint which is invariance under $\Phi_1$ and $\Phi_2$ interchange.
-The possible relation of this Lagrangian
-to an underlying string model is an open question. Here we simply treat Eq.~(\ref{Lag.11}) as an effective low energy
-theory. Finally $\mathcal{L}_{F}$ is given by
-\begin{equation}
-  \mathcal{L}_{F}=\int d^2\theta W\left(\Phi_1,\Phi_2\right)+\int d^2\bar\theta
-  W^* \left(\Phi_1^\dagger,\Phi_2^\dagger\right),
+\begin{equation} \label{eq:DBI:PQ}
+  \begin{aligned}
+    P &= \left(
+        \partial_a \phi_1 \partial^a \phi^*_1
+      + \partial_a \phi_2 \partial^a \phi^*_2
+    \right) / T\,,\\
+    Q &= \left(
+        \alpha_1 \partial_a \phi_1 \partial^a \phi_1 \partial_b \phi^*_1 \partial^b \phi^*_1
+      + \alpha_1 \partial_a \phi_2 \partial^a \phi_2 \partial_b \phi^*_2 \partial^b \phi^*_2
+    \right) / T^2\,.
+  \end{aligned}
 \end{equation}
-where the superpotential $W$ as in earlier analyses is given by $W=W_s+W_{sb}$, and where
-$W_s$ is chosen so that we can stabilize the saxion VEVs
-and $W_{sb}$ breaks the global $U(1)$ symmetry and is taken to be of the form
+We note that the Lagrangian of Eq.~(\ref{eq:DBI:lagrangianD}) is a direct generalization of the Lagrangian for the single field case which can be derived from a more basic 3-brane action (see, e.g.,~\cite{Rocek:1997hi, Tseytlin:1999dj, Sasaki:2012ka} and the references therein).
+Here we simply extend the analysis to two fields in the most general supersymmetric form involving four covariant derivatives.
+In writing Eq.~(\ref{eq:DBI:lagrangianD}) we imposed an additional constraint which is invariance under $\Phi_1$ and $\Phi_2$ interchange.
+The possible relation of this Lagrangian to an underlying string model is an open question.
+Here we simply treat Eq.~(\ref{eq:DBI:lagrangianD}) as an effective low energy theory.
+Finally $\mathcal{L}_F$ is given by
 \begin{equation}
-  W_{sb}=\sum_{k=1}^m\left(A_{1, k}\Phi_1^k+A_{2, k}\Phi_2^k\right).
-  \label{w3}
+  \mathcal{L}_F = \int d^2 \theta W\left(\Phi_1, \Phi_2\right)
+                + \int d^2 \bar\theta W^*\left(\Phi_1^\dagger, \Phi_2^\dagger\right)\,,
 \end{equation}
-Integration over the Grassmann variables gives rise to the following Lagranian\\
-\begin{align}
-  \mathcal{L}
-   & =
-  T - T \sqrt{(1+A)^2 - B}+ F_1 F^*_1 + F_2 F^*_2\nonumber\\
-   & + G(\phi) \Big[ \alpha_1(-2 F_1 F^*_1 \partial_a\phi_1 \partial^a \phi^*_1
-    + F_1^2 {F^*_1}^2)\nonumber\\
-   & + \alpha_1 (-2 F_2 F^*_2 \partial_a\phi_2 \partial^a \phi^*_2
-    + F_2^2 {F^*_2}^2)\Big]
-  \nonumber\\
-   & + \left(\frac{\partial W}{\partial \phi_1}F_1+ \frac{\partial W}{\partial \phi_2}F_2 + h.c.\right).
-  \label{Lag.23}
-\end{align}
-There are four auxiliary fields in Eq.~(\ref{Lag.23}) which are $F_1, F^*_1, F_2, F^*_2$.
+where the superpotential $W$ as in earlier analyses is given by $W = W_s + W_{sb}$, and where $W_s$ is chosen so that we can stabilize the saxion VEVs and $W_{sb}$ breaks the global $U\left(1\right)$ symmetry and is taken to be of the form
+\begin{equation} \label{eq:dbi:Wsb}
+  W_{sb} = \sum_{k = 1}^m \left(A_{1, k} \Phi_1^k + A_{2, k} \Phi_2^k\right)\,.
+\end{equation}
+Integration over the Grassmann variables gives rise to the following Lagranian
+\begin{equation} \label{eq:dbi:lagrangianIntermediate}
+  \begin{aligned}
+    \mathcal{L} =
+      & T - T \sqrt{\left(1 + A\right)^2 - B} + F_1 F^*_1 + F_2 F^*_2\\
+      &+ G\left(\phi\right) \left[
+        \alpha_1 \left(
+          - 2 F_1 F^*_1 \partial_a \phi_1 \partial^a \phi^*_1
+          + F_1^2 {F^*_1}^2
+        \right)\right.\\
+        &~~~ \left.{} + \alpha_1 \left(
+          - 2 F_2 F^*_2 \partial_a \phi_2 \partial^a \phi^*_2
+          + F_2^2 {F^*_2}^2
+        \right)\right]\\
+      &+ \left(
+          \frac{\partial W}{\partial \phi_1} F_1
+        + \frac{\partial W}{\partial \phi_2} F_2
+        + h.c.
+      \right)\,.
+  \end{aligned}
+\end{equation}
+There are four auxiliary fields in Eq.~(\ref{eq:dbi:lagrangianIntermediate}) which are $F_1$, $F^*_1$, $F_2$, $F^*_2$.
 The auxiliary fields $F_k$ satisfy the cubic equation
-\begin{align}
-  F_k^3+ p_k F_k + q_k=0\,, k=1,2\,,
-\end{align}
-where $p_k, q_k$ are defined by
-\begin{equation}\label{DisplayFormulaNumbered:eq.twoDBI.p.1}
-  \begin{split}
-    & p_k={\left(\frac{\partial W}{\partial \phi_k}\right)}^{-1}\frac{\partial W^*}{\partial \phi^*_k}\frac{1-2\alpha_1 G\left(\phi\right)\partial_\mu \phi_k\partial^\mu \phi_k}{2\alpha_1 G\left(\phi\right)}, \\
-    & q_k=\frac{1}{2\alpha_1 G\left(\phi\right)}{\left(\frac{\partial W}{\partial \phi_k}\right)}^{-1}{\left(\frac{\partial W^*}{\partial \phi^*_k}\right)}^2. \\
-  \end{split}
+\begin{equation}
+  F_k^3 + p_k F_k + q_k = 0\,,
+  ~~~ k = 1, 2\,,
+\end{equation}
+where $p_k$, $q_k$ are defined by
+\begin{equation} \label{eq:DBI:pq}
+  \begin{aligned}
+    p_k &=
+      \left(\frac{\partial W}{\partial \phi_k}\right)^{-1}
+      \frac{\partial W^*}{\partial \phi^*_k}
+      \frac
+        {1 - 2 \alpha_1 G\left(\phi\right) \partial_\mu \phi_k \partial^\mu \phi_k}
+        {2 \alpha_1 G\left(\phi\right)}\,,\\
+    q_k &=
+      \frac{1}{2 \alpha_1 G\left(\phi\right)}
+      \left(\frac{\partial W}{\partial \phi_k}\right)^{-1}
+      \left(\frac{\partial W^*}{\partial \phi^*_k}\right)^2\,.
+  \end{aligned}
 \end{equation}
 Since $F_k$ satisfies a cubic equation, it has three roots which are
-\begin{equation}
-  \begin{split}
-    F_k=& \omega^j {\left(-\frac{q_k}{2}+\sqrt{ {\left(\frac{q_k}{2}\right)}^2+{\left(\frac{p_k}{3}\right)}^3}\right)}^{1/3}\\
-    &+ \omega^{3-j}{\left(-\frac{q_k}{2}-\sqrt{ {\left(\frac{q_k}{2}\right)}^2+{\left(\frac{p_k}{3}\right)}^3}\right)}^{1/3},
-  \end{split}
-  \label{auxsolution}
+\begin{equation} \label{eq:DBI:F}
+  \begin{aligned}
+    F_k = &\omega^j \left(
+      - \frac{q_k}{2}
+      + \sqrt{\left(\frac{q_k}{2}\right)^2 + \left(\frac{p_k}{3}\right)^3}\right)^{1 / 3}\\
+    & + \omega^{3 - j} \left(
+      - \frac{q_k}{2}
+      - \sqrt{\left(\frac{q_k}{2}\right)^2 + \left(\frac{p_k}{3}\right)^3}\right)^{1 / 3}\,,
+  \end{aligned}
 \end{equation}
-where $\omega$ is the cube root of unity and $j=0,1,2$. It turns out that of the three roots only $j=0$
-is a solution to the full Euler-Lagrange equations for $F_k$ and in our analysis we consider only this solution.
+where $\omega$ is the cube root of unity and $j = 0, 1, 2$.
+It turns out that of the three roots only $j = 0$ is a solution to the full Euler-Lagrange equations for $F_k$ and in our analysis we consider only this solution.
 
-An explicit computation of the Lagrangian in this case is given in \cite{Nath:2018xxe} and displayed in Eq.(\ref{DisplayFormulaNumbered:eq.dbi.lagrangian}).
-The Lagrangian depends on a single axion field $b_-$ defined as in the preceding sections
-and 5 parameters $T$, $\alpha_1$, $f$, $\tilde \beta$, and a vector $\mathcal{G}$ as discussed below.
+An explicit computation of the Lagrangian in this case is given in~\cite{Nath:2018xxe} and displayed in Eq.~(\ref{eq:dbi:lagrangian}).
+The Lagrangian depends on a single axion field $b_-$ defined as in the preceding sections and 5 parameters $T$, $\alpha_1$, $f$, $\tilde\beta$, and a vector $\mathcal{G}$ as discussed below.
 Thus we have
-\begin{equation}\label{DisplayFormulaNumbered:eq.dbi.lagrangian}
-  \begin{split}
-    & \mathcal{L}\left(T,\alpha_1,f,\beta,G;b_-,\dot{b_-}\right)=T \left(1-\sqrt{1-\frac{{\dot{b}}_-^2}{T}+\frac{\left(2-\alpha_1\right){\dot{b}}_-^2}{8T^2}}\right. \\
-    & \indent\indent\left.{}+2\mathcal{F}_+^2+2\mathcal{F}_-^2-\frac{4}{3\alpha_1}\left(\mathcal{T}+\left(\alpha_1-1\right)\frac{{\dot{b}}_-^2}{4T}\right)+4k \left(\mathcal{F}_++\mathcal{F}_-\right)\right. \\
-    & \indent\indent\left.{}+\frac{\alpha_1}{\mathcal{T}-{\dot{b}}_-^2/\left(4T\right)}\left(2\left(\mathcal{F}_+^2+\mathcal{F}_-^2-\frac{2}{3\alpha_1}\left(\mathcal{T}+\left(\alpha_1-1\right)\frac{{\dot{b}}_-^2}{4T}\right)\right)\frac{{\dot{b}}_-^2}{4T}+\mathcal{F}_+^4\right.\right. \\
-    & \indent\indent\indent\left.\left.{}+\mathcal{F}_-^4+\frac{2}{3\alpha_1^2}{\left(\mathcal{T}+\left(\alpha_1-1\right)\frac{{\dot{b}}_-^2}{4T}\right)}^2-\frac{4}{3\alpha_1}\left(\mathcal{T}+\left(\alpha_1-1\right)\frac{{\dot{b}}_-^2}{4T}\right)\left(\mathcal{F}_+^2+\mathcal{F}_-^2\right)\right)\right),
-  \end{split}
+\begin{equation} \label{eq:dbi:lagrangian}
+  \begin{aligned}
+    &\mathcal{L}\left(T, \alpha_1, f, \beta, G; b_-, \dot{b_-}\right) = T \left(
+        1
+      - \sqrt{
+          1
+        - \frac{{\dot b}_-^2}{T}
+        + \frac{\left(2 - \alpha_1\right) {\dot b}_-^2}{8 T^2}
+      }\right.\\
+      &~~~ \left.{}
+      + 2 \mathcal{F}_+^2
+      + 2 \mathcal{F}_-^2
+      - \frac{4}{3 \alpha_1} \left(
+        \mathcal{T} + \left(\alpha_1 - 1\right) \frac{{\dot b}_-^2}{4 T}
+      \right)
+      + 4 k \left(\mathcal{F}_+ + \mathcal{F}_-\right)\right.\\
+      &~~~ \left.{}
+      + \frac{\alpha_1}{\mathcal{T} - {\dot b}_-^2 / \left(4 T\right)}\left(
+          2 \left(
+              \mathcal{F}_+^2
+            + \mathcal{F}_-^2
+            - \frac{2}{3 \alpha_1}
+              \left(\mathcal{T} + \left(\alpha_1 - 1\right) \frac{{\dot b}_-^2}{4 T}\right)
+          \right) \frac{{\dot b}_-^2}{4 T}
+        + \mathcal{F}_+^4\right.\right.\\
+        &~~~~~~ \left.\left.{}
+        + \mathcal{F}_-^4
+        + \frac{2}{3 \alpha_1^2}
+          \left(\mathcal{T} + \left(\alpha_1 - 1\right) \frac{{\dot b}_-^2}{4 T}\right)^2
+        - \frac{4}{3 \alpha_1}
+          \left(\mathcal{T} + \left(\alpha_1 - 1\right) \frac{{\dot b}_-^2}{4 T}\right)
+          \left(\mathcal{F}_+^2 + \mathcal{F}_-^2\right)
+      \right)
+    \right)\,,
+  \end{aligned}
 \end{equation}
 where
 \begin{equation}
-  \begin{split}
-    & \mathcal{F}_\pm=\pm\left(\mp\frac{1}{2\alpha_1}k \left(\mathcal{T}-\frac{{\dot{b}}_{-}^2}{4T}\right)\right. \\
-    & \indent\indent\left.{}+\sqrt{ \frac{1}{4\alpha_1^2} k^2 {\left(\mathcal{T}-\frac{{\dot{b}}_{-}^2}{4T}\right)}^2+\frac{1}{27\alpha_1^3}{\left(\mathcal{T}+\left(\alpha_1-1\right)\frac{{\dot{b}}_{-}^2}{4T}\right)}^3}\right)\mathit{p}^{1/3},
-  \end{split}
+  \begin{aligned}
+    \mathcal{F}_\pm = \pm &\left(
+      \mp\frac{1}{2 \alpha_1} k \left(\mathcal{T} - \frac{{\dot b}_-^2}{4 T}\right)\right.\\
+      &\left.{} + \sqrt{
+          \frac{1}{4 \alpha_1^2} k^2 \left(\mathcal{T} - \frac{{\dot b}_-^2}{4 T}\right)^2
+        + \frac{1}{27 \alpha_1^3} \left(
+            \mathcal{T}
+          + \left(\alpha_1 - 1\right) \frac{{\dot b}_-^2}{4 T}
+        \right)^3
+      }
+    \right) \mathit{p}^{1 / 3}\,,
+  \end{aligned}
 \end{equation}
 and where
+\begin{align} % keep each equation numbered separately
+  \mathcal{T} &= \frac{1}{2} \left(
+      1
+    + \sqrt{1 - \frac{{\dot b}_-^2}{T} + \frac{\left(2 - \alpha_1\right){\dot b}_-^4}{8 T^2}}
+  \right)\,,\\
+  k &= \tilde\beta \sqrt{\sum_{m, n} m n \mathcal{G}_m \mathcal{G}_n \left(
+      1
+    - \cos\left(\frac{b_- m}{\sqrt{2} f}\right)
+    - \cos\left(\frac{b_- n}{\sqrt{2} f}\right)
+    + \cos\left(\frac{b_- \left(m - n\right)}{\sqrt{2} f}\right)
+  \right)}\,,\\
+  \mathcal{G}_k &= \frac{A_k 2^{1 / 2 \left(1 - k\right)}}{\tilde\beta \sqrt{T} f^{1 - k}}\,.
+\end{align}
 
-\begin{equation}
-  \mathcal{T}=\frac{1}{2} \left(1+\sqrt{1-\frac{{\dot{b}}_-^2}{T}+\frac{\left(2-\alpha_1\right){\dot{b}}_-^4}{8T^2}}\right),
-\end{equation}
-
-\begin{equation}
-  \begin{split}
-    & k=\tilde\beta\sqrt{\sum_{m, n}m n \mathcal{G}_m\mathcal{G}_n \left(1-\cos\left(\frac{b_- m}{\sqrt{2}f}\right)-\cos\left(\frac{b_- n}{\sqrt{2}f}\right)+\cos\left(\frac{b_- \left(m-n\right)}{\sqrt{2}f}\right)\right)},
-  \end{split}
-\end{equation}
-\begin{equation}
-  \mathcal{G}_k=\frac{A_k2^{1/2\left(1-k\right)}}{\tilde\beta\sqrt{T}f^{1-k}}.
-\end{equation}
-
-
-We note that the parameter $\tilde\beta$ here is redundant, and is chosen in such a way as to make $\mathcal{G}_k\sim 1$. The first non-zero component of $\mathcal{G}$ can also be set to $1$ to reduce redundancy.
-Further, we note that Eqs.(\ref{DisplayFormulaNumbered:eq.epsilonV}) will not be sufficient to describe evolution in this case, because they do not take the form of kinetic energy into account. However, we will use
-Eqs.(\ref{DisplayFormulaNumbered:eq.epsilon}) which are independent of the kinetic terms, therefore, we conjecture that while Eqs.(\ref{DisplayFormulaNumbered:eq.epsilon.fromEpsilonEtaV}) do not hold, Eq.(\ref{DisplayFormulaNumbered:eq.fe.epsilonEta}) can still be used to derive an effective decay constant, where Eqs.(\ref{DisplayFormulaNumbered:eq.epsilon}) are used to derive $\epsilon_H$ and $\eta_H$.
-
-\begin{equation}\label{DisplayFormulaNumbered:eq.epsilon}
-  \epsilon_H =-\frac{\dot{H}}{H^2}\,,
-  ~~\eta_H =-\frac{\dot{\epsilon_H}}{\epsilon_H H},
+We note that the parameter $\tilde\beta$ here is redundant, and is chosen in such a way as to make $\mathcal{G}_k \sim 1$.
+The first non-zero component of $\mathcal{G}$ can also be set to $1$ to reduce redundancy.
+Further, we note that Eqs.~(\ref{eq:epsEtaFromPotential}) will not be sufficient to describe evolution in this case, because they do not take the form of kinetic energy into account.
+However, we will use Eqs.~(\ref{eq:slowRollParametersDynamic}) which are independent of the kinetic terms, therefore, we conjecture that while Eqs.~(\ref{eq:slowRollParametersDynamicFromStatic}) do not hold, Eq.~(\ref{eq:feFromDynamicSlowRollParameters}) can still be used to derive an effective decay constant, where Eqs.~(\ref{eq:slowRollParametersDynamic}) are used to derive $\epsilon_H$ and $\eta_H$.
+\begin{equation} \label{eq:slowRollParametersDynamic}
+  \epsilon_H = -\frac{\dot H}{H^2}\,,
+  ~~~ \eta_H = -\frac{\dot{\epsilon_H}}{\epsilon_H H}\,.
 \end{equation}
 For the case when the velocity dependence of the parameters is relatively small one has
-\begin{equation}\label{DisplayFormulaNumbered:eq.epsilon.fromEpsilonEtaV}
-  \epsilon_H =\epsilon\,,
-  ~~\eta_H =-2\eta+4\epsilon,
+\begin{equation} \label{eq:slowRollParametersDynamicFromStatic}
+  \epsilon_H = \epsilon\,,
+  ~~~ \eta_H = -2 \eta + 4 \epsilon\,,
 \end{equation}
-in which case Eqs.(\ref{DisplayFormulaNumbered:eq.lambda.slowRoll}, \ref{DisplayFormulaNumbered:eq.fe.slowRoll}, \ref{DisplayFormulaNumbered:eq.fieldInitial.slowRoll}) can be rewritten as
+in which case Eqs.~(\ref{eq:lambdaSlowRoll}, \ref{eq:feSlowRoll}, \ref{eq:fieldInitialSlowRoll}) can be rewritten as
+\begin{align} % keep each equation numbered separately
+  \Lambda &= V\left(\phi_0\right) \frac{\eta_H}{2 \eta_H - 4 \epsilon_H}\,,\\
+  \label{eq:feFromDynamicSlowRollParameters}
+  f_e &= \frac{1}{\sqrt{\eta_H - 2 \epsilon_H}}\,,\\
+  \cos\left(\frac{\varphi_0}{f_e}\right) &= \frac{4 \epsilon_H - \eta_H}{\eta_H}\,.
+\end{align}
 
-\begin{equation}
-  \Lambda =V\left(\phi_0\right)\frac{\eta_H}{2\eta_H -4\epsilon_H},
-\end{equation}
-
-\begin{equation}\label{DisplayFormulaNumbered:eq.fe.epsilonEta}
-  f_e=\frac{1}{\sqrt{\eta_H -2\epsilon_H}}.
-\end{equation}
-
-\begin{equation}
-  \cos\left(\frac{\varphi_0}{f_e}\right)=\frac{4\epsilon_H -\eta_H}{\eta_H}.
-\end{equation}
-
-To demonstrate the validity of our procedure, we sample the parameter space of the model Eq.(\ref{DisplayFormulaNumbered:eq.dbi.lagrangian}) by setting $T=1$, $\mathcal{G}_1=\mathcal{G}_2=\mathcal{G}_3=0$, $\mathcal{G}_4=1$, and varying $\mathcal{G}_5$, $\mathcal{G}_6$, $\alpha_1$, $f$, $\tilde\beta$, and the pivot e-foldings count $N_{pivot}$. This corresponds to Fig.(1) of \cite{Nath:2018xxe}. We then select parameter choices than produced at least $N_{pivot}$ number of e-foldings, and plot the true axion decay constant $f$ vs. the effective axion decay constant $f_e$ on Fig.(\ref{Figure:fig.enhancement.sim}).\\
+To demonstrate the validity of our procedure, we sample the parameter space of the model Eq.~(\ref{eq:dbi:lagrangian}) by setting $T = 1$, $\mathcal{G}_1 = \mathcal{G}_2 = \mathcal{G}_3 = 0$, $\mathcal{G}_4 = 1$, and varying $\mathcal{G}_5$, $\mathcal{G}_6$, $\alpha_1$, $f$, $\tilde\beta$, and the pivot e-foldings count $N_\text{pivot}$.
+This corresponds to Fig.~(1) of~\cite{Nath:2018xxe}.
+We then select parameter choices than produced at least $N_\text{pivot}$ number of e-foldings, and plot the true axion decay constant $f$ vs. the effective axion decay constant $f_e$ on Fig.~(\ref{Figure:fig.enhancement.sim}).
 
 % TODO(maxitg): Simulation part needs to be added here.
 
@@ -714,7 +758,7 @@ This research was supported in part by the NSF Grant PHY-1620575.
 \begin{figure}
   \centering
   \includegraphics[width=0.5\textwidth]{figs/fige.pdf}
-  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.(\ref{DisplayFormulaNumbered:eq.dbi.lagrangian}), $33418$ points shown ($13$ points for which $\eta - 2\epsilon < 0$ are excluded from analysis). Note that while the true decay constants vary from $\sim 0.01$ to $\sim 2000$, all of the enhanced decay constants are larger than $4.6$, and have an average of $8.4$. Note further than the minimal value of ${f}_{e}$ in Natural Inflation required to produce experimentally consistent inflation is ${f}_{e} \approx 6.9$ \cite{Ade:2015lrj}.}
+  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.(\ref{eq:dbi:lagrangian}), $33418$ points shown ($13$ points for which $\eta - 2\epsilon < 0$ are excluded from analysis). Note that while the true decay constants vary from $\sim 0.01$ to $\sim 2000$, all of the enhanced decay constants are larger than $4.6$, and have an average of $8.4$. Note further than the minimal value of ${f}_{e}$ in Natural Inflation required to produce experimentally consistent inflation is ${f}_{e} \approx 6.9$ \cite{Ade:2015lrj}.}
   \label{Figure:fig.enhancement.sim}
 \end{figure}
 
