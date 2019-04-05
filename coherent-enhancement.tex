@@ -69,7 +69,7 @@ An early work using QCD axions is the so-called natural inflation where the infl
 \end{equation}
 $f$ is axion decay constant.
 For a QCD axion $10^9 < f < 10^{12}$ GeV.
-For inflation one requires $f > 10 M_\text{P}$.
+For inflation one requires $f > 7 M_\text{P}$~\cite{Ade:2015lrj}.
 However, $f > M_\text{P}$ is undesirable since global symmetry is not preserved by quantum gravity unless it has a gauge origin.
 Further, string theory prefers $f$ in the range $\left(10^{16} - 10^{18}\right)$ GeV.
 Thus to get a successful natural inflation is difficult.
@@ -127,7 +127,7 @@ Now, identifying the expansion coefficients in Eq.~(\ref{eq:naturalInflationSeri
     {{V^\prime}^2\left(\phi_0\right) - V\left(\phi_0\right) V^{\prime\prime}\left(\phi_0\right)}\,.
 \end{equation}
 Here, we are mostly interested in Eq.~(\ref{eq:feFromPotential}), which gives the effective axion decay constant for the potential $V\left(\phi\right)$ near $\phi = \phi_0$.
-Due to the second flatness condition, $\left|\eta_H\right| = \left|V_e^{\prime\prime} / V_e\right| = 1 / \left(2 f_e^2\right) \ll 1$, natural inflation can only generate experimentally consistent observables when $f_e \gg 1$.
+Due to the second flatness condition, $\left|\eta\right| = \left|V_e^{\prime\prime} / V_e\right| = 1 / f_e^2 \ll 1$, natural inflation can only generate experimentally consistent observables when $f_e \gg 1$.
 However, as discussed already the true axion decay constant larger than one is undesirable from considerations of quantum gravity and string theory \cite{Kallosh:1995hi, Banks:2003sx}.
 Coherent Enhancement provides a solution in that the true axion decay constant can be smaller than one while the effective axion decay constant is larger or even much larger than one.
 
@@ -179,10 +179,9 @@ Here let us choose $\phi_0$ where the maximum occurs so that $\frac{\phi}{f} = \
 In this case we get
 \begin{equation} \label{eq:feForCosineSum}
   {f_e} / f = \frac
-    {\sqrt{\sum_{k - odd} \Lambda_k}}
-    {\sqrt{\left[\sum_{k - odd} k^2 \Lambda_k^4 - \sum_{k - even} k^2 \Lambda_k^4\right]}}\,.
+    {\sqrt{\sum_{k \in odd} \Lambda_k^4}}
+    {\sqrt{\sum_{k \in odd} k^2 \Lambda_k^4 - \sum_{k \in even} k^2 \Lambda_k^4}}\,.
 \end{equation}
-Eq.~(\ref{eq:feForCosineSum}) holds in the limit when $\epsilon = 0$ which is, however, typically small.
 One notices that there is cancellation between the odd and even sums in the denominator in Eq.~(\ref{eq:feForCosineSum}) which leads to an enhancement and gives $f_e / f > 1$.
 Since the enhancement occurs as a consequence of the sum of several terms one may call this a ``coherent enhancement mechanism''.
 
