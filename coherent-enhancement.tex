@@ -450,16 +450,17 @@ for which the kinetic energy takes the canonical form, i.e, $L_\text{kin} = -\fr
 Using the canonically normalized fields we can define the axion decay constant so that $f = \frac{\sqrt 3}{\sqrt{2} \tau_0}$.
 The potential for the normalized axion field expanded around the stabilized moduli gives
 \begin{equation} \label{eq:KKLT:Vslow}
+  V = C^K
+    + \sum_i C^K_i \cos\left(\frac{q_i a}{f}\right)
+    + \sum_{ij} C^K_{ij} \cos\left(\frac{\left(q_i - q_j\right) a}{f}\right)\,,
+\end{equation}
+where
+\begin{equation} \label{eq:KKLT:VslowCoefficients}
   \begin{aligned}
-    V = \frac{1}{6 \tau_0} &\left[
-        \sum_i A^2_i q^2_i e^{-2 q_i \tau_0}
-      + 2 \sum_{i > j} A_i A_j q_i q_j e^{-\left(q_i + q_j\right)\tau_0}
-        \cos\left(\frac{\left(q_i - q_j\right) a}{f}\right)\right.\\
-    &{}\left. + \frac{3}{\tau_0} W_0 \sum_i A_i q_i e^{-q_i \tau_0}
-        \cos\left(\frac{q_i a}{f}\right)
-      + \frac{3}{\tau_0} \sum_{i, j} A_i A_j q_j e^{-\left(q_i + q_j\right) \tau_0}
-        \cos\left(\frac{\left(q_i - q_j\right) a}{f}\right)
-    \right]\,.
+    C^K &= \frac{1}{6 \tau_0} \sum_i A^2_i q^2_i e^{-2 q_i \tau_0}\,,\\
+    C^K_i &= \frac{3}{\tau_0} W_0 \sum_i A_i q_i e^{-q_i \tau_0}\,,\\
+    C^K_{ij} &= 2 \sum_{i > j} A_i A_j q_i q_j e^{-\left(q_i + q_j\right) \tau_0}
+      + \frac{3}{\tau_0} \sum_{i, j} A_i A_j q_j e^{-\left(q_i + q_j\right) \tau_0}\,.
   \end{aligned}
 \end{equation}
 We require that the vacuum energy vanish at the minimum of the potential, and this can be achieved by setting $W = 0$ along with the stability condition $D_i W = 0$.
@@ -492,27 +493,32 @@ Here we assume a superpotential of the form
 \end{equation}
 The computation of the $V$ in this case gives
 \begin{equation}
-  \begin{aligned}
-    V = &\frac{2 W_0}{S_1 \mathcal{V}^2} \sum_i \left(\tau_b q_b^i + \tau_s q_s^i\right)
-          A_i e^{-q_b^i \tau_b - q_s^i \tau_s} \cos\left(q_b^i \theta_s + q^i_s \theta_s\right)\\
-        & + \frac{1}{3 S_1 \mathcal{V}^2} \sum_{i, j} \left[
-              3 \tau_b \left(q^i_b + q^j_b\right)
-            + 3 \tau_s \left(q_s^i + q_s^j\right)
-            + 2 \left(\tau_b^2 + 2 \sqrt{\tau_b} \tau_s^{3 / 2}\right) q_b^i q_b^j\right.\\
-            &~~~~~~ \left.{}
-            + 2 \left(\tau^2_s + 2 \sqrt{\tau_s} \tau^{3 / 2}_b\right) q_s^i q_s^j
-            + 6 \tau_b \tau_s \left(q_b^i q_s^j + q_b^j q_s^i\right)
-        \right]\\
-        &~~~ \times A_i A_j
-          e^{-\left(q_b^i + q_b^j\right) \tau_b - \left(q_s^i + q_s^j\right) \tau_s}
-          \cos\left(
-              \left(q_b^i - q_b^j\right) \theta_b
-            + \left(q_s^i - q_s^j\right) \theta_s
-          \right)
-        + \Delta V\,,
-  \end{aligned}
+  V = C^L
+    + \sum_i C^L_i \cos\left(q_b^i \theta_b + q^i_s \theta_s\right)
+    + \sum_{ij} C^L_{ij} \cos\left(
+        \left(q_b^i - q_b^j\right) \theta_b
+      + \left(q_s^i - q_s^j\right) \theta_s
+    \right)\,,
 \end{equation}
-where $\Delta V$ contains $\alpha'$ corrections.
+where
+\begin{equation}
+    \begin{aligned}
+    C^L &= \xi \frac{3 \left|W_0\right|^2 \sqrt{S_1}}{8 \mathcal{V}^3}\,,\\
+    C^L_i &= \frac{2 W_0}{S_1 \mathcal{V}^2} \sum_i \left(\tau_b q_b^i + \tau_s q_s^i\right) A_i
+        e^{-q_b^i \tau_b - q_s^i \tau_s}\,\\
+    C^L_{ij} &= \frac{1}{3 S_1 \mathcal{V}^2} \sum_{i, j} \left[
+        3 \tau_b \left(q^i_b + q^j_b\right)
+        + 3 \tau_s \left(q_s^i + q_s^j\right)
+        + 2 \left(\tau_b^2 + 2 \sqrt{\tau_b} \tau_s^{3 / 2}\right) q_b^i q_b^j\right.\\
+        &~~~~~~ \left.{}
+        + 2 \left(\tau^2_s + 2 \sqrt{\tau_s} \tau^{3 / 2}_b\right) q_s^i q_s^j
+        + 6 \tau_b \tau_s \left(q_b^i q_s^j + q_b^j q_s^i\right)
+    \right]\\
+    &~~~ \times A_i A_j
+        e^{-\left(q_b^i + q_b^j\right) \tau_b - \left(q_s^i + q_s^j\right) \tau_s}\,.
+    \end{aligned}
+\end{equation}
+For $C^L$, which contains $\alpha'$ corrections and is needed to achieve stability, we choose the conventional LVS correction.
 Next to stabilize the moduli we use the condition
 \begin{equation}
   D_i W = 0, i = \tau_b, \tau_s, \theta_b, \theta_s\,.
@@ -527,10 +533,6 @@ The stabilization leads to $\left<\theta_b\right> = \left<\theta_s\right> = 0$, 
 Further, for vanishing of the vacuum energy at the end of inflation we impose the constraint $\left<W\right> = 0$ which gives
 \begin{equation}
   W_0 + \sum_i A_i e^{-q_b^i \tau_{b, 0} - q_s^i \tau_{s, 0}} = 0\,.
-\end{equation}
-For $\Delta V$, which is needed to achieve stability, we choose the conventional LVS correction to the potential, i.e.,
-\begin{equation}
-  \Delta V = \xi \frac{3 \left|W_0\right|^2 \sqrt{S_1}}{8 \mathcal{V}^3}\,.
 \end{equation}
 
 % TODO(maxitg): Simulation part needs to be added here.
