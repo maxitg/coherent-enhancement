@@ -191,79 +191,76 @@ One notices that there is cancellation between the odd and even sums in the deno
 Since the enhancement occurs as a consequence of the sum of several terms one may call this a ``coherent enhancement mechanism''.
 
 \section{Coherent enhancement mechanism in supersymmetry models \label{sec:Supersymmetry}}
-In this section and the following sections we will discuss the coherent enhancement mechanism in a variety of inflation models consistent with the current astrophysical data from the Planck experiment.
+In this section and the following sections a variety of inflation models consistent with the current astrophysical data from the Planck experiment.
 As mentioned in the introduction these models are in a variety of settings: global supersymmetry, supergravity, KKLT, LVS and DBI.
 In this section we focus on the globally supersymmetric models.
-For the analysis here we consider two chiral fields $\Phi_i, i = 1, 2$ charged under a global $U\left(1\right)$ transformation, and two other fields $\bar\Phi_i, i = 1, 2$ that are oppositely charged.
+For the analysis here we consider a chiral field $\Phi$ charged under a global $U\left(1\right)$ transformation, and another field $\bar\Phi$ that is oppositely charged.
 Thus under $U\left(1\right)$ transformations one has
 \begin{equation}
-  \Phi_i \to e^{i q \lambda} \Phi_i\,,
-  ~~~ \bar\Phi_i \to e^{-i q \lambda} \bar\Phi_i\,,
-  ~~~ i = 1, \cdots, m\,.
+  \Phi \to e^{i q \lambda} \Phi\,,
+  ~~~ \bar\Phi \to e^{-i q \lambda} \bar\Phi\,,
 \end{equation}
-The superfields $\Phi_i$ have an expansion, $\Phi_i = \phi_i + \theta \chi_i + \theta \theta F_i$, where $\phi_i$ is a complex scalar field consisting of the saxion (the real part) and the axion (the imaginary part), $\chi_i$ is the axino, and $F_i$ is an auxiliary field.
-Similarly the superfields $\bar\Phi_i$ have an expansion: $\bar\Phi_i = \bar\phi_i + \bar\theta \bar\xi_i + \bar\theta \bar\theta \bar F_i$.
+The superfield $\Phi$ have an expansion, $\Phi = \phi + \theta \chi + \theta \theta F$, where $\phi$ is a complex scalar field consisting of the saxion (the magnitude) and the axion (the phase), $\chi$ is the axino, and $F$ is an auxiliary field.
+Similarly the superfields $\bar\Phi$ have an expansion: $\bar\Phi = \bar\phi + \bar\theta \bar\xi + \bar\theta \bar\theta \bar F$.
 We now consider a superpotential of the form
 \begin{equation} \label{eq:supersymmetry:W}
   W = W_s\left(\Phi, \bar\Phi\right) + W_{sb}\left(\Phi, \bar\Phi\right)\,,
 \end{equation}
-where $W_s$ is the part that depends on the fields $\Phi_i, \bar\Phi_i$ and is invariant under the shift symmetry.
+where $W_s$ is the part that depends on the fields $\Phi, \bar\Phi$ and is invariant under the shift symmetry.
 $W_{sb}$ is a part which breaks the shift symmetry.
 $W_s$ is chosen to stabilize the real parts of the chiral fields and we expand the chiral fields around the stabilized VEVs.
 In this case we have
 \begin{equation}
-  \text{Equation is missing!}
+  W_s\left(\Phi, \bar\Phi\right) = \mu \Phi \bar\Phi + \frac{\lambda}{2 M} \left(\Phi \bar\Phi\right)^2\,.
 \end{equation}
-We may parametrize $\phi_i$ and $\bar\phi_i$ so that
+We may parametrize $\phi$ and $\bar\phi$ so that
 \begin{equation}
-  \phi_i = \left(f_i + \rho_i\right) e^{i a_i / f_i}\,,
-  ~~~ \bar\phi_i = \left(\bar f_i + \bar\rho_i\right) e^{i \bar a_i / \bar f_i}\,,
+  \phi = \left(f + \rho\right) e^{i a / f}\,,
+  ~~~ \bar\phi = \left(\bar f + \bar\rho\right) e^{i \bar a / \bar f}\,,
 \end{equation}
-where $f_i = \left<\phi_i\right>$, $\bar f_i = \left<\bar\phi_i\right>$ and $\left(\rho_i, a_i\right)$ and $\left(\bar\rho_i, \bar a_i\right)$ are the fluctuations of the quantum fields around their vacuum expectation values $f_i\left(\bar f_i\right)$.
-We define two linear combinations of $a_1$ and $a_2$ so that
+where $f = \left<\phi\right>$, $\bar f = \left<\bar\phi\right>$ and $\left(\rho, a\right)$ and $\left(\bar\rho, \bar a\right)$ are the fluctuations of the quantum fields around their vacuum expectation values $f$, $\bar f$.
+We define two linear combinations of $a$ and $\bar a$ so that
 \begin{equation} \label{eq:b+-}
-  b_{\pm}= \frac{1}{\sqrt 2} \left(a_1 \pm a_2\right)\,.
+  b_{\pm}= \frac{1}{\sqrt 2} \left(a \pm \bar a\right)\,.
 \end{equation}
 Here $b_+$ is invariant under the shift symmetry and becomes heavy after the moduli are stabilized and $b_-$ is sensitive to shift symmetry and remains massless and we identify it as a candidate for the inflaton.
 However, $b_-$ will gain mass when $W_{sb}$ is included in the analysis.
 We will assume an $W_{sb}$ of the form
 \begin{equation} \label{eq:supersymmetry:Wsb}
-  W_{sb}\left(\Phi, \bar\Phi\right)
-    = \sum_{i = 1}^2 \sum_{l = 1}^q A_{i l} \Phi_i^l
-    + \sum_{i = 1}^2 \sum_{l = 1}^q \bar A_{i l} \bar\Phi_i^l\,,
+  W_{sb}\left(\Phi, \bar\Phi\right) =
+      \sum_{l = 1}^q A_l \Phi^l
+    + \sum_{l = 1}^q \bar A_l \bar\Phi^l\,,
 \end{equation}
-and violates the shift symmetry.
+which violates the shift symmetry.
 Including $W_{sb}$ the axionic potential can be written in the form
 \begin{equation}
-  V\left(a_1, a_2\right) = V_\text{fast}\left(b_+\right) + V_\text{slow}\left(b_-\right)\,,
+  V\left(a, \bar a\right) = V_\text{fast}\left(b_+\right) + V_\text{slow}\left(b_-\right)\,,
 \end{equation}
 where $V_\text{slow}\left(b_-\right)$ which depends only on $b_-$ enters in slow roll and is relevant for inflation.
 An explicit form of this potential is given by
 \begin{equation} \label{eq:supersymmetry:VslowGeneral}
   \begin{aligned}
-    V_\text{slow}\left(b_-\right) = \sum_{k = 1}^2 &\left[
-      2 \sum_{r = 1}^q r
-        \left(A_{k r} f^{r - 1} \sum_{l = 1}^q l A_{k l} f^{l - 1}
-          + \bar A_{k r} f^{r - 1} \sum_{l = 1}^q l \bar A_{k l} f^{l - 1}\right)
-        \left(1 - \cos\left(\frac{r}{\sqrt 2 f} b_-\right)\right)
-      \right.\\
-      &\left.{} - 2 \sum_{l = 1}^q \sum_{r = l + 1}^q
-        l r \left(A_{k l} A_{k r} f^{l + r - 2} + \bar A_{k l} \bar A_{k r} f^{l + r - 2}\right)
-        \left(1 - \cos\left(\frac{r - l}{\sqrt 2 f} b_-\right)\right)
-    \right]\,,
+    V_\text{slow}\left(b_-\right) =
+      &2 \sum_{r = 1}^q r
+        \left(A_r f^{r - 1} \sum_{l = 1}^q l A_l f^{l - 1}
+          + \bar A_r f^{r - 1} \sum_{l = 1}^q l \bar A_l f^{l - 1}\right)
+        \left(1 - \cos\left(\frac{r}{\sqrt 2 f} b_-\right)\right)\\
+      &{} - 2 \sum_{l = 1}^q \sum_{r = l + 1}^q
+        l r \left(A_l A_r f^{l + r - 2} + \bar A_l \bar A_r f^{l + r - 2}\right)
+        \left(1 - \cos\left(\frac{r - l}{\sqrt 2 f} b_-\right)\right)\,,
   \end{aligned}
 \end{equation}
-where we have set $\bar f_k = f_k = f$ for all $k$.
-We make now further simplifying assumptions so that $A_{k l} = \bar A_{k l} = B_l f^{3 - l}$, $B_l = B G_l$, $f_k = f$ for all $k$.
-Thus $B_l$, $B$, $G_l$ are dimensionless while $f_k = f$ carry dimension of mass.
+where we have set $\bar f = f$.
+We make now further simplifying assumptions so that $A_l = \bar A_l = B_l f^{3 - l}$, $B_l = B G_l$.
+Thus $B_l$, $B$, $G_l$ are dimensionless while $f$ carry dimension of mass.
 Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGeneral}) takes the form simpler form
 \begin{equation} \label{eq:supersymmetry:Vslow}
   \begin{aligned}
-    V_\text{slow}\left(b_-\right) = 4 m f^4 B^2 &\left(
+    V_\text{slow}\left(b_-\right) = 4 f^4 B^2 &\left(
       \sum_{l = 1}^q l G_l \sum_{r = 4}^q r G_r
-        \left(1 - \cos\left(\frac{r}{\sqrt{2 m}} \frac{b_-}{f}\right)\right)\right. \\
+        \left(1 - \cos\left(\frac{r}{\sqrt{2}} \frac{b_-}{f}\right)\right)\right. \\
       &\left.{} - \sum_{l = 1}^q \sum_{r = l + 4}^q l r G_l G_r
-        \left(1 - \cos\left(\frac{r - l}{\sqrt{2 m}} \frac{b_-}{f}\right)\right)
+        \left(1 - \cos\left(\frac{r - l}{\sqrt{2}} \frac{b_-}{f}\right)\right)
     \right)\,.
   \end{aligned}
 \end{equation}
