@@ -114,7 +114,7 @@ Print["Plotting supersymmetry..."];
 
 Export[FileNameJoin[{figuresDirectory, "supersymmetryInputs.pdf"}], ListPlot[
 	supersymmetryResults[[All, {"G5", "fTrue"}]],
-	PlotRange -> All,
+	PlotRange -> {supersymmetryRange[["G5"]], All},
 	Frame -> True,
 	FrameLabel -> {
 		"\!\(\*FormBox[
@@ -127,7 +127,7 @@ Export[FileNameJoin[{figuresDirectory, "supersymmetryInputs.pdf"}], ListPlot[
 		LabelStyle -> Directive[FontFamily -> fontFamily],
 		FrameTicks -> {
 			{Automatic, None},
-			{{#, NumberForm[#, {6, 5}]} & /@ Range[-0.88930, -0.88920, 0.00002],
+			{{#, NumberForm[#, {6, 5}]} & /@ Range[-0.88930, -0.88920, 0.00005],
 			 None}}]];
 
 
@@ -203,7 +203,11 @@ Export[
 		distributionToTeX[supersymmetryRange[["fTrue"]]] <> "$, ",
 		"$b_{-, 0} \\sim " <> distributionToTeX[{0, "\\pi \\sqrt{2} f"}] <> "$, ",
 		"$N_\\text{pivot} \\sim ",
-		distributionToTeX[supersymmetryRange[["pivotEfoldingsCount"]]] <> "$."}]]
+		distributionToTeX[supersymmetryRange[["pivotEfoldingsCount"]]] <> "$. ",
+		"Left panel shows the distribution of input parameters, ",
+		"right panel demonstrates the coherent enhancement of the decay constant, ",
+		"bottom panel compares effective decay constants computed from the potential ",
+		"and from the Hubble parameter, black line corresponds to $f_{eH} = f_e$."}]]
 
 
 (* ::Section:: *)

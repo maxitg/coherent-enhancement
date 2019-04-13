@@ -1,8 +1,11 @@
 ## macOS files
 *.DS_Store
 
-## Compiled paper and figures
+## Compiled paper
 *.pdf
+
+## Figures
+/figures/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
