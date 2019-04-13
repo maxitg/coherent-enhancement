@@ -111,8 +111,12 @@ Export[FileNameJoin[{figuresDirectory, "supersymmetryInputs.pdf"}], ListPlot[
 	PlotRange -> All,
 	Frame -> True,
 	FrameLabel -> {
-		"\!\(\*FormBox[SubscriptBox[\(G\), \(5\)], TraditionalForm]\)",
-		"\!\(\*FormBox[\(f\), TraditionalForm]\)"},
+		"\!\(\*FormBox[
+			SubscriptBox[\(G\), \(5\)],
+			TraditionalForm]\)",
+		"\!\(\*FormBox[
+			\(f/\*SubscriptBox[\"M\", StyleBox[\"P\",\nFontSlant->\"Plain\"]]\),
+			TraditionalForm]\)"},
 		ImageSize -> imageSize,
 		LabelStyle -> Directive[FontFamily -> fontFamily],
 		FrameTicks -> {
@@ -126,9 +130,14 @@ Export[FileNameJoin[{figuresDirectory, "supersymmetryEnhancement.pdf"}], ListPlo
 	PlotRange -> All,
 	Frame -> True,
 	FrameLabel -> {
-		"\!\(\*FormBox[\(f\), TraditionalForm]\)",
 		"\!\(\*FormBox[
-			SubscriptBox[\(f\), StyleBox[\(eV\), FontSlant -> \"Italic\"]],
+			\(f/\*SubscriptBox[\"M\", StyleBox[\"P\",\nFontSlant->\"Plain\"]]\),
+			TraditionalForm]\)",
+		"\!\(\*FormBox[
+			\(\*SubscriptBox[
+				\"f\", StyleBox[\"e\",\nFontSlant->\"Italic\"]
+			]/\*SubscriptBox[
+				\"M\", StyleBox[\"P\",\nFontSlant->\"Plain\"]]\),
 			TraditionalForm]\)"},
 	ImageSize -> imageSize,
 	LabelStyle -> Directive[FontFamily -> fontFamily]]];
@@ -148,11 +157,17 @@ Export[
 			Frame -> True,
 			FrameLabel -> {
 				"\!\(\*FormBox[
-				SubscriptBox[\(f\), StyleBox[\(eV\), FontSlant -> \"Italic\"]],
-				TraditionalForm]\)",
-			"\!\(\*FormBox[
-				SubscriptBox[\(f\), StyleBox[\(eH\), FontSlant -> \"Italic\"]],
-				TraditionalForm]\)"},
+					\(\*SubscriptBox[
+						\"f\", StyleBox[\"e\",\nFontSlant->\"Italic\"]
+					]/\*SubscriptBox[
+						\"M\", StyleBox[\"P\",\nFontSlant->\"Plain\"]]\),
+					TraditionalForm]\)",
+				"\!\(\*FormBox[
+					\(\*SubscriptBox[
+						\"f\", StyleBox[\"eH\",\nFontSlant->\"Italic\"]
+					]/\*SubscriptBox[
+						\"M\", StyleBox[\"P\",\nFontSlant->\"Plain\"]]\),
+					TraditionalForm]\)"},
 			ImageSize -> imageSize,
 			LabelStyle -> Directive[FontFamily -> fontFamily],
 			Evaluate @ AbsoluteOptions[
