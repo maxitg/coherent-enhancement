@@ -1,7 +1,7 @@
 ## macOS files
 *.DS_Store
 
-## Compiled paper
+## Compiled pdf
 *.pdf
 
 ## Figures
