@@ -191,6 +191,28 @@ In this case we get
 One notices that there is cancellation between the odd and even sums in the denominator in Eq.~(\ref{eq:feForCosineSum}) which leads to an enhancement and gives $f_e / f > 1$.
 Since the enhancement occurs as a consequence of the sum of several terms one may call this a ``coherent enhancement mechanism''.
 
+It is also interesting to note that $n_s$, $r$, and therefore $f_e$ can be directly computed from the scale factor evolution without invoking any knowledge about the potential.
+To distinguish the effective decay constant computed in this way from $f_e$ that is computed from potential, we will call it $f_{eH}$.
+
+Specifically, we can define dynamic slow-roll parameters
+\begin{equation} \label{eq:slowRollParametersDynamic}
+  \epsilon_H = -\frac{\dot H}{H^2}\,,
+  ~~~ \eta_H = -\frac{\dot{\epsilon_H}}{\epsilon_H H}\,.
+\end{equation}
+
+For the case when the velocity dependence of the parameters is relatively small one has
+\begin{equation} \label{eq:slowRollParametersDynamicFromStatic}
+  \epsilon_H = \epsilon\,,
+  ~~~ \eta_H = -2 \eta + 4 \epsilon\,,
+\end{equation}
+in which case Eq.~(\ref{eq:feSlowRoll}) can be rewritten as
+\begin{equation} \label{eq:feFromDynamicSlowRollParameters}
+  f_{eH} = \frac{1}{\sqrt{\eta_H - 2 \epsilon_H}}\,.
+\end{equation}
+
+We will show using numerical simulations that $f_e \approx f_{eH}$ for the cases of global supersymmetry, supergravity, KKLT, and LVS, however, they are different in the case of DBI due to non-canonical kinetic energy in that model.
+We further show in section~\ref{sec:DBI} that while $f_e$ does not demonstrate any enhancement, $f_{eH}$ still satisfies the constrant Eq.~(\ref{eq:feExperimentalConstraint}).
+
 \section{Coherent enhancement mechanism in supersymmetry models \label{sec:Supersymmetry}}
 In this section and the following sections a variety of inflation models consistent with the current astrophysical data from the Planck experiment.
 As mentioned in the introduction these models are in a variety of settings: global supersymmetry, supergravity, KKLT, LVS and DBI.
@@ -266,23 +288,6 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
   \end{aligned}
 \end{equation}
 
-In order to verify consistency with experiment and evaluate $f_e$, we use Inflation Simulator\footnote{\url{https://github.com/maxitg/InflationSimulator}}.
-For these simulations we set $q = 5$, $G_1 = G_2 = G_3 = 0$, $G_4 = 1$, and we vary $G_5$.
-We also set $B = 1$, as it only affects the time scale of inflation, but not the values of $n_s$, $r$, and $f_e$.
-We begin by sampling a number of parameter sets $\left(f, G_5, b_{-, 0}, N_\text{pivot}\right)$ from a distribution described in the caption of Fig.~\ref{fig:supersymmetry}.
-We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
-We set initial field velocity $\dot b_{-, 0} = 0$, which does not affect the results, as velocity typically converges to its quasi-stationary value before horizon exit.
-Finally, if at least $N_\text{pivot}$ e-foldings are produced, we compute (COMPUTE HOW?) the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
-If so, we evaluate $f_e$ at horizon exit using Eq.~\ref{eq:feFromPotential}.
-The results of this process can be seen on Fig.~\ref{fig:supersymmetry}.
-
-One can see that even though true decay constant $f$ is below $M_\text{P}$, the effective $f_e$ always satisfies constraint \ref{eq:feExperimentalConstraint}.
-Note, fine tuning of $G_5$ is required to achieve coherent enhancement and experimentally-consistent inflation.
-
-ADD DISTINCTION BETWEEN $f_e$, and $f_{e, \text{dynamic}}$. ALSO, CHECK $M_\text{P}$ IS USED EVERYWHERE IT SHOULD BE USED.
-
-INCLUDE PLOTS COMPARING $f_e$ with $f_{e, \text{dynamic}}$.
-
 \begin{figure}
   \centering
   \begin{subfigure}{0.45 \textwidth}
@@ -294,8 +299,23 @@ INCLUDE PLOTS COMPARING $f_e$ with $f_{e, \text{dynamic}}$.
   \begin{subfigure}{0.45 \textwidth}
     \includegraphics[width = \textwidth]{figures/supersymmetryDecayConstantsComparison.pdf}
   \end{subfigure}
-  \caption{Figure this fgure.} \label{fig:supersymmetry}
+  \caption{FIGURE THIS FGURE.} \label{fig:supersymmetry}
 \end{figure}
+
+In order to verify consistency with experiment and evaluate $f_e$, we use Inflation Simulator\footnote{\url{https://github.com/maxitg/InflationSimulator}}.
+For these simulations we set $q = 5$, $G_1 = G_2 = G_3 = 0$, $G_4 = 1$, and we vary $G_5$.
+We also set $B = 1$, as it only affects the time scale of inflation, but not the values of $n_s$, $r$, and $f_e$.
+We begin by sampling a number of parameter sets $\left(f, G_5, b_{-, 0}, N_\text{pivot}\right)$ from a distribution described in the caption of Fig.~\ref{fig:supersymmetry}.
+We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
+We set initial field velocity $\dot b_{-, 0} = 0$, which does not affect the results, as velocity typically converges to its quasi-stationary value before horizon exit.
+Finally, if at least $N_\text{pivot}$ e-foldings are produced, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}), (\ref{eq:slowRollParametersDynamicFromStatic}) and (\ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
+If so, we evaluate $f_e$ and $f_{eH}$ at horizon exit using Eqs.~(\ref{eq:feFromPotential}) and (\ref{eq:feFromDynamicSlowRollParameters}).
+The results of this process can be seen on Fig.~(\ref{fig:supersymmetry}).
+
+One can see that even though true decay constant $f$ is below $M_\text{P}$, the effective $f_e \approx f_{eH}$ always satisfy constraint \ref{eq:feExperimentalConstraint}.
+Note, fine tuning of $G_5$ is required to achieve coherent enhancement and experimentally-consistent inflation.
+
+ALSO, CHECK $M_\text{P}$ IS USED EVERYWHERE IT SHOULD BE USED. CHECK PARENTHESES AFTER EQUATIONS REFERNECE.
 
 % TODO(maxitg): Simulation part needs to be added here.
 
@@ -730,22 +750,6 @@ We note that the parameter $\tilde\beta$ here is redundant, and is chosen in suc
 The first non-zero component of $\mathcal{G}$ can also be set to $1$ to reduce redundancy.
 Further, we note that Eqs.~(\ref{eq:epsEtaFromPotential}) will not be sufficient to describe evolution in this case, because they do not take the form of kinetic energy into account.
 However, we will use Eqs.~(\ref{eq:slowRollParametersDynamic}) which are independent of the kinetic terms, therefore, we conjecture that while Eqs.~(\ref{eq:slowRollParametersDynamicFromStatic}) do not hold, Eq.~(\ref{eq:feFromDynamicSlowRollParameters}) can still be used to derive an effective decay constant, where Eqs.~(\ref{eq:slowRollParametersDynamic}) are used to derive $\epsilon_H$ and $\eta_H$.
-\begin{equation} \label{eq:slowRollParametersDynamic}
-  \epsilon_H = -\frac{\dot H}{H^2}\,,
-  ~~~ \eta_H = -\frac{\dot{\epsilon_H}}{\epsilon_H H}\,.
-\end{equation}
-For the case when the velocity dependence of the parameters is relatively small one has
-\begin{equation} \label{eq:slowRollParametersDynamicFromStatic}
-  \epsilon_H = \epsilon\,,
-  ~~~ \eta_H = -2 \eta + 4 \epsilon\,,
-\end{equation}
-in which case Eqs.~(\ref{eq:lambdaSlowRoll}, \ref{eq:feSlowRoll}, \ref{eq:fieldInitialSlowRoll}) can be rewritten as
-\begin{align} % keep each equation numbered separately
-  \Lambda &= V\left(\phi_0\right) \frac{\eta_H}{2 \eta_H - 4 \epsilon_H}\,,\\
-  \label{eq:feFromDynamicSlowRollParameters}
-  f_e &= \frac{1}{\sqrt{\eta_H - 2 \epsilon_H}}\,,\\
-  \cos\left(\frac{\varphi_0}{f_e}\right) &= \frac{4 \epsilon_H - \eta_H}{\eta_H}\,.
-\end{align}
 
 To demonstrate the validity of our procedure, we sample the parameter space of the model Eq.~(\ref{eq:dbi:lagrangian}) by setting $T = 1$, $\mathcal{G}_1 = \mathcal{G}_2 = \mathcal{G}_3 = 0$, $\mathcal{G}_4 = 1$, and varying $\mathcal{G}_5$, $\mathcal{G}_6$, $\alpha_1$, $f$, $\tilde\beta$, and the pivot e-foldings count $N_\text{pivot}$.
 This corresponds to Fig.~(1) of~\cite{Nath:2018xxe}.
