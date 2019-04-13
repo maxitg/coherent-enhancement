@@ -28,7 +28,7 @@ ParallelEvaluate[<<InflationSimulator`];
 (*Options*)
 
 
-supersymmetryPointCount = 10000;
+supersymmetryPointCount = 100000;
 
 
 supersymmetryRange = <|

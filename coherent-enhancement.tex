@@ -216,7 +216,7 @@ We will show using numerical simulations that $f_e \approx f_{eH}$ for the cases
 We further show in section~\ref{sec:DBI} that while $f_e$ does not demonstrate any enhancement, $f_{eH}$ still satisfies the constrant Eq.~(\ref{eq:feExperimentalConstraint}).
 
 \section{Coherent enhancement mechanism in supersymmetry models \label{sec:Supersymmetry}}
-In this section and the following sections a variety of inflation models consistent with the current astrophysical data from the Planck experiment.
+In this section and the following sections we consider a variety of inflation models consistent with the current astrophysical data from the Planck experiment.
 As mentioned in the introduction these models are in a variety of settings: global supersymmetry, supergravity, KKLT, LVS and DBI.
 In this section we focus on the globally supersymmetric models.
 For the analysis here we consider a chiral field $\Phi$ charged under a global $U\left(1\right)$ transformation, and another field $\bar\Phi$ that is oppositely charged.
@@ -225,8 +225,8 @@ Thus under $U\left(1\right)$ transformations one has
   \Phi \to e^{i q \lambda} \Phi\,,
   ~~~ \bar\Phi \to e^{-i q \lambda} \bar\Phi\,,
 \end{equation}
-The superfield $\Phi$ have an expansion, $\Phi = \phi + \theta \chi + \theta \theta F$, where $\phi$ is a complex scalar field consisting of the saxion (the magnitude) and the axion (the phase), $\chi$ is the axino, and $F$ is an auxiliary field.
-Similarly the superfields $\bar\Phi$ have an expansion: $\bar\Phi = \bar\phi + \bar\theta \bar\xi + \bar\theta \bar\theta \bar F$.
+The superfield $\Phi$ has an expansion, $\Phi = \phi + \theta \chi + \theta \theta F$, where $\phi$ is a complex scalar field consisting of the saxion (the magnitude) and the axion (the phase), $\chi$ is the axino, and $F$ is an auxiliary field.
+Similarly the superfield $\bar\Phi$ has an expansion: $\bar\Phi = \bar\phi + \bar\theta \bar\xi + \bar\theta \bar\theta \bar F$.
 We now consider a superpotential of the form
 \begin{equation} \label{eq:supersymmetry:W}
   W = W_s\left(\Phi, \bar\Phi\right) + W_{sb}\left(\Phi, \bar\Phi\right)\,,
@@ -249,6 +249,7 @@ We define two linear combinations of $a$ and $\bar a$ so that
   b_{\pm}= \frac{1}{\sqrt 2} \left(a \pm \bar a\right)\,.
 \end{equation}
 Here $b_+$ is invariant under the shift symmetry and becomes heavy after the moduli are stabilized and $b_-$ is sensitive to shift symmetry and remains massless and we identify it as a candidate for the inflaton.
+
 However, $b_-$ will gain mass when $W_{sb}$ is included in the analysis.
 We will assume an $W_{sb}$ of the form
 \begin{equation} \label{eq:supersymmetry:Wsb}
@@ -262,7 +263,10 @@ Including $W_{sb}$ the axionic potential can be written in the form
   V\left(a, \bar a\right) = V_\text{fast}\left(b_+\right) + V_\text{slow}\left(b_-\right)\,,
 \end{equation}
 where $V_\text{slow}\left(b_-\right)$ which depends only on $b_-$ enters in slow roll and is relevant for inflation.
-An explicit form of this potential is given by
+
+Note, the values of the parameters $\mu$ and $\lambda / M$ determine the stability point $f$.
+We can equivalently however fix $f$ and solve for $\lambda / M$ in terms of $\mu$ and $f$.
+It turns out $\mu$ only appears in $V_\text{fast}$, but not in $V_\text{slow}$, for which an explicit form is given by
 \begin{equation} \label{eq:supersymmetry:VslowGeneral}
   \begin{aligned}
     V_\text{slow}\left(b_-\right) =
@@ -277,8 +281,8 @@ An explicit form of this potential is given by
 \end{equation}
 where we have set $\bar f = f$.
 We make now further simplifying assumptions so that $A_l = \bar A_l = B_l f^{3 - l}$, $B_l = B G_l$.
-Thus $B_l$, $B$, $G_l$ are dimensionless while $f$ carry dimension of mass.
-Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGeneral}) takes the form simpler form
+Thus $B_l$, $B$, $G_l$ are dimensionless while $f$ carries dimension of mass.
+Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGeneral}) takes a simpler form
 \begin{equation} \label{eq:supersymmetry:Vslow}
   \begin{aligned}
     V_\text{slow}\left(b_-\right) = 4 f^4 B^2 &\left(
@@ -305,9 +309,7 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
 \end{figure}
 
 In order to verify consistency with experiment and evaluate $f_e$, we use Inflation Simulator\footnote{\url{https://github.com/maxitg/InflationSimulator}}.
-For these simulations we set $q = 5$, $G_1 = G_2 = G_3 = 0$, $G_4 = 1$, and we vary $G_5$.
-We also set $B = 1$, as it only affects the time scale of inflation, but not the values of $n_s$, $r$, and $f_e$.
-We begin by sampling a number of parameter sets $\left(f, G_5, b_{-, 0}, N_\text{pivot}\right)$ from a distribution described in the caption of Fig.~(\ref{fig:supersymmetry}).
+For these simulations we begin by sampling a number of parameter sets as described in the caption of Fig.~(\ref{fig:supersymmetry}).
 We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
 We set initial field velocity $\dot b_{-, 0} = 0$, which does not affect the results, as velocity typically converges to its quasi-stationary value before horizon exit.
 Finally, if at least $N_\text{pivot}$ e-foldings are produced, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}, \ref{eq:slowRollParametersDynamicFromStatic}, \ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
@@ -316,10 +318,6 @@ The results of this process can be seen on Fig.~(\ref{fig:supersymmetry}).
 
 One can see that even though true decay constant $f$ is below $M_\text{P}$, the effective $f_e \approx f_{eH}$ always satisfy constraint \ref{eq:feExperimentalConstraint}.
 Note, fine tuning of $G_5$ is required to achieve coherent enhancement and experimentally-consistent inflation.
-
-REVIEW SUPERSYMMETRY SECTION FOR CLARITY.
-
-% TODO(maxitg): Simulation part needs to be added here.
 
 \section{Enhancement mechanism in supergravity \label{sec:Supergravity}}
 We now extend the analysis to supergravity where the scalar potential has the form~\cite{Chamseddine:1982jx, Cremmer:1982en} is given by
