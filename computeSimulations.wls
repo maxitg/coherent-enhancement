@@ -31,6 +31,12 @@ ParallelEvaluate[<<InflationSimulator`];
 supersymmetryPointCount = 10000;
 
 
+supersymmetryRange = <|
+	"fTrue" -> {0, 1},
+	"G5" -> {-0.88931, -0.88920},
+	"pivotEfoldingsCount" -> {50, 60}|>;
+
+
 imageSize = 250;
 fontFamily = "Latin Modern Roman";
 
@@ -60,9 +66,9 @@ supersymmetryLagrangian[f_, G_, B_: 1][bm_, t_] := 1/2 D[bm, t]^2 - 4 f^4 B^2 (
 
 supersymmetryInputs = BlockRandom[Table[With[
 	{
-		fValue = RandomReal[{0, 1}],
-		G5 = RandomReal[{-0.88931, -0.88920}],
-		NPivot = RandomReal[{50, 60}]
+		fValue = RandomReal[supersymmetryRange[["fTrue"]]],
+		G5 = RandomReal[supersymmetryRange[["G5"]]],
+		NPivot = RandomReal[supersymmetryRange[["pivotEfoldingsCount"]]]
 	}, <|
 		"fTrue" -> fValue,
 		"G5" -> G5,
@@ -172,7 +178,32 @@ Export[
 			LabelStyle -> Directive[FontFamily -> fontFamily],
 			Evaluate @ AbsoluteOptions[
 				supersymmetryDecayConstantsComparisonPointsPlot, PlotRange]],
-		supersymmetryDecayConstantsComparisonPointsPlot]]
+		supersymmetryDecayConstantsComparisonPointsPlot]];
+
+
+distributionToTeX[{min_, max_}] :=
+	"\\mathcal{U}\\left(" <> ToString[min] <> ", " <>
+	ToString[max] <> "\\right)"
+
+
+Export[
+	FileNameJoin[{figuresDirectory, "supersymmetry.txt"}],
+	StringJoin[{
+		"Simulation results for the global supersymmetry model ",
+		"Eq.~(\\ref{eq:supersymmetry:Vslow}). ",
+		"All " <> ToString[Length @ supersymmetryResults] <> " points shown ",
+		"are consistent with experimental data on $r$ and $n_s$. ",
+		"Here $q = 5$, $G_1 = G_2 = G_3 = 0$, $G_4 = 1$, ",
+		"$G_5 \\sim ",
+		distributionToTeX[NumberForm[#, {6, 5}] & /@ supersymmetryRange[["G5"]]],
+		"$, where $\\mathcal{U}$ refers to a uniform distribution. ",
+		"We set $B = 1$, as it only affects the time scale of inflation, but not ",
+		"the values of $n_s$, $r$, and $f_e$. ",
+		"Finally, $f / M_\\text{P} \\sim ",
+		distributionToTeX[supersymmetryRange[["fTrue"]]] <> "$, ",
+		"$b_{-, 0} \\sim " <> distributionToTeX[{0, "\\pi \\sqrt{2} f"}] <> "$, ",
+		"$N_\\text{pivot} \\sim ",
+		distributionToTeX[supersymmetryRange[["pivotEfoldingsCount"]]] <> "$."}]]
 
 
 (* ::Section:: *)
