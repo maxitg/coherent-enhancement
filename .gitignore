@@ -1,8 +1,8 @@
 ## macOS files
 *.DS_Store
 
-## Compiled pdf
-coherent-enhancement.pdf
+## Compiled paper and figures
+*.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

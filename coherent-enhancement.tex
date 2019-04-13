@@ -5,6 +5,7 @@
 \usepackage{hyperref} % turn citations into links
 \usepackage[letterpaper,margin=1in,bottom=1in]{geometry} % margins
 \usepackage{graphicx} % support for figures
+\usepackage{subcaption} % support for multi-figures
 \usepackage[numbers, sort & compress]{natbib} % cleanup citations
 \usepackage{parskip} % add vertical space between paragraphs
 \usepackage[section]{placeins} % keep figures inside their sections
@@ -171,7 +172,7 @@ The current experimental limits from Planck experiment at $k_0 = 0.05\,{\rm Mpc}
 \end{equation}
 while $n_t\left(k_0\right)$ is currently not constrained.
 Using this data we find model-independent bounds on the effective axionic decay constant so that
-\begin{equation}
+\begin{equation} \label{eq:feExperimentalConstraint}
   4.6 \leq f_e \leq 11\, \left(95\%\, {\rm CL}\right)\,.
 \end{equation}
 
@@ -264,15 +265,36 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
     \right)\,.
   \end{aligned}
 \end{equation}
-Eq.~(\ref{eq:supersymmetry:Vslow}) will be used in our computations.
 
-\begin{figure} \label{fig:supersymmetry} % TODO(maxitg): Placeholder figure.
+In order to verify consistency with experiment and evaluate $f_e$, we use Inflation Simulator\footnote{\url{https://github.com/maxitg/InflationSimulator}}.
+For these simulations we set $q = 5$, $G_1 = G_2 = G_3 = 0$, $G_4 = 1$, and we vary $G_5$.
+We also set $B = 1$, as it only affects the time scale of inflation, but not the values of $n_s$, $r$, and $f_e$.
+We begin by sampling a number of parameter sets $\left(f, G_5, b_{-, 0}, N_\text{pivot}\right)$ from a distribution described in the caption of Fig.~\ref{fig:supersymmetry}.
+We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
+We set initial field velocity $\dot b_{-, 0} = 0$, which does not affect the results, as velocity typically converges to its quasi-stationary value before horizon exit.
+Finally, if at least $N_\text{pivot}$ e-foldings are produced, we compute (COMPUTE HOW?) the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
+If so, we evaluate $f_e$ at horizon exit using Eq.~\ref{eq:feFromPotential}.
+The results of this process can be seen on Fig.~\ref{fig:supersymmetry}.
+
+One can see that even though true decay constant $f$ is below $M_\text{P}$, the effective $f_e$ always satisfies constraint \ref{eq:feExperimentalConstraint}.
+Note, fine tuning of $G_5$ is required to achieve coherent enhancement and experimentally-consistent inflation.
+
+ADD DISTINCTION BETWEEN $f_e$, and $f_{e, \text{dynamic}}$. ALSO, CHECK $M_\text{P}$ IS USED EVERYWHERE IT SHOULD BE USED.
+
+INCLUDE PLOTS COMPARING $f_e$ with $f_{e, \text{dynamic}}$.
+
+\begin{figure}
   \centering
-  \includegraphics[width = 0.8 \textwidth]{figs/figsusy.png}
-  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.~(\ref{eq:supersymmetry:Vslow}) with $G_6 = 0$ (left panel) and $G_6 \neq 0$ (right panel).
-    Data corresponds to Figs.~(3, 5) of~\cite{Nath:2017ihp}.
-    The number of points is 939 on the left, and 102492 on the right panel.
-    Note that while there are points with true decay constants below $M_\text{P}$, all of the enhanced decay constants are larger than $4.5 M_\text{P}$, which is necessary to produce a sufficient number of e-foldings in Natural Inflation.}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supersymmetryInputs.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supersymmetryEnhancement.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supersymmetryDecayConstantsComparison.pdf}
+  \end{subfigure}
+  \caption{Figure this fgure.} \label{fig:supersymmetry}
 \end{figure}
 
 % TODO(maxitg): Simulation part needs to be added here.
@@ -387,15 +409,6 @@ where $C_k$ are given by
     C_6 &= -2 A_3^2 e^{2 f^2 + 6} \left(4 f^2 + 9\right)\,.
   \end{aligned}
 \end{equation}
-
-\begin{figure} \label{fig:supergravity} % TODO(maxitg): Placeholder figure.
-  \centering
-  \includegraphics[width = 0.8 \textwidth]{figs/figsugra.png}
-  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.~(\ref{eq:supergravity:Vslow3}).
-    Data corresponds to Figs.~(9,~10) of~\cite{Nath:2017ihp}.
-    The number of points is $846$.
-    Note that while all true decay constants are smaller than $M_\text{P}$, all enhanced decay constants are larger than $4.5 M_\text{P}$, which is necessary to produce the number of e-foldings in the desired range.}
-\end{figure}
 
 % TODO(maxitg): Simulation part needs to be added here.
 
@@ -737,22 +750,6 @@ in which case Eqs.~(\ref{eq:lambdaSlowRoll}, \ref{eq:feSlowRoll}, \ref{eq:fieldI
 To demonstrate the validity of our procedure, we sample the parameter space of the model Eq.~(\ref{eq:dbi:lagrangian}) by setting $T = 1$, $\mathcal{G}_1 = \mathcal{G}_2 = \mathcal{G}_3 = 0$, $\mathcal{G}_4 = 1$, and varying $\mathcal{G}_5$, $\mathcal{G}_6$, $\alpha_1$, $f$, $\tilde\beta$, and the pivot e-foldings count $N_\text{pivot}$.
 This corresponds to Fig.~(1) of~\cite{Nath:2018xxe}.
 We then select parameter choices than produced at least $N_\text{pivot}$ number of e-foldings, and plot the true axion decay constant $f$ vs. the effective axion decay constant $f_e$ on Fig.~(\ref{fig:DBI:parameters}).
-
-\begin{figure} \label{fig:DBI:parameters} % TODO(maxitg): Placeholder figure.
-  \centering
-  \includegraphics[width = 0.5 \textwidth]{figs/fige.pdf}
-  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.~(\ref{eq:dbi:lagrangian}), $33418$ points shown ($13$ points for which $\eta - 2\epsilon < 0$ are excluded from analysis).
-    Note that while the true decay constants vary from $\sim 0.01$ to $\sim 2000$, all of the enhanced decay constants are larger than $4.6$, and have an average of $8.4$.
-    Note further than the minimal value of $f_e$ in Natural Inflation required to produce experimentally consistent inflation is $f_e \approx 6.9$~\cite{Ade:2015lrj}.}
-\end{figure}
-
-\begin{figure} \label{fig:DBI:observables} % TODO(maxitg): Placeholder figure.
-  \centering
-  \includegraphics[width = 0.5 \textwidth]{figs/figc.pdf}
-  \caption{Comparison of parameter region $\left(\phi_0, f\right)$ for points from Fig.~(\ref{fig:DBI:parameters}) (blue) vs. the corresponding parameter region for true Natural Inflation (gray).
-    In both cases the pivot number of e-foldings is between $50$ and $60$.
-    The systematic shift may be specific to considered DBI model.}
-\end{figure}
 
 % TODO(maxitg): Simulation part needs to be added here.
 
