@@ -307,17 +307,15 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
 In order to verify consistency with experiment and evaluate $f_e$, we use Inflation Simulator\footnote{\url{https://github.com/maxitg/InflationSimulator}}.
 For these simulations we set $q = 5$, $G_1 = G_2 = G_3 = 0$, $G_4 = 1$, and we vary $G_5$.
 We also set $B = 1$, as it only affects the time scale of inflation, but not the values of $n_s$, $r$, and $f_e$.
-We begin by sampling a number of parameter sets $\left(f, G_5, b_{-, 0}, N_\text{pivot}\right)$ from a distribution described in the caption of Fig.~\ref{fig:supersymmetry}.
+We begin by sampling a number of parameter sets $\left(f, G_5, b_{-, 0}, N_\text{pivot}\right)$ from a distribution described in the caption of Fig.~(\ref{fig:supersymmetry}).
 We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
 We set initial field velocity $\dot b_{-, 0} = 0$, which does not affect the results, as velocity typically converges to its quasi-stationary value before horizon exit.
-Finally, if at least $N_\text{pivot}$ e-foldings are produced, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}), (\ref{eq:slowRollParametersDynamicFromStatic}) and (\ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
-If so, we evaluate $f_e$ and $f_{eH}$ at horizon exit using Eqs.~(\ref{eq:feFromPotential}) and (\ref{eq:feFromDynamicSlowRollParameters}).
+Finally, if at least $N_\text{pivot}$ e-foldings are produced, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}, \ref{eq:slowRollParametersDynamicFromStatic}, \ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
+If so, we evaluate $f_e$ and $f_{eH}$ at horizon exit using Eqs.~(\ref{eq:feFromPotential}, \ref{eq:feFromDynamicSlowRollParameters}).
 The results of this process can be seen on Fig.~(\ref{fig:supersymmetry}).
 
 One can see that even though true decay constant $f$ is below $M_\text{P}$, the effective $f_e \approx f_{eH}$ always satisfy constraint \ref{eq:feExperimentalConstraint}.
 Note, fine tuning of $G_5$ is required to achieve coherent enhancement and experimentally-consistent inflation.
-
-CHECK PARENTHESES AFTER EQUATIONS REFERNECE.
 
 REVIEW SUPERSYMMETRY SECTION FOR CLARITY.
 
@@ -506,7 +504,7 @@ These conditions lead to the constraint
 \begin{equation} \label{eq:KKLT:zeroVacuumConstraint}
   \sum_i A_i q_i e^{-q_i \tau_0} = 0\,.
 \end{equation}
-The imposition of Eqs.~(\ref{eq:KKLT:stabilization}) and (\ref{eq:KKLT:zeroVacuumConstraint}) would lead to moduli stabilization and vanishing of the vacuum energy at the end of inflation.
+The imposition of Eqs.~(\ref{eq:KKLT:stabilization}, \ref{eq:KKLT:zeroVacuumConstraint}) would lead to moduli stabilization and vanishing of the vacuum energy at the end of inflation.
 
 % TODO(maxitg): Simulation part needs to be added here.
 
