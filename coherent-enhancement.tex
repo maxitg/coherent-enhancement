@@ -110,7 +110,7 @@ To do that, first, expand $V_{e}$ near $\phi_0$ to the second order so that
       &\Lambda \left(1 - \cos\left(\frac{\phi_0}{f_e}\right)\right)
         + \frac{\Lambda}{f_e} \sin\left(\frac{\phi_0}{f_e}\right) \left(\phi - \phi_0\right)\\
       & + \frac{\Lambda}{2 f_e^2} \cos\left(\frac{\phi_0}{f_e}\right) \left(\phi - \phi_0\right)^2
-        + \mathcal{O}^3\left(\phi - \phi_0\right)\,.
+        + \Lambda \mathcal{O}^3\left(\frac{\phi - \phi_0}{f_e}\right)\,.
   \end{aligned}
 \end{equation}
 
@@ -133,14 +133,16 @@ Now, identifying the expansion coefficients in Eq.~(\ref{eq:naturalInflationSeri
     {{V^\prime}^2\left(\phi_0\right) - V\left(\phi_0\right) V^{\prime\prime}\left(\phi_0\right)}\,.
 \end{equation}
 Here, we are mostly interested in Eq.~(\ref{eq:feFromPotential}), which gives the effective axion decay constant for the potential $V\left(\phi\right)$ near $\phi = \phi_0$.
-Due to the second flatness condition, $\left|\eta\right| = \left|V_e^{\prime\prime} / V_e\right| = 1 / f_e^2 \ll 1$, natural inflation can only generate experimentally consistent observables when $f_e \gg 1$.
+Due to the second flatness condition, $\left|\eta\right| = M_\text{P}^2 \left|V_e^{\prime\prime} / V_e\right| = M_\text{P}^2 / f_e^2 \ll 1$, natural inflation can only generate experimentally consistent observables when $f_e \gg M_\text{P}$.
 However, as discussed already the true axion decay constant larger than one is undesirable from considerations of quantum gravity and string theory \cite{Kallosh:1995hi, Banks:2003sx}.
 Coherent Enhancement provides a solution in that the true axion decay constant can be smaller than one while the effective axion decay constant is larger or even much larger than one.
 
 Finally, it is also possible to express the effective decay constant in terms of slow-roll inflation parameters $\epsilon$ and $\eta$ defined as
 \begin{equation} \label{eq:epsEtaFromPotential}
-  \epsilon = \frac{1}{2} \left(\frac{V^\prime\left(\phi_0\right)}{V\left(\phi_0\right)}\right)^2\,,
-  ~~~ \eta = \frac{V^{\prime\prime}\left(\phi_0\right)}{V\left(\phi_0\right)}\,.
+  \epsilon =
+    \frac{M_\text{P}^2}{2}
+    \left(\frac{V^\prime\left(\phi_0\right)}{V\left(\phi_0\right)}\right)^2\,,
+  ~~~ \eta = M_\text{P}^2 \frac{V^{\prime\prime}\left(\phi_0\right)}{V\left(\phi_0\right)}\,.
 \end{equation}
 
 By combining these with Eqs.~(\ref{eq:lambdaFromPotential}, \ref{eq:feFromPotential}, \ref{eq:fieldInitialFromPotential}), we obtain
@@ -148,7 +150,7 @@ By combining these with Eqs.~(\ref{eq:lambdaFromPotential}, \ref{eq:feFromPotent
   \label{eq:lambdaSlowRoll}
   \Lambda &= V\left(\phi_0\right) \frac{2 \epsilon - \eta}{2 \epsilon - 2 \eta}\,,\\
   \label{eq:feSlowRoll}
-  f_e &= \frac{1}{\sqrt{2 \left(\epsilon - \eta\right)}}\,,\\
+  f_e &= \frac{M_\text{P}}{\sqrt{2 \left(\epsilon - \eta\right)}}\,,\\
   \label{eq:fieldInitialSlowRoll}
   \cos\left(\frac{\varphi_0}{f_e}\right) &= \frac{\eta}{2 \epsilon - \eta}\,.
 \end{align}
@@ -161,7 +163,7 @@ The spectral indices $n_s$ and $n_t$ are related to the inflationary parameters 
 \end{equation}
 We can thus eliminate $\eta$ and $\epsilon$ in favor of $n_s$ and $r$ and get
 \begin{equation}
-  f_e = \frac{1}{\sqrt{1 - n_s - r / 4}}\,.
+  f_e = \frac{M_\text{P}}{\sqrt{1 - n_s - r / 4}}\,.
 \end{equation}
 The current experimental limits from Planck experiment at $k_0 = 0.05\,{\rm Mpc}^{-1}$ are as follows~\cite{Adam:2015rua, Ade:2015lrj, Array:2015xqh}
 \begin{equation} \label{data}
@@ -173,7 +175,7 @@ The current experimental limits from Planck experiment at $k_0 = 0.05\,{\rm Mpc}
 while $n_t\left(k_0\right)$ is currently not constrained.
 Using this data we find model-independent bounds on the effective axionic decay constant so that
 \begin{equation} \label{eq:feExperimentalConstraint}
-  4.6 \leq f_e \leq 11\, \left(95\%\, {\rm CL}\right)\,.
+  4.6 \leq f_e / M_\text{P} \leq 11\, \left(95\%\, {\rm CL}\right)\,.
 \end{equation}
 
 Next, we discuss CEM for a superposition of cosine functions and show how the effective axion decay constant becomes super-Planckian even though the true decay constant is sub-Plankian.
@@ -207,7 +209,7 @@ For the case when the velocity dependence of the parameters is relatively small 
 \end{equation}
 in which case Eq.~(\ref{eq:feSlowRoll}) can be rewritten as
 \begin{equation} \label{eq:feFromDynamicSlowRollParameters}
-  f_{eH} = \frac{1}{\sqrt{\eta_H - 2 \epsilon_H}}\,.
+  f_{eH} = \frac{M_\text{P}}{\sqrt{\eta_H - 2 \epsilon_H}}\,.
 \end{equation}
 
 We will show using numerical simulations that $f_e \approx f_{eH}$ for the cases of global supersymmetry, supergravity, KKLT, and LVS, however, they are different in the case of DBI due to non-canonical kinetic energy in that model.
