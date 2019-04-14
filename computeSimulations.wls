@@ -223,18 +223,7 @@ Export[
 		distributionToTeX[supersymmetryRange[["fTrue"]]] <> "$, ",
 		"$b_{-, 0} \\sim " <> distributionToTeX[{0, "\\pi \\sqrt{2} f"}] <> "$, ",
 		"$N_\\text{pivot} \\sim ",
-		distributionToTeX[supersymmetryRange[["pivotEfoldingsCount"]]] <> "$. ",
-		"Top left panel shows the superimposed slow-roll ",
-		"potentials~Eq.(\\ref{eq:supersymmetry:Vslow}) as functions of $b_-$ ",
-		"for all values of $G_5$ considered. Note that because the field is normalized ",
-		"by $f$ and because $G_5$ is fine-tuned, potentials for all considered input ",
-		"parameters look almost identical. Inflation occurs in the flat region of ",
-		"the potential near $b_- / f \approx 3$. ",
-		"Top right panel shows tensor-to-scalar ratios we obtained. ",
-		"Bottom left panel demonstrates the coherent enhancement of the decay constant,",
-		" and the bottom right panel compares effective decay constants computed ",
-		"from the potential and from the Hubble parameter, ",
-		"black line corresponds to $f_{eH} = f_e$."}]]
+		distributionToTeX[supersymmetryRange[["pivotEfoldingsCount"]]] <> "$."}]]
 
 
 (* ::Section:: *)
