@@ -116,19 +116,23 @@ supersymmetryResults = ParallelMap[If[
 Print["Plotting supersymmetry..."];
 
 
-Export[FileNameJoin[{figuresDirectory, "supersymmetryPotential.pdf"}], Plot[
-	Evaluate[With[{f = #[["fTrue"]], G5 = #[["G5"]]},
-		supersymmetryLagrangian[f, {0, 0, 0, 1, G5}][f bf, t] /
-			supersymmetryLagrangian[f, {0, 0, 0, 1, G5}][f \[Pi] Sqrt[2], t]] & /@
-				supersymmetryResults],
-	{bf, -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2]},
+Export[FileNameJoin[{figuresDirectory, "supersymmetryPotential.pdf"}], ListPlot[
+	ParallelTable[{bf, #[
+		Evaluate[With[{f = #[["fTrue"]], G5 = #[["G5"]]},
+			supersymmetryLagrangian[f, {0, 0, 0, 1, G5}][f bf, t] /
+				supersymmetryLagrangian[f, {0, 0, 0, 1, G5}][f \[Pi] Sqrt[2], t]] & /@
+					supersymmetryResults]]},
+	{bf, -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.02}] & /@ {Min, Max},
+	Axes -> False,
 	Frame -> True,
 	FrameLabel -> {
 		"\!\(\*FormBox[\(\*SubscriptBox[\(b\), \(-\)]/f\), TraditionalForm]\)",
 		"\!\(\*FormBox[\(V/\*SubscriptBox[\(V\), \(max\)]\), TraditionalForm]\)"},
 	PlotStyle -> ColorData[97, 1],
 	ImageSize -> imageSize,
-	LabelStyle -> Directive[FontFamily -> fontFamily]]];
+	LabelStyle -> Directive[FontFamily -> fontFamily],
+	Joined -> True,
+	Filling -> {1 -> {2}}]];
 
 
 Export[FileNameJoin[{figuresDirectory, "supersymmetryTensorToScalar.pdf"}], ListPlot[
