@@ -2,7 +2,10 @@
 *.DS_Store
 
 ## Compiled pdf
-coherent-enhancement.pdf
+*.pdf
+
+## Figures
+/figures/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

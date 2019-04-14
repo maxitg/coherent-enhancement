@@ -5,6 +5,7 @@
 \usepackage{hyperref} % turn citations into links
 \usepackage[letterpaper,margin=1in,bottom=1in]{geometry} % margins
 \usepackage{graphicx} % support for figures
+\usepackage{subcaption} % support for multi-figures
 \usepackage[numbers, sort & compress]{natbib} % cleanup citations
 \usepackage{parskip} % add vertical space between paragraphs
 \usepackage[section]{placeins} % keep figures inside their sections
@@ -109,7 +110,7 @@ To do that, first, expand $V_{e}$ near $\phi_0$ to the second order so that
       &\Lambda \left(1 - \cos\left(\frac{\phi_0}{f_e}\right)\right)
         + \frac{\Lambda}{f_e} \sin\left(\frac{\phi_0}{f_e}\right) \left(\phi - \phi_0\right)\\
       & + \frac{\Lambda}{2 f_e^2} \cos\left(\frac{\phi_0}{f_e}\right) \left(\phi - \phi_0\right)^2
-        + \mathcal{O}^3\left(\phi - \phi_0\right)\,.
+        + \Lambda \mathcal{O}^3\left(\frac{\phi - \phi_0}{f_e}\right)\,.
   \end{aligned}
 \end{equation}
 
@@ -132,14 +133,16 @@ Now, identifying the expansion coefficients in Eq.~(\ref{eq:naturalInflationSeri
     {{V^\prime}^2\left(\phi_0\right) - V\left(\phi_0\right) V^{\prime\prime}\left(\phi_0\right)}\,.
 \end{equation}
 Here, we are mostly interested in Eq.~(\ref{eq:feFromPotential}), which gives the effective axion decay constant for the potential $V\left(\phi\right)$ near $\phi = \phi_0$.
-Due to the second flatness condition, $\left|\eta\right| = \left|V_e^{\prime\prime} / V_e\right| = 1 / f_e^2 \ll 1$, natural inflation can only generate experimentally consistent observables when $f_e \gg 1$.
+Due to the second flatness condition, $\left|\eta\right| = M_\text{P}^2 \left|V_e^{\prime\prime} / V_e\right| = M_\text{P}^2 / f_e^2 \ll 1$, natural inflation can only generate experimentally consistent observables when $f_e \gg M_\text{P}$.
 However, as discussed already the true axion decay constant larger than one is undesirable from considerations of quantum gravity and string theory \cite{Kallosh:1995hi, Banks:2003sx}.
 Coherent Enhancement provides a solution in that the true axion decay constant can be smaller than one while the effective axion decay constant is larger or even much larger than one.
 
 Finally, it is also possible to express the effective decay constant in terms of slow-roll inflation parameters $\epsilon$ and $\eta$ defined as
 \begin{equation} \label{eq:epsEtaFromPotential}
-  \epsilon = \frac{1}{2} \left(\frac{V^\prime\left(\phi_0\right)}{V\left(\phi_0\right)}\right)^2\,,
-  ~~~ \eta = \frac{V^{\prime\prime}\left(\phi_0\right)}{V\left(\phi_0\right)}\,.
+  \epsilon =
+    \frac{M_\text{P}^2}{2}
+    \left(\frac{V^\prime\left(\phi_0\right)}{V\left(\phi_0\right)}\right)^2\,,
+  ~~~ \eta = M_\text{P}^2 \frac{V^{\prime\prime}\left(\phi_0\right)}{V\left(\phi_0\right)}\,.
 \end{equation}
 
 By combining these with Eqs.~(\ref{eq:lambdaFromPotential}, \ref{eq:feFromPotential}, \ref{eq:fieldInitialFromPotential}), we obtain
@@ -147,7 +150,7 @@ By combining these with Eqs.~(\ref{eq:lambdaFromPotential}, \ref{eq:feFromPotent
   \label{eq:lambdaSlowRoll}
   \Lambda &= V\left(\phi_0\right) \frac{2 \epsilon - \eta}{2 \epsilon - 2 \eta}\,,\\
   \label{eq:feSlowRoll}
-  f_e &= \frac{1}{\sqrt{2 \left(\epsilon - \eta\right)}}\,,\\
+  f_e &= \frac{M_\text{P}}{\sqrt{2 \left(\epsilon - \eta\right)}}\,,\\
   \label{eq:fieldInitialSlowRoll}
   \cos\left(\frac{\varphi_0}{f_e}\right) &= \frac{\eta}{2 \epsilon - \eta}\,.
 \end{align}
@@ -160,7 +163,7 @@ The spectral indices $n_s$ and $n_t$ are related to the inflationary parameters 
 \end{equation}
 We can thus eliminate $\eta$ and $\epsilon$ in favor of $n_s$ and $r$ and get
 \begin{equation}
-  f_e = \frac{1}{\sqrt{1 - n_s - r / 4}}\,.
+  f_e = \frac{M_\text{P}}{\sqrt{1 - n_s - r / 4}}\,.
 \end{equation}
 The current experimental limits from Planck experiment at $k_0 = 0.05\,{\rm Mpc}^{-1}$ are as follows~\cite{Adam:2015rua, Ade:2015lrj, Array:2015xqh}
 \begin{equation} \label{data}
@@ -171,8 +174,8 @@ The current experimental limits from Planck experiment at $k_0 = 0.05\,{\rm Mpc}
 \end{equation}
 while $n_t\left(k_0\right)$ is currently not constrained.
 Using this data we find model-independent bounds on the effective axionic decay constant so that
-\begin{equation}
-  4.6 \leq f_e \leq 11\, \left(95\%\, {\rm CL}\right)\,.
+\begin{equation} \label{eq:feExperimentalConstraint}
+  4.6 \leq f_e / M_\text{P} \leq 11\, \left(95\%\, {\rm CL}\right)\,.
 \end{equation}
 
 Next, we discuss CEM for a superposition of cosine functions and show how the effective axion decay constant becomes super-Planckian even though the true decay constant is sub-Plankian.
@@ -190,95 +193,140 @@ In this case we get
 One notices that there is cancellation between the odd and even sums in the denominator in Eq.~(\ref{eq:feForCosineSum}) which leads to an enhancement and gives $f_e / f > 1$.
 Since the enhancement occurs as a consequence of the sum of several terms one may call this a ``coherent enhancement mechanism''.
 
+It is also interesting to note that $n_s$, $r$, and therefore $f_e$ can be directly computed from the scale factor evolution without invoking any knowledge about the potential.
+To distinguish the effective decay constant computed in this way from $f_e$ that is computed from potential, we will call it $f_{eH}$.
+
+Specifically, we can define dynamic slow-roll parameters
+\begin{equation} \label{eq:slowRollParametersDynamic}
+  \epsilon_H = -\frac{\dot H}{H^2}\,,
+  ~~~ \eta_H = -\frac{\dot{\epsilon_H}}{\epsilon_H H}\,.
+\end{equation}
+
+For the case when the velocity dependence of the parameters is relatively small one has
+\begin{equation} \label{eq:slowRollParametersDynamicFromStatic}
+  \epsilon_H = \epsilon\,,
+  ~~~ \eta_H = -2 \eta + 4 \epsilon\,,
+\end{equation}
+in which case Eq.~(\ref{eq:feSlowRoll}) can be rewritten as
+\begin{equation} \label{eq:feFromDynamicSlowRollParameters}
+  f_{eH} = \frac{M_\text{P}}{\sqrt{\eta_H - 2 \epsilon_H}}\,.
+\end{equation}
+
+We will show using numerical simulations that $f_e \approx f_{eH}$ for the cases of global supersymmetry, supergravity, KKLT, and LVS, however, they are different in the case of DBI due to non-canonical kinetic energy in that model.
+We further show in section~\ref{sec:DBI} that while $f_e$ does not demonstrate any enhancement, $f_{eH}$ still satisfies the constrant Eq.~(\ref{eq:feExperimentalConstraint}).
+
 \section{Coherent enhancement mechanism in supersymmetry models \label{sec:Supersymmetry}}
-In this section and the following sections we will discuss the coherent enhancement mechanism in a variety of inflation models consistent with the current astrophysical data from the Planck experiment.
+In this section and the following sections we consider a variety of inflation models consistent with the current astrophysical data from the Planck experiment.
 As mentioned in the introduction these models are in a variety of settings: global supersymmetry, supergravity, KKLT, LVS and DBI.
 In this section we focus on the globally supersymmetric models.
-For the analysis here we consider two chiral fields $\Phi_i, i = 1, 2$ charged under a global $U\left(1\right)$ transformation, and two other fields $\bar\Phi_i, i = 1, 2$ that are oppositely charged.
+For the analysis here we consider a chiral field $\Phi$ charged under a global $U\left(1\right)$ transformation, and another field $\bar\Phi$ that is oppositely charged.
 Thus under $U\left(1\right)$ transformations one has
 \begin{equation}
-  \Phi_i \to e^{i q \lambda} \Phi_i\,,
-  ~~~ \bar\Phi_i \to e^{-i q \lambda} \bar\Phi_i\,,
-  ~~~ i = 1, \cdots, m\,.
+  \Phi \to e^{i q \lambda} \Phi\,,
+  ~~~ \bar\Phi \to e^{-i q \lambda} \bar\Phi\,,
 \end{equation}
-The superfields $\Phi_i$ have an expansion, $\Phi_i = \phi_i + \theta \chi_i + \theta \theta F_i$, where $\phi_i$ is a complex scalar field consisting of the saxion (the real part) and the axion (the imaginary part), $\chi_i$ is the axino, and $F_i$ is an auxiliary field.
-Similarly the superfields $\bar\Phi_i$ have an expansion: $\bar\Phi_i = \bar\phi_i + \bar\theta \bar\xi_i + \bar\theta \bar\theta \bar F_i$.
+The superfield $\Phi$ has an expansion, $\Phi = \phi + \theta \chi + \theta \theta F$, where $\phi$ is a complex scalar field consisting of the saxion (the magnitude) and the axion (the phase), $\chi$ is the axino, and $F$ is an auxiliary field.
+Similarly the superfield $\bar\Phi$ has an expansion: $\bar\Phi = \bar\phi + \bar\theta \bar\xi + \bar\theta \bar\theta \bar F$.
 We now consider a superpotential of the form
 \begin{equation} \label{eq:supersymmetry:W}
   W = W_s\left(\Phi, \bar\Phi\right) + W_{sb}\left(\Phi, \bar\Phi\right)\,,
 \end{equation}
-where $W_s$ is the part that depends on the fields $\Phi_i, \bar\Phi_i$ and is invariant under the shift symmetry.
+where $W_s$ is the part that depends on the fields $\Phi, \bar\Phi$ and is invariant under the shift symmetry.
 $W_{sb}$ is a part which breaks the shift symmetry.
 $W_s$ is chosen to stabilize the real parts of the chiral fields and we expand the chiral fields around the stabilized VEVs.
 In this case we have
 \begin{equation}
-  \text{Equation is missing!}
+  W_s\left(\Phi, \bar\Phi\right) = \mu \Phi \bar\Phi + \frac{\lambda}{2 M} \left(\Phi \bar\Phi\right)^2\,.
 \end{equation}
-We may parametrize $\phi_i$ and $\bar\phi_i$ so that
+We may parametrize $\phi$ and $\bar\phi$ so that
 \begin{equation}
-  \phi_i = \left(f_i + \rho_i\right) e^{i a_i / f_i}\,,
-  ~~~ \bar\phi_i = \left(\bar f_i + \bar\rho_i\right) e^{i \bar a_i / \bar f_i}\,,
+  \phi = \left(f + \rho\right) e^{i a / f}\,,
+  ~~~ \bar\phi = \left(\bar f + \bar\rho\right) e^{i \bar a / \bar f}\,,
 \end{equation}
-where $f_i = \left<\phi_i\right>$, $\bar f_i = \left<\bar\phi_i\right>$ and $\left(\rho_i, a_i\right)$ and $\left(\bar\rho_i, \bar a_i\right)$ are the fluctuations of the quantum fields around their vacuum expectation values $f_i\left(\bar f_i\right)$.
-We define two linear combinations of $a_1$ and $a_2$ so that
+where $f = \left<\phi\right>$, $\bar f = \left<\bar\phi\right>$ and $\left(\rho, a\right)$ and $\left(\bar\rho, \bar a\right)$ are the fluctuations of the quantum fields around their vacuum expectation values $f$, $\bar f$.
+We define two linear combinations of $a$ and $\bar a$ so that
 \begin{equation} \label{eq:b+-}
-  b_{\pm}= \frac{1}{\sqrt 2} \left(a_1 \pm a_2\right)\,.
+  b_{\pm}= \frac{1}{\sqrt 2} \left(a \pm \bar a\right)\,.
 \end{equation}
 Here $b_+$ is invariant under the shift symmetry and becomes heavy after the moduli are stabilized and $b_-$ is sensitive to shift symmetry and remains massless and we identify it as a candidate for the inflaton.
+
 However, $b_-$ will gain mass when $W_{sb}$ is included in the analysis.
 We will assume an $W_{sb}$ of the form
 \begin{equation} \label{eq:supersymmetry:Wsb}
-  W_{sb}\left(\Phi, \bar\Phi\right)
-    = \sum_{i = 1}^2 \sum_{l = 1}^q A_{i l} \Phi_i^l
-    + \sum_{i = 1}^2 \sum_{l = 1}^q \bar A_{i l} \bar\Phi_i^l\,,
+  W_{sb}\left(\Phi, \bar\Phi\right) =
+      \sum_{l = 1}^q A_l \Phi^l
+    + \sum_{l = 1}^q \bar A_l \bar\Phi^l\,,
 \end{equation}
-and violates the shift symmetry.
+which violates the shift symmetry.
 Including $W_{sb}$ the axionic potential can be written in the form
 \begin{equation}
-  V\left(a_1, a_2\right) = V_\text{fast}\left(b_+\right) + V_\text{slow}\left(b_-\right)\,,
+  V\left(a, \bar a\right) = V_\text{fast}\left(b_+\right) + V_\text{slow}\left(b_-\right)\,,
 \end{equation}
 where $V_\text{slow}\left(b_-\right)$ which depends only on $b_-$ enters in slow roll and is relevant for inflation.
-An explicit form of this potential is given by
+
+Note, the values of the parameters $\mu$ and $\lambda / M$ determine the stability point $f$.
+We can equivalently however fix $f$ and solve for $\lambda / M$ in terms of $\mu$ and $f$.
+It turns out $\mu$ only appears in $V_\text{fast}$, but not in $V_\text{slow}$, for which an explicit form is given by
 \begin{equation} \label{eq:supersymmetry:VslowGeneral}
   \begin{aligned}
-    V_\text{slow}\left(b_-\right) = \sum_{k = 1}^2 &\left[
-      2 \sum_{r = 1}^q r
-        \left(A_{k r} f^{r - 1} \sum_{l = 1}^q l A_{k l} f^{l - 1}
-          + \bar A_{k r} f^{r - 1} \sum_{l = 1}^q l \bar A_{k l} f^{l - 1}\right)
-        \left(1 - \cos\left(\frac{r}{\sqrt 2 f} b_-\right)\right)
-      \right.\\
-      &\left.{} - 2 \sum_{l = 1}^q \sum_{r = l + 1}^q
-        l r \left(A_{k l} A_{k r} f^{l + r - 2} + \bar A_{k l} \bar A_{k r} f^{l + r - 2}\right)
-        \left(1 - \cos\left(\frac{r - l}{\sqrt 2 f} b_-\right)\right)
-    \right]\,,
+    V_\text{slow}\left(b_-\right) =
+      &2 \sum_{r = 1}^q r
+        \left(A_r f^{r - 1} \sum_{l = 1}^q l A_l f^{l - 1}
+          + \bar A_r f^{r - 1} \sum_{l = 1}^q l \bar A_l f^{l - 1}\right)
+        \left(1 - \cos\left(\frac{r}{\sqrt 2 f} b_-\right)\right)\\
+      &{} - 2 \sum_{l = 1}^q \sum_{r = l + 1}^q
+        l r \left(A_l A_r f^{l + r - 2} + \bar A_l \bar A_r f^{l + r - 2}\right)
+        \left(1 - \cos\left(\frac{r - l}{\sqrt 2 f} b_-\right)\right)\,,
   \end{aligned}
 \end{equation}
-where we have set $\bar f_k = f_k = f$ for all $k$.
-We make now further simplifying assumptions so that $A_{k l} = \bar A_{k l} = B_l f^{3 - l}$, $B_l = B G_l$, $f_k = f$ for all $k$.
-Thus $B_l$, $B$, $G_l$ are dimensionless while $f_k = f$ carry dimension of mass.
-Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGeneral}) takes the form simpler form
+where we have set $\bar f = f$.
+We make now further simplifying assumptions so that $A_l = \bar A_l = B_l f^{3 - l}$, $B_l = B G_l$.
+Thus $B_l$, $B$, $G_l$ are dimensionless while $f$ carries dimension of mass.
+Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGeneral}) takes a simpler form
 \begin{equation} \label{eq:supersymmetry:Vslow}
   \begin{aligned}
-    V_\text{slow}\left(b_-\right) = 4 m f^4 B^2 &\left(
-      \sum_{l = 1}^q l G_l \sum_{r = 4}^q r G_r
-        \left(1 - \cos\left(\frac{r}{\sqrt{2 m}} \frac{b_-}{f}\right)\right)\right. \\
-      &\left.{} - \sum_{l = 1}^q \sum_{r = l + 4}^q l r G_l G_r
-        \left(1 - \cos\left(\frac{r - l}{\sqrt{2 m}} \frac{b_-}{f}\right)\right)
+    V_\text{slow}\left(b_-\right) = 4 f^4 B^2 &\left(
+      \sum_{l = 1}^q l G_l \sum_{r = 1}^q r G_r
+        \left(1 - \cos\left(\frac{r}{\sqrt{2}} \frac{b_-}{f}\right)\right)\right. \\
+      &\left.{} - \sum_{l = 1}^q \sum_{r = l + 1}^q l r G_l G_r
+        \left(1 - \cos\left(\frac{r - l}{\sqrt{2}} \frac{b_-}{f}\right)\right)
     \right)\,.
   \end{aligned}
 \end{equation}
-Eq.~(\ref{eq:supersymmetry:Vslow}) will be used in our computations.
 
-\begin{figure} \label{fig:supersymmetry} % TODO(maxitg): Placeholder figure.
+\begin{figure}
   \centering
-  \includegraphics[width = 0.8 \textwidth]{figs/figsusy.png}
-  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.~(\ref{eq:supersymmetry:Vslow}) with $G_6 = 0$ (left panel) and $G_6 \neq 0$ (right panel).
-    Data corresponds to Figs.~(3, 5) of~\cite{Nath:2017ihp}.
-    The number of points is 939 on the left, and 102492 on the right panel.
-    Note that while there are points with true decay constants below $M_\text{P}$, all of the enhanced decay constants are larger than $4.5 M_\text{P}$, which is necessary to produce a sufficient number of e-foldings in Natural Inflation.}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supersymmetryPotential.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supersymmetryTensorToScalar.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supersymmetryEnhancement.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supersymmetryDecayConstantsComparison.pdf}
+  \end{subfigure}
+  \caption{\protect\input{figures/supersymmetry.txt}
+    Top left panel shows the superimposed slow-roll potentials~Eq.(\ref{eq:supersymmetry:Vslow}) as functions of $b_-$ for all values of $G_5$ considered.
+    Note that because the field is normalized by $f$ and because $G_5$ is fine-tuned, potentials for all considered input parameters look almost identical.
+    Inflation occurs in the flat region of the potential near $b_- / f \approx 3$.
+    Top right panel shows tensor-to-scalar ratios we obtained.
+    Bottom left panel demonstrates the coherent enhancement of the decay constant, and the bottom right panel compares effective decay constants computed from the potential and from the Hubble parameter, black line corresponds to $f_{eH} = f_e$.
+  } \label{fig:supersymmetry}
 \end{figure}
 
-% TODO(maxitg): Simulation part needs to be added here.
+In order to verify consistency with experiment and evaluate $f_e$, we use Inflation Simulator\footnote{\url{https://github.com/maxitg/InflationSimulator}}.
+For these simulations we begin by sampling a number of parameter sets as described in the caption of Fig.~(\ref{fig:supersymmetry}).
+We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
+We set initial field velocity $\dot b_{-, 0} = 0$, which does not affect the results, as velocity typically converges to its quasi-stationary value before horizon exit.
+Finally, if at least $N_\text{pivot}$ e-foldings are produced, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}, \ref{eq:slowRollParametersDynamicFromStatic}, \ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
+If so, we evaluate $f_e$ and $f_{eH}$ at horizon exit using Eqs.~(\ref{eq:feFromPotential}, \ref{eq:feFromDynamicSlowRollParameters}).
+The results of this process can be seen on Fig.~(\ref{fig:supersymmetry}).
+
+One can see that even though true decay constant $f$ is below $M_\text{P}$, the effective $f_e \approx f_{eH}$ always satisfy constraint \ref{eq:feExperimentalConstraint}.
+Note, fine tuning of $G_5$ is required to achieve coherent enhancement and experimentally-consistent inflation.
 
 \section{Enhancement mechanism in supergravity \label{sec:Supergravity}}
 We now extend the analysis to supergravity where the scalar potential has the form~\cite{Chamseddine:1982jx, Cremmer:1982en} is given by
@@ -391,15 +439,6 @@ where $C_k$ are given by
   \end{aligned}
 \end{equation}
 
-\begin{figure} \label{fig:supergravity} % TODO(maxitg): Placeholder figure.
-  \centering
-  \includegraphics[width = 0.8 \textwidth]{figs/figsugra.png}
-  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.~(\ref{eq:supergravity:Vslow3}).
-    Data corresponds to Figs.~(9,~10) of~\cite{Nath:2017ihp}.
-    The number of points is $846$.
-    Note that while all true decay constants are smaller than $M_\text{P}$, all enhanced decay constants are larger than $4.5 M_\text{P}$, which is necessary to produce the number of e-foldings in the desired range.}
-\end{figure}
-
 % TODO(maxitg): Simulation part needs to be added here.
 
 \section{Coherent axion enhancement in KKLT \label{sec:KKLT}}
@@ -472,7 +511,7 @@ These conditions lead to the constraint
 \begin{equation} \label{eq:KKLT:zeroVacuumConstraint}
   \sum_i A_i q_i e^{-q_i \tau_0} = 0\,.
 \end{equation}
-The imposition of Eqs.~(\ref{eq:KKLT:stabilization}) and (\ref{eq:KKLT:zeroVacuumConstraint}) would lead to moduli stabilization and vanishing of the vacuum energy at the end of inflation.
+The imposition of Eqs.~(\ref{eq:KKLT:stabilization}, \ref{eq:KKLT:zeroVacuumConstraint}) would lead to moduli stabilization and vanishing of the vacuum energy at the end of inflation.
 
 % TODO(maxitg): Simulation part needs to be added here.
 
@@ -720,42 +759,10 @@ We note that the parameter $\tilde\beta$ here is redundant, and is chosen in suc
 The first non-zero component of $\mathcal{G}$ can also be set to $1$ to reduce redundancy.
 Further, we note that Eqs.~(\ref{eq:epsEtaFromPotential}) will not be sufficient to describe evolution in this case, because they do not take the form of kinetic energy into account.
 However, we will use Eqs.~(\ref{eq:slowRollParametersDynamic}) which are independent of the kinetic terms, therefore, we conjecture that while Eqs.~(\ref{eq:slowRollParametersDynamicFromStatic}) do not hold, Eq.~(\ref{eq:feFromDynamicSlowRollParameters}) can still be used to derive an effective decay constant, where Eqs.~(\ref{eq:slowRollParametersDynamic}) are used to derive $\epsilon_H$ and $\eta_H$.
-\begin{equation} \label{eq:slowRollParametersDynamic}
-  \epsilon_H = -\frac{\dot H}{H^2}\,,
-  ~~~ \eta_H = -\frac{\dot{\epsilon_H}}{\epsilon_H H}\,.
-\end{equation}
-For the case when the velocity dependence of the parameters is relatively small one has
-\begin{equation} \label{eq:slowRollParametersDynamicFromStatic}
-  \epsilon_H = \epsilon\,,
-  ~~~ \eta_H = -2 \eta + 4 \epsilon\,,
-\end{equation}
-in which case Eqs.~(\ref{eq:lambdaSlowRoll}, \ref{eq:feSlowRoll}, \ref{eq:fieldInitialSlowRoll}) can be rewritten as
-\begin{align} % keep each equation numbered separately
-  \Lambda &= V\left(\phi_0\right) \frac{\eta_H}{2 \eta_H - 4 \epsilon_H}\,,\\
-  \label{eq:feFromDynamicSlowRollParameters}
-  f_e &= \frac{1}{\sqrt{\eta_H - 2 \epsilon_H}}\,,\\
-  \cos\left(\frac{\varphi_0}{f_e}\right) &= \frac{4 \epsilon_H - \eta_H}{\eta_H}\,.
-\end{align}
 
 To demonstrate the validity of our procedure, we sample the parameter space of the model Eq.~(\ref{eq:dbi:lagrangian}) by setting $T = 1$, $\mathcal{G}_1 = \mathcal{G}_2 = \mathcal{G}_3 = 0$, $\mathcal{G}_4 = 1$, and varying $\mathcal{G}_5$, $\mathcal{G}_6$, $\alpha_1$, $f$, $\tilde\beta$, and the pivot e-foldings count $N_\text{pivot}$.
 This corresponds to Fig.~(1) of~\cite{Nath:2018xxe}.
 We then select parameter choices than produced at least $N_\text{pivot}$ number of e-foldings, and plot the true axion decay constant $f$ vs. the effective axion decay constant $f_e$ on Fig.~(\ref{fig:DBI:parameters}).
-
-\begin{figure} \label{fig:DBI:parameters} % TODO(maxitg): Placeholder figure.
-  \centering
-  \includegraphics[width = 0.5 \textwidth]{figs/fige.pdf}
-  \caption{Comparison of true vs. enhanced axion decay constants for model Eq.~(\ref{eq:dbi:lagrangian}), $33418$ points shown ($13$ points for which $\eta - 2\epsilon < 0$ are excluded from analysis).
-    Note that while the true decay constants vary from $\sim 0.01$ to $\sim 2000$, all of the enhanced decay constants are larger than $4.6$, and have an average of $8.4$.
-    Note further than the minimal value of $f_e$ in Natural Inflation required to produce experimentally consistent inflation is $f_e \approx 6.9$~\cite{Ade:2015lrj}.}
-\end{figure}
-
-\begin{figure} \label{fig:DBI:observables} % TODO(maxitg): Placeholder figure.
-  \centering
-  \includegraphics[width = 0.5 \textwidth]{figs/figc.pdf}
-  \caption{Comparison of parameter region $\left(\phi_0, f\right)$ for points from Fig.~(\ref{fig:DBI:parameters}) (blue) vs. the corresponding parameter region for true Natural Inflation (gray).
-    In both cases the pivot number of e-foldings is between $50$ and $60$.
-    The systematic shift may be specific to considered DBI model.}
-\end{figure}
 
 % TODO(maxitg): Simulation part needs to be added here.
 
