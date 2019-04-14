@@ -87,7 +87,7 @@ supersymmetryResults = ParallelMap[If[
 	],
 	Join[
 		#,
-		Association @ Thread[{"fDynamic", "fStatic"} -> InflationValue[
+		Association @ Thread[{"fDynamic", "fStatic", "r"} -> InflationValue[
 			supersymmetryLagrangian[#["fTrue"], {0, 0, 0, 1, #["G5"]}][bm[t], t],
 			{bm[t], #["fieldInitial"], 0}, t, #["pivotEfoldingsCount"],
 			{
@@ -98,7 +98,11 @@ supersymmetryResults = ParallelMap[If[
 				InflationProperty[
 					"EffectiveAxionDecayConstant",
 					"HorizonExit",
-					Method -> "FromPotential"]
+					Method -> "FromPotential"],
+				InflationProperty[
+					"TensorToScalarRatio",
+					"HorizonExit",
+					Method -> "FromHubbleParameter"]
 			}
 		]]
 	],
@@ -112,23 +116,35 @@ supersymmetryResults = ParallelMap[If[
 Print["Plotting supersymmetry..."];
 
 
-Export[FileNameJoin[{figuresDirectory, "supersymmetryInputs.pdf"}], ListPlot[
-	supersymmetryResults[[All, {"G5", "fTrue"}]],
-	PlotRange -> {supersymmetryRange[["G5"]], All},
+Export[FileNameJoin[{figuresDirectory, "supersymmetryPotential.pdf"}], Plot[
+	Evaluate[With[{f = #[["fTrue"]], G5 = #[["G5"]]},
+		supersymmetryLagrangian[f, {0, 0, 0, 1, G5}][f bf, t] /
+			supersymmetryLagrangian[f, {0, 0, 0, 1, G5}][f \[Pi] Sqrt[2], t]] & /@
+				supersymmetryResults],
+	{bf, -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2]},
+	Frame -> True,
+	FrameLabel -> {
+		"\!\(\*FormBox[\(\*SubscriptBox[\(b\), \(-\)]/f\), TraditionalForm]\)",
+		"\!\(\*FormBox[\(V/\*SubscriptBox[\(V\), \(max\)]\), TraditionalForm]\)"},
+	PlotStyle -> ColorData[97, 1],
+	ImageSize -> imageSize,
+	LabelStyle -> Directive[FontFamily -> fontFamily]]];
+
+
+Export[FileNameJoin[{figuresDirectory, "supersymmetryTensorToScalar.pdf"}], ListPlot[
+	supersymmetryResults[[All, {"fTrue", "r"}]],
+	PlotRange -> All,
 	Frame -> True,
 	FrameLabel -> {
 		"\!\(\*FormBox[
-			SubscriptBox[\(G\), \(5\)],
+			RowBox[{
+				\"f\",
+				\"/\",
+				SubscriptBox[\"M\", StyleBox[\"P\",\nFontSlant->\"Plain\"]]}],
 			TraditionalForm]\)",
-		"\!\(\*FormBox[
-			\(f/\*SubscriptBox[\"M\", StyleBox[\"P\",\nFontSlant->\"Plain\"]]\),
-			TraditionalForm]\)"},
-		ImageSize -> imageSize,
-		LabelStyle -> Directive[FontFamily -> fontFamily],
-		FrameTicks -> {
-			{Automatic, None},
-			{{#, NumberForm[#, {6, 5}]} & /@ Range[-0.88930, -0.88920, 0.00005],
-			 None}}]];
+		"\!\(\*FormBox[\(r\), TraditionalForm]\)"},
+	ImageSize -> imageSize,
+	LabelStyle -> Directive[FontFamily -> fontFamily]]];
 
 
 Export[FileNameJoin[{figuresDirectory, "supersymmetryEnhancement.pdf"}], ListPlot[
@@ -204,10 +220,13 @@ Export[
 		"$b_{-, 0} \\sim " <> distributionToTeX[{0, "\\pi \\sqrt{2} f"}] <> "$, ",
 		"$N_\\text{pivot} \\sim ",
 		distributionToTeX[supersymmetryRange[["pivotEfoldingsCount"]]] <> "$. ",
-		"Left panel shows the distribution of input parameters, ",
-		"right panel demonstrates the coherent enhancement of the decay constant, ",
-		"bottom panel compares effective decay constants computed from the potential ",
-		"and from the Hubble parameter, black line corresponds to $f_{eH} = f_e$."}]]
+		"Top left panel shows the superimposed potentials for all values of $G_5$ ",
+		"considered. It looks like a single line due to fine-tuning in $G_5$. ",
+		"Top right panel shows tensor-to-scalar ratios we obtained. ",
+		"Bottom left panel demonstrates the coherent enhancement of the decay constant,",
+		" and the bottom right panel compares effective decay constants computed ",
+		"from the potential and from the Hubble parameter, ",
+		"black line corresponds to $f_{eH} = f_e$."}]]
 
 
 (* ::Section:: *)
