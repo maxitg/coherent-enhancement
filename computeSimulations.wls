@@ -38,17 +38,9 @@ ParallelEvaluate[<<InflationSimulator`];
 
 generateInputs[parameterDistributions_, seed_, n_] :=
 	BlockRandom[
-		Table[Module[{f},
-			f = RandomVariate[parameterDistributions["f"]];
-			Join[
-				<|"f" -> f,
-				  "fieldInitial" ->
-						f RandomVariate[parameterDistributions["fieldInitialOverF"]],
-				  "pivotEfoldings" ->
-						RandomVariate[parameterDistributions["pivotEfoldings"]]|>,
-				Association @ KeyValueMap[
-					#1 -> RandomVariate[#2] &,
-					parameterDistributions]]], n],
+		Table[Association @ KeyValueMap[
+			#1 -> RandomVariate[#2] &,
+			parameterDistributions], n],
 		RandomSeeding -> seed]
 
 
@@ -70,13 +62,13 @@ simulate[lagrangian_, inputs_] := Module[{hash, filename, results, counter},
 			result = If[
 				ExperimentallyConsistentInflationQ[
 					lagrangian[#][bm[t], t],
-					{bm[t], #["fieldInitial"], 0}, t, #["pivotEfoldings"]],
+					{bm[t], #["f"] #["fieldInitialOverF"], 0}, t, #["pivotEfoldings"]],
 				Join[
 					#,
 					Association @ Thread[
 						{"fDynamic", "fStatic", "r", "exitField"} -> InflationValue[
 							lagrangian[#][bm[t], t],
-							{bm[t], #["fieldInitial"], 0}, t, #["pivotEfoldings"],
+							{bm[t], #["f"] #["fieldInitialOverF"], 0}, t, #["pivotEfoldings"],
 							{InflationProperty[
 								"EffectiveAxionDecayConstant",
 								"HorizonExit",
