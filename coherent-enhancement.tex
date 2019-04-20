@@ -502,17 +502,16 @@ We assume the superpotential $W$ where the modulus dependence arises only in the
 where the modulus $T$ appears only in the exponent and where $A_i$ and $q_i$ are assumed real.
 For the K\"ahler potential of Eq.~(\ref{eq:KKLT:kahler}) the scalar potential Eq.~(\ref{eq:supergravity:potential}) takes the form
 \begin{equation}
-  V = e^K K^{T \bar T} \left[
+  V = e^{K / M_\text{P}^2} K^{T \bar T} \left[
     \partial_T W \partial_{\bar T} \bar W +
-    \left(\partial_T K W \partial_{\bar T} \bar W + \partial_{\bar T} K \bar W \partial_T W\right)
+    \frac{1}{M_\text{P}^2}\left(\partial_T K W \partial_{\bar T} \bar W + \partial_{\bar T} K \bar W \partial_T W\right)
   \right]\,.
 \end{equation}
 An explicit computation of $V$ gives
 \begin{equation} \label{eq:KKLT:VslowUnstabilized}
   \begin{aligned}
     V = \frac{1}{6 \tau} &\left[
-        \sum_i A^2_i q^2_i e^{-2 q_i \tau}
-      + 2 \sum_{i > j} A_i A_j q_i q_j e^{-\left(q_i + q_j\right)\tau}
+        \sum_{i, j} A_i A_j q_i q_j e^{-\left(q_i + q_j\right)\tau}
         \cos\left(\left(q_i - q_j\right) \theta\right)\right.\\
     &{}\left. + \frac{3}{\tau} W_0 \sum_i A_i q_i e^{-q_i \tau} \cos\left(q_i \theta\right)
       + \frac{3}{\tau} \sum_{i, j} A_i A_j q_j e^{-\left(q_i + q_j\right) \tau}
