@@ -68,7 +68,9 @@ simulate[lagrangian_, inputs_] := Module[{hash, filename, results, counter},
 					Association @ Thread[
 						{"fDynamic", "fStatic", "r", "exitField"} -> InflationValue[
 							lagrangian[#][bm[t], t],
-							{bm[t], #["f"] #["fieldInitialOverF"], 0}, t, #["pivotEfoldings"],
+							{bm[t], #["f"] #["fieldInitialOverF"], 0},
+							t,
+							#["pivotEfoldings"],
 							{InflationProperty[
 								"EffectiveAxionDecayConstant",
 								"HorizonExit",
@@ -118,13 +120,12 @@ label[x_] := traditionalLabel[If[Head[$label[x]] === $label, x, $label[x]]]
 
 $label["r"] = italicLabel["r"];
 $label["f"] = ratioLabel[italicLabel["f"], planckMassLabel];
-$label["fStatic"] =
-	ratioLabel[subscriptLabel[italicLabel["f"], italicLabel["e"]], planckMassLabel];
+$label["fStaticUnits"] = subscriptLabel[italicLabel["f"], italicLabel["e"]];
+$label["fStatic"] = ratioLabel[$label["fStaticUnits"], planckMassLabel];
 $label["fDynamic"] =
 	ratioLabel[subscriptLabel[italicLabel["f"], italicLabel["eH"]], planckMassLabel];
-$label["exitField"] = ratioLabel[
-	subscriptLabel[italicLabel["\[CapitalDelta]b"], plainLabel["-"]],
-	planckMassLabel];
+$label["exitFieldUnits"] = subscriptLabel[italicLabel["\[CapitalDelta]b"], plainLabel["-"]];
+$label["exitField"] = ratioLabel[$label["exitFieldUnits"], planckMassLabel];
 
 
 makeFigure[model_, name_, lagrangian_, output_, OptionsPattern[]] :=
@@ -172,6 +173,17 @@ plot["fStatic_fDynamic", lagrangian_, output_] := With[
 			FrameLabel -> {label["fStatic"], label["fDynamic"]},
 			Evaluate @ AbsoluteOptions[pointsPlot, PlotRange]],
 		pointsPlot]]
+
+
+plot["exitField_fStatic_ratio", lagrangian_, output_] := ListPlot[
+	Transpose[{
+		output[[All, "exitField"]] / output[[All, "fStatic"]],
+		output[[All, "exitField"]]}],
+	PlotRange -> All,
+	Frame -> True,
+	FrameLabel -> {
+		traditionalLabel[ratioLabel[$label["exitFieldUnits"], $label["fStaticUnits"]]],
+		label["exitField"]}]
 
 
 (* ::Subsection:: *)
@@ -268,10 +280,11 @@ supersymmetrySpecs = <|
 	"parameterDistributions" -> Join[genericParameterDistributions, <|
 		"G5" -> UniformDistribution[{-0.88931, -0.88920}]|>],
 	"figures" -> {
-		"potentialRange",
 		{ListPlot, "f", "r"},
+		"exitField_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
-		"fStatic_fDynamic"},
+		"fStatic_fDynamic",
+		"potentialRange"},
 	"caption" -> "Simulation results for the global supersymmetry model " <>
 		"Eq.~(\\ref{eq:supersymmetry:Vslow}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
@@ -323,10 +336,11 @@ supergravitySpecs = <|
 		"A2" -> UniformDistribution[{0.080, 0.085}],
 		"A3" -> UniformDistribution[{0.0030, 0.0037}]|>],
 	"figures" -> {
-		{ListPlot, "exitField", "r"},
 		{ListPlot, "f", "r"},
+		"exitField_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
-		"fStatic_fDynamic"},
+		"fStatic_fDynamic",
+		"potentialRange"},
 	"caption" -> "Simulation results for the supergravity model " <>
 		"Eq.~(\\ref{eq:supergravity:Vslow3}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
