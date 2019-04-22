@@ -236,7 +236,8 @@ $W_{sb}$ is a part which breaks the shift symmetry.
 $W_s$ is chosen to stabilize the real parts of the chiral fields and we expand the chiral fields around the stabilized VEVs.
 In this case we have
 \begin{equation}
-  W_s\left(\Phi, \bar\Phi\right) = \mu \Phi \bar\Phi + \frac{\lambda}{2 M} \left(\Phi \bar\Phi\right)^2\,.
+  W_s\left(\Phi, \bar\Phi\right) =
+    \mu \Phi \bar\Phi + \frac{\lambda}{2 M} \left(\Phi \bar\Phi\right)^2\,.
 \end{equation}
 We may parametrize $\phi$ and $\bar\phi$ so that
 \begin{equation}
@@ -297,23 +298,27 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
 \begin{figure}
   \centering
   \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/supersymmetryPotential.pdf}
+    \includegraphics[width = \textwidth]{figures/supersymmetry_f_r.pdf}
   \end{subfigure}
   \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/supersymmetryTensorToScalar.pdf}
+    \includegraphics[width = \textwidth]{figures/supersymmetry_exitField_fStatic_ratio.pdf}
   \end{subfigure}
   \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/supersymmetryEnhancement.pdf}
+    \includegraphics[width = \textwidth]{figures/supersymmetry_f_fStatic.pdf}
   \end{subfigure}
   \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/supersymmetryDecayConstantsComparison.pdf}
+    \includegraphics[width = \textwidth]{figures/supersymmetry_fStatic_fDynamic.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supersymmetry_potentialRange.pdf}
   \end{subfigure}
   \caption{\protect\input{figures/supersymmetry.txt}
-    Top left panel shows the superimposed slow-roll potentials~Eq.(\ref{eq:supersymmetry:Vslow}) as functions of $b_-$ for all values of $G_5$ considered.
+    Top left panel shows tensor-to-scalar ratios we obtained.
+    Top right panel demonstrates that the differences between the values of the field at horizon exit and at the end of inflation are always smaller than the effective decay constant $f_e$.
+    Below, the panel on the left demonstrates the coherent enhancement of the decay constant, and the right panel compares effective decay constants computed from the potential and from the Hubble parameter, black line corresponds to $f_{eH} = f_e$.
+    Bottom panel shows the superimposed slow-roll potentials~Eq.(\ref{eq:supersymmetry:Vslow}) as functions of $b_-$ for all values of $G_5$ considered.
     Note that because the field is normalized by $f$ and because $G_5$ is fine-tuned, potentials for all considered input parameters look almost identical.
     Inflation occurs in the flat region of the potential near $b_- / f \approx 3$.
-    Top right panel shows tensor-to-scalar ratios we obtained.
-    Bottom left panel demonstrates the coherent enhancement of the decay constant, and the bottom right panel compares effective decay constants computed from the potential and from the Hubble parameter, black line corresponds to $f_{eH} = f_e$.
   } \label{fig:supersymmetry}
 \end{figure}
 
@@ -329,37 +334,46 @@ One can see that even though true decay constant $f$ is below $M_\text{P}$, the 
 Note, fine tuning of $G_5$ is required to achieve coherent enhancement and experimentally-consistent inflation.
 
 \section{Enhancement mechanism in supergravity \label{sec:Supergravity}}
-We now extend the analysis to supergravity where the scalar potential has the form~\cite{Chamseddine:1982jx, Cremmer:1982en} is given by
+We now extend the analysis to supergravity where the scalar potential has the form~\cite{Chamseddine:1982jx, Cremmer:1982en}
 \begin{equation} \label{eq:supergravity:potential}
-  V = e^K \left[D_i W K^{-1}_{ij^*} D_{j^*} W^* - 3 \left|W\right|^2\right] + V_D\,,
+  V = e^{K / M_\text{P}^2} \left[
+    D_i W K^{-1}_{ij^*} D_{j^*} W^* - \frac{3}{M_\text{P}^2} \left|W\right|^2
+  \right] + V_D\,,
 \end{equation}
-where $K$ is the K\"ahler potential, $W$ as before is the superpotential $D_i W$ is defined by
+where $K$ is the K\"ahler potential, $W$ as before is the superpotential, and $D_i W$ is defined by
 \begin{equation} \label{eq:supergravity:DW}
-  D_i W = \frac{\partial W}{\partial \phi_i} + \frac{\partial K}{\partial \phi_i} W\,.
+  D_i W = \frac{\partial W}{\partial \phi_i}
+        + \frac{1}{M_\text{P}^2} \frac{\partial K}{\partial \phi_i} W\,.
 \end{equation}
-$V_D$, which is the $D$-term of the potential will play no role in our analysis and will we dropped from here on.
+$V_D$, which is the $D$-term of the potential, will play no role in our analysis and will be dropped from here on.
 In order to avoid the so-called $\eta$-problem of supergravity we choose the K\"ahler potential to be of the form
 \begin{equation}
   K = \sum_i \frac{1}{2} \left(\Phi_i + \Phi_i^\dagger\right)^2\,,
 \end{equation}
-where as in the global supersymmetry model we consider a pair of chiral fields $\Phi_i, i = 1, 2$.
-We parametrize the complex scalar component of the fields so that $\phi_i$ of $\Phi_i, i = 1, 2$ so that
+where we consider a pair of chiral fields $\Phi_i, i = 1, 2$.
+We parametrize the complex scalar components $\phi_i$ of the fields as
 \begin{equation}
   \phi_i = \left(\rho_i + i a_i\right) / \sqrt 2,
   ~~~ i = 1, 2\,,
 \end{equation}
-where $a_i$ have the shift property
+where $a_i$ have the shift symmetry
 \begin{equation}
   a_1 \to a_1 + \lambda,
   ~~~ a_2 \to a_2 - \lambda\,,
 \end{equation}
 and $\rho_i$ are the saxion fields.
-It is then easily checked the the kinetic energy for $\phi_i$ and $a_i$ are canonically normalized.
+It is then easily checked that the kinetic energy for $\phi_i$ and $a_i$ is canonically normalized.
 As in the global supersymmetry case we choose $W$ of the form Eq.~(\ref{eq:supersymmetry:W}) where, however, we write
 \begin{equation}
   W_s = W_s^\text{vis} + W_0\,,
 \end{equation}
-where $W_s$ is invariant under the shift symmetry with $W_s^\text{vis}$ asking from the visible sector and $W_0$ arising from the hidden sector.
+where $W_s$ is invariant under the shift symmetry with $W_s^\text{vis}$ arising from the visible sector
+\begin{equation}
+  W_s^\text{vis} =
+      \frac{\mu}{2} \left(\Phi_1 + \Phi_2\right)^2
+    + \frac{\lambda}{3} \left(\Phi_1 + \Phi_2\right)^3\,,
+\end{equation}
+and $W_0$ arising from the hidden sector. We set $W_0$ in a way that $W = 0$ if $a_i = 0$, which ensures vanishing of the vacuum energy at the end of inflation.
 For supergravity analysis the saxion can be stabilized by imposition of spontaneous symmetry breaking conditions~\cite{Nath:1983aw}
 \begin{equation}
   D_i W = 0,
@@ -369,77 +383,109 @@ For shift symmetry breaking we assume
 \begin{equation}
   W_{sb} = \sum_{n = 1}^q A_n \left(e^{c_n \Phi_1} + e^{c_n \Phi_2}\right)\,,
 \end{equation}
-and as in the global supersymmetry case we make a change of basis from $a_1, a_2$ to $b_+, b_-$ as given by Eq.~(\ref{eq:b+-}).
-Next we expand around the minimum of the saxion potential and retain only $b_-$ which controls the the slow roll part of the potential.
+and as in the global supersymmetry case we make a change of basis from $a_1, a_2$ to $b_+, b_-$ as given by Eq.~(\ref{eq:b+-}), where $a$ and $\bar a$ are replaced with $a_1$ and $a_2$ respectively.
+Next we expand around the minimum of the saxion potential and retain only $b_-$ which controls the slow-roll part of the potential.
 To that end $W_{sb}$ takes the form
 \begin{equation}
-  W_{sb} = -\sum_{n = 1}^q B_n \left(
-      e^{i \gamma_n \frac{b}{\sqrt{2} f}}
-    + e^{-i \gamma_n \frac{b}{\sqrt{2} f}}
+  W_{sb} = \sum_{n = 1}^q A_n \left(
+      e^{i \gamma_n \frac{b_-}{\sqrt{2} f}}
+    + e^{-i \gamma_n \frac{b_-}{\sqrt{2} f}}
   \right)\,,
 \end{equation}
-where $B_n = -A_n e^{c_n f / \sqrt{2}}$ and $\gamma_n = c_n f / \sqrt{2}$.
-In addition to the stabilization of the saxions we also impose vanishing of the vacuum energy at the end of inflation.
-In this case the slow roll part of the potential which involves only the field $b_-$ takes the form
+where we take $\gamma_n = c_n f / \sqrt{2}$.
+In this case the slow-roll part of the potential which involves only the field $b_-$ takes the form
 \begin{equation} \label{eq:supergravity:Vslow}
   \begin{aligned}
-    V\left(b_-\right) = e^{2 f^2} &\left[
-      2 \sum_{n = 1}^q \sum_{m = 1}^q c_n c_m B_n B_m \left(
-          1
-        - 2 \cos\left(\frac{\gamma_n b_-}{\sqrt{2} f}\right)
-        + \cos\left(\left(\gamma_n - \gamma_m\right) \frac{b}{\sqrt{2} f}\right)
-      \right)\right.\\
-      & + \sum_{n = 1}^q \sum_{m = 1}^q \left(16 f^2 + 8 \sqrt{2} f c_n - 12\right) B_n B_m \left(
-          1
-        - \cos\left(\gamma_n b_- / \sqrt{2} f\right)
-        - \cos\left(\gamma_m b_- / \sqrt{2} f\right)\right.\\
-      & ~~~ \left.\left.{}
-        + \frac{1}{2} \cos\left(\left(\gamma_n - \gamma_m\right) b_- / \sqrt{2} f\right)
-        + \frac{1}{2} \cos\left(\left(\gamma_n + \gamma_m\right) b_- / \sqrt{2} f\right)
-      \right)
-    \right]\,.
+    V\left(b_-\right) =
+      & 4 M_\text{P}^4 e^{2 f^2 / M_\text{P}^2} \sum_{n = 1}^q \sum_{m = 1}^q
+        e^{\gamma_n + \gamma_m} \frac{A_n A_m}{M_\text{P}^6}\\
+        &{} \times \left[
+          \gamma_n \gamma_m \frac{M_\text{P}^2}{f^2} \left(
+              1
+            - \cos\left(\gamma_n \frac{b_-}{\sqrt{2} f}\right)
+            - \cos\left(\gamma_m \frac{b_-}{\sqrt{2} f}\right)
+            + \cos\left(\left(\gamma_n - \gamma_m\right) \frac{b_-}{\sqrt{2} f}\right)
+          \right)\right.\\
+          &~~~~~~ + \left(2 \gamma_n + 2 \gamma_m - 3 + 4 \frac{f^2}{M_\text{P}^2}\right) \left(
+              1
+            - \cos\left(\gamma_n \frac{b_-}{\sqrt{2} f}\right)
+            - \cos\left(\gamma_m \frac{b_-}{\sqrt{2} f}\right)\right.\\
+            &~~~~~~~~~~~~ \left.\left.{}
+            + \frac{1}{2} \cos\left(\left(\gamma_n - \gamma_m\right) \frac{b_-}{\sqrt{2} f}\right)
+            + \frac{1}{2} \cos\left(\left(\gamma_n + \gamma_m\right) \frac{b_-}{\sqrt{2} f}\right)
+          \right)
+        \right]\,.
   \end{aligned}
 \end{equation}
-The above potential consists of a superposition of six cosines so that
+For our analysis we take $\gamma_n = n$ and $q = 3$, which is the minimal value with which we were able to achieve experimentally-consistent inflation.
+In that case the above potential consists of a superposition of six cosines so that
 \begin{equation} \label{eq:supergravity:Vslow3}
   V\left(b_-\right)
-    = \sum_{k = 1}^6 C_k \left(1 - \cos\left(\frac{k b_-}{\sqrt{2} f}\right)\right)\,,
+    = M_\text{P}^4 e^{2 f^2 / M_\text{P}^2} \sum_{k = 1}^6 C_k \left(1 - \cos\left(\frac{k b_-}{\sqrt{2} f}\right)\right)\,,
 \end{equation}
 where $C_k$ are given by
 \begin{equation} \label{eq:supergravity:Vslow3Coefficients}
   \begin{aligned}
-    C_1 &= -\frac{1}{f^2} \left(4 e^{2 f^2 + 2} \left(
-      - 2 A_1^2 \left(4 f^4 + f^2 + 1\right)
-      - e A_1 \left(A_2 \left(4 f^2 + 3\right) f^2
-      + 2 e A_3 \left(4 f^4 + 5 f^2 + 3\right)\right)\right.\right.\\
-      &~~~~~~ \left.\left.{} + e^3 A_2 A_3 \left(4 f^4 + 7 f^2 + 12\right)
-    \right)\right)\,,\\
-    C_2 &= +\frac{1}{f^2} \left(2 e^{2 f^2 + 2} \left(
-        A_1^2 \left(-\left(4 f^4 + f^2\right)\right)
-      + 2 e A_1 \left(
-          A_2 \left(8 f^4 + 6 f^2 + 4\right)
-        - e A_3 \left(4 f^4 + 5 f^2 + 6\right)
-      \right)\right.\right.\\
-      &~~~~~~ \left.\left.{} + 4 e^2 A_2 \left(
-          A_2 \left(4 f^4 + 5 f^2 + 4\right)
-        + e A_3 \left(4 f^4 + 7 f^2 + 6\right)
-      \right)\right)\right)\,,\\
-    C_3 &= +\frac{1}{f^2}\left(4 e^{2 f^2 + 3} \left(
-      A_1 \left(
-          2 e A_3 \left(4 f^4 + 5 f^2 + 3\right)
-        - A_2 f^2 \left(4 f^2 + 3\right)
-      \right)\right.\right.\\
-      &~~~~~~ \left.\left.{} + 2 e^2 A_3 \left(
-          A_2 \left(4 f^4 + 7 f^2 + 6\right)
-        + e A_3 \left(4 f^4 + 9 f^2 + 9\right)
-      \right)\right)\right)\,,\\
-    C_4 &= -2 \left(A_2^2 + 2 A_1 A_3\right) e^{2 f^2 + 4} \left(4 f^2 + 5\right)\,,\\
-    C_5 &= -4 A_2 A_3 e^{2 f^2 + 5} \left(4 f^2 + 7 \right)\,,\\
-    C_6 &= -2 A_3^2 e^{2 f^2 + 6} \left(4 f^2 + 9\right)\,.
+    C_1 &=   4 \left(
+        2 e^2 \left(   \frac{M_\text{P}^2}{f^2} + 1 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_1^2  }{M_\text{P}^6}
+      +   e^3 \left(                              3 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_1 A_2}{M_\text{P}^6}\right.\\
+      &~~~~~~ \left.{}
+      + 2 e^4 \left( 3 \frac{M_\text{P}^2}{f^2} + 5 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_1 A_3}{M_\text{P}^6}
+      -   e^5 \left(12 \frac{M_\text{P}^2}{f^2} + 7 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_2 A_3}{M_\text{P}^6}
+    \right)\,,\\
+    C_2 &=   2 \left(
+      -   e^2 \left(                              1 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_1^2  }{M_\text{P}^6}
+      + 4 e^3 \left( 2 \frac{M_\text{P}^2}{f^2} + 3 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_1 A_2}{M_\text{P}^6}\right.\\
+      &~~~~~~ \left.{}
+      + 4 e^4 \left( 4 \frac{M_\text{P}^2}{f^2} + 5 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_2^2  }{M_\text{P}^6}
+      - 2 e^4 \left( 6 \frac{M_\text{P}^2}{f^2} + 5 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_1 A_3}{M_\text{P}^6}\right.\\
+      &~~~~~~ \left.{}
+      + 4 e^5 \left( 6 \frac{M_\text{P}^2}{f^2} + 7 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_2 A_3}{M_\text{P}^6}
+    \right)\,,\\
+    C_3 &=   4 \left(
+      -   e^3 \left(                              3 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_1 A_2}{M_\text{P}^6}
+      + 2 e^4 \left( 3 \frac{M_\text{P}^2}{f^2} + 5 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_1 A_3}{M_\text{P}^6}\right.\\
+      &~~~~~~ \left.{}
+      + 2 e^5 \left( 6 \frac{M_\text{P}^2}{f^2} + 7 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_2 A_3}{M_\text{P}^6}
+      + 2 e^6 \left( 9 \frac{M_\text{P}^2}{f^2} + 9 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_3^2  }{M_\text{P}^6}
+    \right)\,,\\
+    C_4 &=   2 \left(
+      - 2 e^4 \left(                              5 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_1 A_3}{M_\text{P}^6}
+      -   e^4 \left(                              5 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_2^2  }{M_\text{P}^6}
+    \right)\,,\\
+    C_5 &= - 4
+          e^5 \left(                              7 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_2 A_3}{M_\text{P}^6}\,,\\
+    C_6 &= - 2
+          e^6 \left(                              9 + 4 \frac{f^2}{M_\text{P}^2}\right) \frac{A_3^2  }{M_\text{P}^6}\,.
   \end{aligned}
 \end{equation}
 
-% TODO(maxitg): Simulation part needs to be added here.
+Simulation results for this potential are similar to the global supersymmetry model and are shown on Fig.~(\ref{fig:supergravity}).
+Note, the Lyth bound~\cite{Lyth:1996im} for slow-roll inflation is satisfied in this model as can be seen on the top left panel (which is also true for the global supersymmetry model considered above):
+\begin{equation} \label{eq:lyth}
+  \frac{\Delta \phi}{M_\text{P}} \ge \left(\frac{r}{0.01}\right)^{1/2}\,.
+\end{equation}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supergravity_f_r.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supergravity_exitField_fStatic_ratio.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supergravity_f_fStatic.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supergravity_fStatic_fDynamic.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supergravity_potentialRange.pdf}
+  \end{subfigure}
+  \caption{\protect\input{figures/supergravity.txt}
+    All panels show similar results as on Fig.~(\ref{fig:supersymmetry}).} \label{fig:supergravity}
+\end{figure}
 
 \section{Coherent axion enhancement in KKLT \label{sec:KKLT}}
 We wish to discuss the coherent enhancement of the decay constant in KKLT~\cite{Kachru:2003aw}.
@@ -986,6 +1032,13 @@ This research was supported in part by the NSF Grant PHY-1620575.
   %``Gauge Hierarchy in Supergravity Guts,''
   Nucl.\ Phys.\ B {\bf 227}, 121 (1983).
   doi:10.1016/0550-3213(83)90145-1
+
+\bibitem{Lyth:1996im}
+  D.~H.~Lyth,
+  %``What would we learn by detecting a gravitational wave signal in the cosmic microwave background anisotropy?,''
+  Phys.\ Rev.\ Lett.\  {\bf 78}, 1861 (1997)
+  doi:10.1103/PhysRevLett.78.1861
+  [hep-ph/9606387].
 
 \bibitem{Kachru:2003aw}
   S.~Kachru, R.~Kallosh, A.~D.~Linde and S.~P.~Trivedi,
