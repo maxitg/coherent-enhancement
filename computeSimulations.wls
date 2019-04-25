@@ -48,6 +48,9 @@ generateInputs[parameterDistributions_, seed_, n_] :=
 (*Simulation*)
 
 
+minSubhorizonEfoldings = 5;
+
+
 simulate[lagrangian_, inputs_] := Module[{hash, filename, results, counter},
 	hash = Hash[{DownValues[simulate], lagrangian, inputs}];
 	filename = FileNameJoin[{cacheDirectory, IntegerString[hash, 16] <> ".wxf"}];
@@ -62,7 +65,13 @@ simulate[lagrangian_, inputs_] := Module[{hash, filename, results, counter},
 			result = If[
 				ExperimentallyConsistentInflationQ[
 					lagrangian[#][bm[t], t],
-					{bm[t], #["f"] #["fieldInitialOverF"], 0}, t, #["pivotEfoldings"]],
+					{bm[t], #["f"] #["fieldInitialOverF"], 0},
+					t,
+					#["pivotEfoldings"]] &&
+				InflationEfoldingsCount[
+					lagrangian[#][bm[t], t],
+					{bm[t], #["f"] #["fieldInitialOverF"], 0},
+					t] >= #["pivotEfoldings"] + minSubhorizonEfoldings,
 				Join[
 					#,
 					Association @ Thread[
@@ -128,23 +137,27 @@ $label["exitFieldUnits"] = subscriptLabel[italicLabel["\[CapitalDelta]b"], plain
 $label["exitField"] = ratioLabel[$label["exitFieldUnits"], planckMassLabel];
 
 
+figureName[name_String] := name <> ".pdf"
+figureName[{f_, p1_String, p2_String, args___}] := p1 <> "_" <> p2 <> ".pdf"
+figureName[{name_String, args___}] := name <> ".pdf"
+
+
 makeFigure[model_, name_, lagrangian_, output_, OptionsPattern[]] :=
 	Export[
 		FileNameJoin[{
 			figuresDirectory,
-			model <> "_" <>
-				If[StringQ[name], name, name[[2]] <> "_" <> name[[3]]] <> ".pdf"}],
+			model <> "_" <> figureName[name]}],
 		Show[
 			plot[name, lagrangian, output],
 			ImageSize -> OptionValue["imageSize"],
 			LabelStyle -> Directive[FontFamily -> OptionValue["fontFamily"]]]]
 
 
-plot["potentialRange", lagrangian_, output_] := ListPlot[
+plot[{"potentialRange", min_, max_, step_}, lagrangian_, output_] := ListPlot[
 	ParallelTable[{bf, #[
 		Evaluate[With[{f = #[["f"]]},
 			lagrangian[#][f bf, t] / lagrangian[#][f \[Pi] Sqrt[2], t]] & /@ output]]},
-	{bf, -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.02}] & /@ {Min, Max},
+	{bf, min, max, step}] & /@ {Min, Max},
 	Axes -> False,
 	Frame -> True,
 	FrameLabel -> {
@@ -284,7 +297,7 @@ supersymmetrySpecs = <|
 		"exitField_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
-		"potentialRange"},
+		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05}},
 	"caption" -> "Simulation results for the global supersymmetry model " <>
 		"Eq.~(\\ref{eq:supersymmetry:Vslow}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
@@ -340,7 +353,7 @@ supergravitySpecs = <|
 		"exitField_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
-		"potentialRange"},
+		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05}},
 	"caption" -> "Simulation results for the supergravity model " <>
 		"Eq.~(\\ref{eq:supergravity:Vslow3}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
@@ -354,10 +367,55 @@ supergravitySpecs = <|
 
 
 (* ::Section:: *)
+(*KKLT*)
+
+
+kkltLagrangian[f_, \[Gamma]_, W0_, A3_][a_, t_] := 1/2 D[a, t]^2 - Module[{B, \[ScriptCapitalA]3, C},
+	\[ScriptCapitalA]3 = Exp[-Sqrt[3 / 2] \[Gamma][[3]] / f] A3;
+	B[k_] := (\[Gamma][[k]] - \[Gamma][[3]]) \[ScriptCapitalA]3 + \[Gamma][[k]] W0;
+	Do[C[k] = \[Gamma][[k]] / (3 (\[Gamma][[3 - k]] - \[Gamma][[k]])) B[3 - k], {k, 1, 2}];
+	C[3] = -\[Gamma][[3]] / 3 \[ScriptCapitalA]3;
+	C[1, 2] = (Sqrt[2 / 3] \[Gamma][[1]] \[Gamma][[2]] + (\[Gamma][[1]] + \[Gamma][[2]]) f) /
+		(3 (\[Gamma][[1]] - \[Gamma][[2]])^2) B[1] B[2];
+	Do[C[k, 3] = (Sqrt[2 / 3] \[Gamma][[k]] \[Gamma][[3]] + (\[Gamma][[k]] + \[Gamma][[3]]) f) /
+		(3 (\[Gamma][[3 - k]] - \[Gamma][[k]])) \[ScriptCapitalA]3 B[3 - k], {k, 1, 2}];
+	f^2 W0 Sum[C[n] (1 - Cos[\[Gamma][[n]] a / f]), {n, 3}]
+		+ f Sum[C[n, m] (1 - Cos[(\[Gamma][[n]] - \[Gamma][[m]])a / f]), {n, 3}, {m, n + 1, 3}]
+]
+
+
+kkltSpecs = <|
+	"name" -> "kklt",
+	"lagrangian" -> (kkltLagrangian[#["f"], 2 Pi / {3, 4, 19}, 1.*^-12, 0.01] &),
+	"pointCount" -> 10000 pointCountMultiplier,
+	"parameterDistributions" -> <|
+		"f" -> UniformDistribution[{0.9, 1}],
+		"fieldInitialOverF" -> UniformDistribution[{4, 7}],
+		"pivotEfoldings" -> UniformDistribution[{50, 60}]|>,
+	"figures" -> {
+		{ListPlot, "f", "r"},
+		"exitField_fStatic_ratio",
+		{ListPlot, "f", "fStatic"},
+		"fStatic_fDynamic",
+		{"potentialRange", -1, 8, 0.1}},
+	"caption" -> "Simulation results for KKLT " <>
+		"Eq.~(\\ref{eq:KKLT:Vslow}). " <>
+		"Simulation consisted of a total of `totalPoints` points, out of which " <>
+		"`points` shown are consistent with experimental data on $r$ and $n_s$. " <>
+		"Here $\\gamma_1 = 2 \\pi / 3$, $\\gamma_2 = 2 \\pi / 4$, " <>
+		"$\\gamma_3 = 2 \\pi / 19$, " <>
+		"$W_0 = 10^{-12} M_\\text{P}^3$, " <>
+		"$A_3 = 0.01 M_\\text{P}^3$, " <>
+		"$f / M_\\text{P} \\sim <*distribution[\"f\", {2, 1}]*>$, " <>
+		"$a / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
+		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
+
+
+(* ::Section:: *)
 (*Evaluation*)
 
 
-evaluateModel /@ {supersymmetrySpecs, supergravitySpecs};
+evaluateModel /@ {supersymmetrySpecs, supergravitySpecs, kkltSpecs};
 
 
 Print["All done."];

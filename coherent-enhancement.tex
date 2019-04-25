@@ -325,8 +325,8 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
 In order to verify consistency with experiment and evaluate $f_e$, we use Inflation Simulator\footnote{\url{https://github.com/maxitg/InflationSimulator}}.
 For these simulations we begin by sampling a number of parameter sets as described in the caption of Fig.~(\ref{fig:supersymmetry}).
 We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
-We set initial field velocity $\dot b_{-, 0} = 0$, which does not affect the results, as velocity typically converges to its quasi-stationary value before horizon exit.
-Finally, if at least $N_\text{pivot}$ e-foldings are produced, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}, \ref{eq:slowRollParametersDynamicFromStatic}, \ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
+We set initial field velocity $\dot b_{-, 0} = 0$, and check that at least $N_\text{pivot} + N_\text{subhorizont}$ e-foldings are produced, where $N_\text{subhorizon} = 5$ is added to ensure velocity converges to its quasi-stationary value before horizon exit.
+Finally, if we have sufficient e-foldings, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}, \ref{eq:slowRollParametersDynamicFromStatic}, \ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
 If so, we evaluate $f_e$ and $f_{eH}$ at horizon exit using Eqs.~(\ref{eq:feFromPotential}, \ref{eq:feFromDynamicSlowRollParameters}).
 The results of this process can be seen on Fig.~(\ref{fig:supersymmetry}).
 
@@ -590,7 +590,32 @@ and
   \mathcal{A}_3 = e^{-\sqrt{3 / 2} \gamma_3 M_\text{P} / f} A_3\,.
 \end{equation}
 
-% TODO(maxitg): Simulation part needs to be added here.
+\begin{figure}
+  \centering
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/kklt_f_r.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/kklt_exitField_fStatic_ratio.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/kklt_f_fStatic.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/kklt_fStatic_fDynamic.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/kklt_potentialRange.pdf}
+  \end{subfigure}
+  \caption{\protect\input{figures/kklt.txt}
+    All panels show similar results as on Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}).
+    Note $f$ is the only continuous parameter affecting the shape of the potential, so fine-tuning it is necessary for experimentally consistent inflation.} \label{fig:kklt}
+\end{figure}
+
+Simulation results for this potential are shown on Fig.~(\ref{fig:kklt}).
+We first note that due of our choice of $A_3 \gg W_0$, the terms in Eq.~(\ref{eq:KKLT:Vslow}) proportional to $W_0$ are insignificant, and $A_3^2$ becomes a multiplicative factor of the entire potential.
+As a result, the values of both $A_3$ and $W_0$ have insignificant effect on the inflation dynamics.
+We further note all points shown on Fig.~(\ref{fig:kklt}) have $0.01 \le A_k / M_\text{P}^3 \le 1$ for $k = 1, 2, 3$.
 
 \section{Inflation in Large Volume Scenario (LVS) \label{sec:LVS}}
 Next we consider the Large Volume Scenario (LVS)~\cite{Balasubramanian:2005zx} where the K\"ahler potential has the form
