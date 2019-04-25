@@ -485,64 +485,118 @@ In this model, we find $\left|f_e - f_{eH}\right| / f_e \le \protect\input{figur
 \section{Inflation in Large Volume Scenario (LVS) \label{sec:LVS}}
 Next we consider the Large Volume Scenario (LVS)~\cite{Balasubramanian:2005zx} where the K\"ahler potential has the form
 \begin{equation}
-  K = - \log\left(S + \bar S\right)
-      - 2 \log\left(\mathcal{V} + \alpha\right)
+  K = - M_\text{P}^2 \log\left(\frac{S + \bar S}{M_\text{P}}\right)
+      - 2 M_\text{P}^2 \log\left(\frac{\mathcal{V} + \alpha}{M_\text{P}^{3 / 2}}\right)
       + K_{cs}\left(U, \bar U\right)\,.
 \end{equation}
 Here $S$ is the dilation, $U$ are the complex moduli.
-For moduli stabilization we need $\alpha$-correction to the K\"ahler potential where and $\alpha = \frac{1}{2} \xi S_1^{3 / 2}$ where $\xi = -\zeta\left(3\right) \chi / 2 \left(2 \pi\right)^3$, and $\chi$ is the topological Euler characteristic of $X$ of the compact manifold.
+For moduli stabilization we need $\alpha$-correction to the K\"ahler potential where $\alpha = \frac{1}{2} \xi S_1^{3 / 2}$, $\xi = -\zeta\left(3\right) \chi / \left(16 \pi^3\right)$, and $\chi = h^{1, 1} - h^{1, 2}$ is the topological Euler characteristic of the compactified manifold $X$.
 For $\mathcal{V}$ we consider a K\"ahler moduli space with $h^{1, 1}\left(X\right) = 2$ and in this case one may write $\mathcal{V}$ in the form
 \begin{equation}
-  \mathcal{V} = \eta \left(\tau_b^{3 / 2} - \tau_s^{3 / 2}\right)\,.
+  \mathcal{V} = \eta \left(\tau_b^{3 / 2} - \tau_s^{3 / 2}\right)\,,
 \end{equation}
-In the analysis we will assume that $S$ and $U$ have been stabilized at large scales and thus these will play no role in the inflation analysis.
+where we have $T_i = \tau_i + i \theta_i$, $i = b, s$.
+In the analysis we will assume that $S$ and $U$ have been stabilized at large scales so that $S = \bar{S} = S_1$ and $K_{cs} = 0$ and thus these will play no role in the inflation analysis.
 We will thus focus on the stabilization of the remaining moduli.
 Here we assume a superpotential of the form
 \begin{equation}
-  W = W_0 + \sum_i A_i e^{-q^i_b \tau_b - q^i_s \tau_s}\,.
+  W = W_0
+    + A_s e^{-\gamma_s T_s / M_\text{P}}
+    + \sum_{n = 1}^q A_{b, n} e^{-\gamma_{b, n} T_b / M_\text{P}}\,.
 \end{equation}
 The computation of the $V$ in this case gives
 \begin{equation}
-  V = C^L
-    + \sum_i C^L_i \cos\left(q_b^i \theta_b + q^i_s \theta_s\right)
-    + \sum_{ij} C^L_{ij} \cos\left(
-        \left(q_b^i - q_b^j\right) \theta_b
-      + \left(q_s^i - q_s^j\right) \theta_s
+  \begin{aligned}
+    V = &M_\text{P}^4 \left(
+        C
+      + C_s \cos\left(\frac{\gamma_s \theta_s}{M_\text{P}}\right)
+      + \sum_{n = 1}^q C_{b, n} \cos\left(\frac{\gamma_{b, n} \theta_b}{M_\text{P}}\right)\right.
+      + \sum_{n = 1}^q C_{sb, n} \cos\left(
+           \frac{\gamma_s \theta_s - \gamma_{b, m} \theta_b}{M_\text{P}}
+         \right)\\
+      &~~~~~~ \left.{}
+      + \sum_{n = 1}^q \sum_{m = n + 1}^q C_{bb, n m} \cos\left(
+           \frac{\left(\gamma_{b, n} - \gamma_{b, m}\right) \theta_b}{M_\text{P}}
+         \right)
     \right)\,,
+  \end{aligned}
 \end{equation}
 where
 \begin{equation}
     \begin{aligned}
-    C^L &= \xi \frac{3 \left|W_0\right|^2 \sqrt{S_1}}{8 \mathcal{V}^3}\,,\\
-    C^L_i &= \frac{2 W_0}{S_1 \mathcal{V}^2} \sum_i \left(\tau_b q_b^i + \tau_s q_s^i\right) A_i
-        e^{-q_b^i \tau_b - q_s^i \tau_s}\,\\
-    C^L_{ij} &= \frac{1}{3 S_1 \mathcal{V}^2} \sum_{i, j} \left[
-        3 \tau_b \left(q^i_b + q^j_b\right)
-        + 3 \tau_s \left(q_s^i + q_s^j\right)
-        + 2 \left(\tau_b^2 + 2 \sqrt{\tau_b} \tau_s^{3 / 2}\right) q_b^i q_b^j\right.\\
-        &~~~~~~ \left.{}
-        + 2 \left(\tau^2_s + 2 \sqrt{\tau_s} \tau^{3 / 2}_b\right) q_s^i q_s^j
-        + 6 \tau_b \tau_s \left(q_b^i q_s^j + q_b^j q_s^i\right)
-    \right]\\
-    &~~~ \times A_i A_j
-        e^{-\left(q_b^i + q_b^j\right) \tau_b - \left(q_s^i + q_s^j\right) \tau_s}\,.
+    C &= \frac{1}{\mathcal{D}} \left(
+        \frac{3}{2} \frac{\alpha}{M_\text{P}^{3 / 2}} \frac{W_0^2}{M_\text{P}^6}
+      \right.\\ &~~~ \left.{}
+      + e^{-2 \gamma_s \tau_s / M_\text{P}}
+        \frac{A_s^2}{M_\text{P}^6}
+        \right.\\ &~~~~~~ \left.{} \times
+        \frac{
+            4 \left(
+                  \gamma_s \tau_s / M_\text{P}
+                + \left(1 / 3\right) \gamma_s^2 \left(\tau_s^2 + 2 \tau_s^{1 / 2} \tau_b^{3 / 2} - \alpha \tau_s^{1 / 2} / \eta\right) / M_\text{P}^2\right)
+              \left(\mathcal{V} + \alpha\right)
+            + \left(3 / 2\right) \alpha}{
+            M_\text{P}^{3 / 2}}
+      \right.\\ &~~~ \left.{}
+      + \sum_{n = 1}^q
+          e^{-2 \gamma_{b, n} \tau_b / M_\text{P}}
+          \frac{A_{b, n}^2}{M_\text{P}^6}
+          \right.\\ &~~~~~~ \left.{} \times
+          \frac{
+            4 \left(
+                  \gamma_{b, n} \tau_b / M_\text{P}
+                + \left(1 / 3\right) \gamma_{b, n}^2 \left(\tau_b^2 + 2 \tau_b^{1 / 2} \tau_s^{3 / 2} + \alpha \tau_b^{1 / 2} / \eta\right) / M_\text{P}^2\right)
+              \left(\mathcal{V} + \alpha\right)
+            + \left(3 / 2\right) \alpha}{
+            M_\text{P}^{3 / 2}}
+    \right)\,,\\
+    C_s &=
+      \frac{1}{\mathcal{D}} \frac{
+        4 \gamma_s \left(\tau_s / M_\text{P}\right)
+            \left(\mathcal{V} + \alpha\right)
+          + 3 \alpha}{M_\text{P}^{3 / 2}}
+      e^{-\gamma_s \tau_s / M_\text{P}}
+      \frac{W_0 A_s}{M_\text{P}^6}\,,\\
+    C_{b, n} &=
+      \frac{1}{\mathcal{D}} \frac{
+        4 \gamma_{b, n} \left(\tau_b / M_\text{P}\right)
+            \left(\mathcal{V} + \alpha\right)
+          + 3 \alpha}{M_\text{P}^{3 / 2}}
+      e^{-\gamma_{b, n} \tau_b / M_\text{P}}
+      \frac{W_0 A_{b, n}}{M_\text{P}^6}\,,\\
+    C_{sb, n} &= \frac{1}{\mathcal{D}}
+      \frac{
+          4 \left(
+                \left(\gamma_s \tau_s + \gamma_{b, n} \tau_b\right) / M_\text{P}
+              + 2 \gamma_s \gamma_{b, n} \tau_s \tau_b / M_\text{P}^2\right)
+            \left(\mathcal{V} + \alpha\right)
+        + 3 \alpha}{
+        M_\text{P}^{3 / 2}}
+      e^{-\left(\gamma_s \tau_s + \gamma_{b, n} \tau_b\right) / M_\text{P}}
+      \frac{A_s A_{b, n}}{M_\text{P}^6}\,,\\
+    C_{bb, n m} &= \frac{1}{\mathcal{D}}
+      e^{-\left(\gamma_{b, n} + \gamma_{b, m}\right) \tau_b / M_\text{P}}
+      \frac{A_{b, n} A_{b, m}}{M_\text{P}^6}
+      \\ & {} \times
+      \frac{
+        4 \left(
+              \left(\gamma_{b, n} + \gamma_{b, m}\right) \tau_b / M_\text{P}
+            + \left(2 / 3\right) \gamma_{b, n} \gamma_{b, m} \left(\tau_b^2 + 2 \tau_s^{3 / 2} \tau_b^{1 / 2} + \alpha \tau_b^{1 / 2} / \eta\right) / M_\text{P}^2\right)
+          \left(\mathcal{V} + \alpha\right)
+        + 3 \alpha}{
+        M_\text{P}^{3 / 2}}\,,
     \end{aligned}
 \end{equation}
-For $C^L$, which contains $\alpha'$ corrections and is needed to achieve stability, we choose the conventional LVS correction.
-Next to stabilize the moduli we use the condition
+and
 \begin{equation}
-  D_i W = 0, i = \tau_b, \tau_s, \theta_b, \theta_s\,.
+  \mathcal{D} = \frac{S_1}{M_\text{P}} \left(\frac{\mathcal{V} + \alpha}{M_\text{P}^{3 / 2}}\right)^2 \frac{2 \mathcal{V} - \alpha}{M_\text{P}^{3 / 2}}\,.
 \end{equation}
-The stabilization leads to $\left<\theta_b\right> = \left<\theta_s\right> = 0$, $\left<\tau_b\right> = \tau_{b, 0}$ and $\left<\tau_s\right> = \tau_{s, 0}$ where $\tau_{s, 0}$ and $\tau_{b, 0}$ are constrained by
-\begin{equation} \label{eq:LVS:stabilization}
-  \sum_i q^i_b A_i e^{-q_b^i \tau_{b, 0} - q^i_s \tau_{s, 0}}
-  + \frac{3 \sqrt{\tau_{b, 0}}}{2 \left(\tau^{3 / 2}_{b, 0} - \tau^{3 / 2}_{s, 0}\right)} \left(
-    W_0 + \sum_i A_i e^{-q^i_b \tau_{b, 0} - q_s^i \tau_{s, 0}}
-  \right) = 0\,.
-\end{equation}
-Further, for vanishing of the vacuum energy at the end of inflation we impose the constraint $\left<W\right> = 0$ which gives
+
+We then set $INSERT FIXED PARAMETERS$, and vary $INSERT VARYING PARAMETERS$ as described in the caption of Fig.~(\ref{fig:LVS}).
+For each set of input parameters, all four fields are numerically stabilized, and simultaneously we choose $A_s$ such that potential vanishes at the stability point.
+Note that we can take an approximation of a single-field inflation in $\theta_b$ in this case as for all parameter sets considered
 \begin{equation}
-  W_0 + \sum_i A_i e^{-q_b^i \tau_{b, 0} - q_s^i \tau_{s, 0}} = 0\,.
+  EQUATION COMPARING MASS OF \theta_b TO OTHER FIELDS
 \end{equation}
 
 % TODO(maxitg): Simulation part needs to be added here.
