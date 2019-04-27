@@ -497,97 +497,73 @@ In the KKLT analysis we consider a K\"ahler potential with a single modulus $T$ 
 where we may decompose $T$ so that $T = \tau + i \theta$.
 We assume the superpotential $W$ where the modulus dependence arises only in the non-perturbative terms and we take $W$ to have the form
 \begin{equation} \label{eq:KKLT:W}
-  W = W_0 + \sum_{n = 1}^q A_n e^{-\gamma_n T / M_\text{P}}\,,
+  W = W_0 - A e^{-\pi T / M_\text{P}}\,,
 \end{equation}
-where the modulus $T$ appears only in the exponent and where $A_n$ and $\gamma_n$ are assumed real.
-For the K\"ahler potential of Eq.~(\ref{eq:KKLT:kahler}) the scalar potential Eq.~(\ref{eq:supergravity:potential}) takes the form
+where the modulus $T$ appears only in the exponent and where we assume $A > 0$.
+For the K\"ahler potential of Eq.~(\ref{eq:KKLT:kahler}) the Lagrangian takes the form
 \begin{equation}
-  V = e^{K / M_\text{P}^2} K^{T \bar T} \left[
-    \partial_T W \partial_{\bar T} \bar W +
-    \frac{1}{M_\text{P}^2}\left(
-        \partial_T K W \partial_{\bar T} \bar W
-      + \partial_{\bar T} K \bar W \partial_T W\right)
-  \right]\,.
-\end{equation}
-An explicit computation of $V$ gives
-\begin{equation} \label{eq:KKLT:VslowUnstabilized}
-  \begin{aligned}
-    V = \frac{1}{6 \tau M_\text{P}} &\left[
-        \sum_{n = 1}^q \sum_{m = 1}^q A_n A_m \gamma_n
-          \left(\gamma_m + \frac{3 M_\text{P}}{\tau}\right)
-          e^{-\left(\gamma_n + \gamma_m\right)\tau / M_\text{P}}
-          \cos\left(\left(\gamma_n - \gamma_m\right) \frac{\theta}{M_\text{P}}\right)\right.\\
-        &\left.{}
-      + \frac{3 M_\text{P}}{\tau} W_0
-          \sum_{n = 1}^q A_n \gamma_n e^{-\gamma_n \tau / M_\text{P}}
-          \cos\left(\gamma_n \frac{\theta}{M_\text{P}}\right)
+  \mathcal{L} =
+    - K^{T \bar T} \partial_\mu T \partial^\mu \bar{T}
+    - e^{K / M_\text{P}^2} K^{T \bar T} \left[
+      \partial_T W \partial_{\bar T} \bar W +
+      \frac{1}{M_\text{P}^2}\left(
+          \partial_T K W \partial_{\bar T} \bar W
+        + \partial_{\bar T} K \bar W \partial_T W\right)
     \right]\,.
-  \end{aligned}
 \end{equation}
-To stabilize the modulus $\tau$ we use the condition~\cite{Nath:1983aw}
-\begin{equation} \label{eq:KKLT:stabilization}
-  D_T W = 0\,,
-\end{equation}
-which gives the constraint
-\begin{equation} \label{eq:KKLT:W0}
-  W_0 = -\sum_{n = 1}^q A_n e^{-\gamma_n \tau_0 / M_\text{P}}
-    \left(1 + \frac{2}{3} \gamma_n \frac{\tau_0}{M_\text{P}}\right)\,,
-\end{equation}
-where $\left<T\right> = \tau_0, \left<\theta\right> = 0$.
-Next we expand $T$ around the critical point, i.e., $T = \tau_0 + \tau' + \theta$.
-However, the kinetic energy using $\tau$ and $\theta$ is not canonically normalized and we define the normalized fields $\rho, a$ so that
-\begin{equation} \label{eq:KKLT:rho.a}
-  \rho \equiv \frac{\sqrt{3} M_\text{P}}{\sqrt{2} \tau_0} \tau',
-  ~~~ a \equiv \frac{\sqrt{3} M_\text{P}}{\sqrt{2} \tau_0} \theta\,,
-\end{equation}
-for which the kinetic energy takes the canonical form, i.e, $L_\text{kin} = -\frac{1}{2} \left[\partial_\mu \rho \partial^\mu \rho + \partial_\mu a \partial^\mu a\right]$.
-Using the canonically normalized fields we can define the axion decay constant so that $f = \frac{\sqrt{3} M_\text{P}^2}{\sqrt{2} \tau_0}$.
-
-We further require that the vacuum energy vanishes at the minimum of the potential, and this can be achieved by setting $W = 0$ along with the stability condition Eq.~(\ref{eq:KKLT:stabilization}).
-These conditions lead to the constraint
-\begin{equation} \label{eq:KKLT:zeroVacuumConstraint}
-  \sum_{n = 1}^q A_n \gamma_n e^{-\gamma_n \tau_0 / M_\text{P}} = 0\,.
-\end{equation}
-The imposition of Eqs.~(\ref{eq:KKLT:stabilization}, \ref{eq:KKLT:zeroVacuumConstraint}) would lead to moduli stabilization and vanishing of the vacuum energy at the end of inflation.
-For our simulation we solve these constraints for $A_1$ and $A_2$, and we vary $W_0$ and $f$ instead.
-
-Specifically, we take $q = 3$, in which case we get the following potential
-\begin{equation} \label{eq:KKLT:Vslow}
+An explicit computation then gives
+\begin{equation} \label{eq:KKLT:LslowUnnormalized}
   \begin{aligned}
-    V = M_\text{P}^4 &\left(
-        \frac{f^2}{M_\text{P}^2} \frac{W_0}{M_\text{P}^3} \sum_{n = 1}^3 C_n
-          \left(1 - \cos\left(\frac{\gamma_n a}{f}\right)\right)\right.\\
-      &~~~~~~{} \left.
-      + \frac{f}{M_\text{P}} \sum_{n = 1}^3 \sum_{m = n + 1}^3 C_{n m}
-          \left(1 - \cos\left(\frac{\left(\gamma_n - \gamma_m\right) a}{f}\right)\right)\right)\,,
+    \mathcal{L} =
+      &- \frac{3 M_\text{P}^2}{4 \tau^2} \left(
+          \partial_\mu \tau \partial^\mu \tau + \partial_\mu \theta \partial^\mu \theta\right)\\
+      &- M_\text{P}^4 \frac{\pi}{2} \frac{M_\text{P}}{\tau} \left(
+            \left(\frac{\pi}{3} + \frac{M_\text{P}}{\tau}\right)
+              e^{-2 \pi \tau / M_\text{P}}
+              \frac{A^2}{M_\text{P}^6}
+          - \frac{M_\text{P}}{\tau}
+              e^{-\pi \tau / M_\text{P}}
+              \cos\left(\pi \frac{\theta}{M_\text{P}}\right)
+              \frac{A W_0}{M_\text{P}^6}
+        \right)\,.
   \end{aligned}
+\end{equation}
+Note for any fixed positive value of $\tau$, the potential is minimized for $\theta = 0$.
+Thus to simplify the analysis we will set $\theta = 0$ as an initial condition, and only consider inflation in $\tau$.
+We further normalize the kinetic term by considering
+\begin{equation}
+  \tau / M_\text{P} = e^{\sqrt{2 / 3} \rho / M_\text{P}}\,,
+\end{equation}
+where $\rho$ is a new field that now has a canonical kinetic energy.
+
+The potential Eq.~(\ref{eq:KKLT:LslowUnnormalized}) has a minimum at
+\begin{equation}
+  \rho_\text{final} / M_\text{P} = \sqrt{\frac{3}{2}} \log\left(
+    - \frac{1}{\pi} \mathcal{W}_{-1}\left(\frac{3 W_0}{-2 A e^{3 / 2}}\right)
+    - \frac{3}{2 \pi}
+  \right)\,,
+\end{equation}
+which is where the inflation ends.
+To avoid eternal inflation, we add a constant to the potential so that $V\left(\rho_0\right) = 0$.
+
+Thus the potential we use for simulation takes the form
+\begin{equation} \label{eq:KKLT:Vslow}
+  V\left(\rho\right) = \tilde V\left(\rho\right) - \tilde V\left(\rho_\text{final}\right)\,,
 \end{equation}
 where
-\begin{equation} \label{eq:KKLT:VslowCoefficients}
+\begin{equation}
   \begin{aligned}
-    C_1 &= \frac{\gamma_1}{3 \left(\gamma_2 - \gamma_1\right)} \frac{B_2}{M_\text{P}^3}\,,\\
-    C_2 &= \frac{\gamma_2}{3 \left(\gamma_1 - \gamma_2\right)} \frac{B_1}{M_\text{P}^3}\,,\\
-    C_3 &= -\frac{\gamma_3}{3} \frac{\mathcal{A}_3}{M_\text{P}^3}\,,\\
-    C_{12} &= \frac
-        {\sqrt{2 / 3} \gamma_1 \gamma_2 + \left(\gamma_1 + \gamma_2\right) f / M_\text{P}}
-        {3 \left(\gamma_1 - \gamma_2\right)^2}
-      \frac{B_1 B_2}{M_\text{P}^6}\,,\\
-    C_{13} &= \frac
-        {\sqrt{2 / 3} \gamma_1 \gamma_3 + \left(\gamma_1 + \gamma_3\right) f / M_\text{P}}
-        {3 \left(\gamma_2 - \gamma_1\right)}
-      \frac{\mathcal{A}_3 B_2}{M_\text{P}^6}\,,\\
-    C_{23} &= \frac
-        {\sqrt{2 / 3} \gamma_2 \gamma_3 + \left(\gamma_2 + \gamma_3\right) f / M_\text{P}}
-        {3 \left(\gamma_1 - \gamma_2\right)}
-      \frac{\mathcal{A}_3 B_1}{M_\text{P}^6}\,,
+    \tilde V\left(\rho\right) =
+      M_\text{P}^4 \frac{\pi}{2} e^{-\sqrt{2 / 3} \rho / M_\text{P}} &\left(
+          \left(\frac{\pi}{3} + e^{-\sqrt{2 / 3} \rho / M_\text{P}}\right)
+            e^{-2 \pi e^{\sqrt{2 / 3} \rho / M_\text{P}}}
+            \frac{A^2}{M_\text{P}^6}\right.\\
+        &~~~~~~ \left.{}
+        - e^{-\sqrt{2 / 3} \rho / M_\text{P}}
+            e^{-\pi e^{\sqrt{2 / 3} \rho / M_\text{P}}}
+            \frac{A W_0}{M_\text{P}^6}
+      \right)\,.
   \end{aligned}
-\end{equation}
-and
-\begin{equation}
-  B_k = \left(\gamma_k - \gamma_3\right) \mathcal{A}_3 + \gamma_k W_0\,,
-\end{equation}
-\begin{equation}
-  \mathcal{A}_3 = e^{-\sqrt{3 / 2} \gamma_3 M_\text{P} / f} A_3\,.
 \end{equation}
 
 \begin{figure}
@@ -608,14 +584,14 @@ and
     \includegraphics[width = \textwidth]{figures/kklt_potential.pdf}
   \end{subfigure}
   \caption{\protect\input{figures/kklt.txt}
-    All panels show similar results as on Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}).
-    Note $f$ is the only continuous parameter affecting the shape of the potential, so fine-tuning it is necessary for experimentally consistent inflation.} \label{fig:kklt}
+    First four panels show similar results as on Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}).
+    The bottom panel shows the potential for $W_0 = 10^{-12} M_\text{P}^3$.} \label{fig:kklt}
 \end{figure}
 
 Simulation results for this potential are shown on Fig.~(\ref{fig:kklt}).
-We first note that due of our choice of $A_3 \gg W_0$, the terms in Eq.~(\ref{eq:KKLT:Vslow}) proportional to $W_0$ are insignificant, and $A_3^2$ becomes a multiplicative factor of the entire potential.
-As a result, the values of both $A_3$ and $W_0$ have insignificant effect on the inflation dynamics.
-We further note all points shown on Fig.~(\ref{fig:kklt}) have $0.01 \le A_k / M_\text{P}^3 \le 1$ for $k = 1, 2, 3$.
+We first note that as there is no axion decay constant $f$ in this model, the only two parameters are $N_\text{pivot}$ and $W_0$.
+Note, however, that the values of $f_e \approx f_{eH}$ we obtain from Eqs.~(\ref{eq:feFromPotential}, \ref{eq:feFromDynamicSlowRollParameters}) still satisfy Eq.~(\ref{eq:feExperimentalConstraint}).
+It is also interesting to note that inflation is guaranteed to occur in this model as long as $\rho_0$ is large enough, and for all parameter sets considered we obtained $r$ and $n_s$ consistent with experimental constraints Eq.~(\ref{data}).
 
 \section{Inflation in Large Volume Scenario (LVS) \label{sec:LVS}}
 Next we consider the Large Volume Scenario (LVS)~\cite{Balasubramanian:2005zx} where the K\"ahler potential has the form

@@ -339,14 +339,6 @@ supersymmetrySpecs = <|
 		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
 
 
-If[Head[supersymmetrySpecs["parameterDistributions"]["G5"]] =!= UniformDistribution,
-	Print[
-		"G5 in supersymmetry is not uniformly distributed, however the ",
-		"figure caption says that it is. Compilation is aborted."];
-	Quit[];
-];
-
-
 (* ::Section:: *)
 (*Supergravity*)
 
@@ -430,12 +422,20 @@ kkltSpecs = <|
 	"fieldLabel" -> italicLabel["\[Rho]"],
 	"caption" -> "Simulation results for KKLT " <>
 		"Eq.~(\\ref{eq:KKLT:Vslow}). " <>
-		"Simulation consisted of a total of `totalPoints` points, out of which " <>
-		"`points` shown are consistent with experimental data on $r$ and $n_s$. " <>
-		"Here $W_0 = <*distribution[\"W0\"]*> M_\\text{P}^3$, " <>
-		"$f / M_\\text{P} \\sim <*distribution[\"f\", {2, 1}]*>$, " <>
-		"$a / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
+		"Simulation consisted of a total of `totalPoints` points, all of which " <>
+		"consistent with experimental data on $r$ and $n_s$. " <>
+		"Here $A = M_\\text{P}^3$, " <>
+		"$\\log_{10}\\left(W_0 / M_\\text{P}^3\\right) = " <>
+			"<*distribution[\"logW0\"]*>$, " <>
+		"$\\rho_0 = 3.32 M_\\text{P}$, " <>
 		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
+
+
+If[kkltSpecs["parameterDistributions"]["fieldInitialOverF"] =!=
+		UniformDistribution[{3.32, 3.32}],
+	Print["Initial field in KKLT is hardcoded to the wrong value."];
+	Quit[1];
+];
 
 
 (* ::Section:: *)
