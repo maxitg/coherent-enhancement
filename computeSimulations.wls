@@ -335,7 +335,7 @@ supersymmetrySpecs = <|
 		"We set $B = 1$, as it only affects the time scale of inflation, but not " <>
 		"the values of $n_s$, $r$, and $f_e$. " <>
 		"Finally, $f / M_\\text{P} \\sim <*distribution[\"f\"]*>$, " <>
-		"$b_{-, 0} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
+		"$b_{-, \\text{init}} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
 		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
 
 
@@ -382,7 +382,7 @@ supergravitySpecs = <|
 		"$A_2 \\sim <*distribution[\"A2\", {4, 3}]*>$, " <>
 		"$A_3 \\sim <*distribution[\"A3\", {5, 4}]*>$, " <>
 		"$f / M_\\text{P} \\sim <*distribution[\"f\"]*>$, " <>
-		"$b_{-, 0} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
+		"$b_{-, \\text{init}} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
 		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
 
 
@@ -427,7 +427,7 @@ kkltSpecs = <|
 		"Here $A = M_\\text{P}^3$, " <>
 		"$\\log_{10}\\left(W_0 / M_\\text{P}^3\\right) = " <>
 			"<*distribution[\"logW0\"]*>$, " <>
-		"$\\rho_0 = 3.32 M_\\text{P}$, " <>
+		"$\\rho_\\text{init} = 3.32 M_\\text{P}$, " <>
 		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
 
 

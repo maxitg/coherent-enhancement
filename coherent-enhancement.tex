@@ -325,7 +325,7 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
 In order to verify consistency with experiment and evaluate $f_e$, we use Inflation Simulator\footnote{\url{https://github.com/maxitg/InflationSimulator}}.
 For these simulations we begin by sampling a number of parameter sets as described in the caption of Fig.~(\ref{fig:supersymmetry}).
 We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
-We set initial field velocity $\dot b_{-, 0} = 0$, and check that at least $N_\text{pivot} + N_\text{subhorizont}$ e-foldings are produced, where $N_\text{subhorizon} = 5$ is added to ensure velocity converges to its quasi-stationary value before horizon exit.
+We set initial field velocity $\dot b_{-, \text{init}} = 0$, and check that at least $N_\text{pivot} + N_\text{subhorizont}$ e-foldings are produced, where $N_\text{subhorizon} = 5$ is added to ensure velocity converges to its quasi-stationary value before horizon exit.
 Finally, if we have sufficient e-foldings, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}, \ref{eq:slowRollParametersDynamicFromStatic}, \ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
 If so, we evaluate $f_e$ and $f_{eH}$ at horizon exit using Eqs.~(\ref{eq:feFromPotential}, \ref{eq:feFromDynamicSlowRollParameters}).
 The results of this process can be seen on Fig.~(\ref{fig:supersymmetry}).
@@ -536,19 +536,31 @@ We further normalize the kinetic term by considering
 \end{equation}
 where $\rho$ is a new field that now has a canonical kinetic energy.
 
-The potential Eq.~(\ref{eq:KKLT:LslowUnnormalized}) has a minimum at
+The potential Eq.~(\ref{eq:KKLT:LslowUnnormalized}) has a minimum at which the inflation ends at
 \begin{equation}
-  \rho_\text{final} / M_\text{P} = \sqrt{\frac{3}{2}} \log\left(
+  \rho_0 / M_\text{P} = \sqrt{\frac{3}{2}} \log\left(
     - \frac{1}{\pi} \mathcal{W}_{-1}\left(\frac{3 W_0}{-2 A e^{3 / 2}}\right)
     - \frac{3}{2 \pi}
   \right)\,,
 \end{equation}
-which is where the inflation ends.
-To avoid eternal inflation, we add a constant to the potential so that $V\left(\rho_0\right) = 0$.
+where $\mathcal{W}_{-1}\left(z\right)$ is the lower branch of product logarithm, which is a solution to $\mathcal{W}_{-1} e^{\mathcal{W}_{-1}} = z$ such that $\mathcal{W}_{-1} \le -1$.
+To avoid negative vacuum density at the end of inflation, we add a fine-tuned constant to the potential so that $V\left(\rho_0\right) = 0$.
+The constant might be caused by vacuum density contributions from the fields other than ones considered in this model.
 
-Thus the potential we use for simulation takes the form
+Note that although we consider inflation in $\rho$, it is still interesting to see the value of the axion decay constant for the axion field $\theta$ at the end of inflation.
+For that, we normalize its kinetic energy by considering the field $a$ such that
+\begin{equation}
+  a = \sqrt\frac{3}{2} \frac{M_\text{P}}{\tau_0} \theta = \sqrt\frac{3}{2} e^{- \sqrt{2 / 3} \rho_0 / M_\text{P}} \theta\,,
+\end{equation}
+and defining the axion decay constant as before we get
+\begin{equation}
+  f = \frac{1}{\pi} \sqrt\frac{3}{2} e^{- \sqrt{2 / 3} \rho_0 / M_\text{P}}\,,
+\end{equation}
+which for $A = M_\text{P}^3$ and $\log_{10}{W_0 / M_\text{P}^3} \in \left(-14, -10\right)$ takes the values $f \in \left(0.10, 0.15\right) M_\text{P}$.
+
+The potential we use for simulation takes the form
 \begin{equation} \label{eq:KKLT:Vslow}
-  V\left(\rho\right) = \tilde V\left(\rho\right) - \tilde V\left(\rho_\text{final}\right)\,,
+  V\left(\rho\right) = \tilde V\left(\rho\right) - \tilde V\left(\rho_0\right)\,,
 \end{equation}
 where
 \begin{equation}
@@ -591,7 +603,7 @@ where
 Simulation results for this potential are shown on Fig.~(\ref{fig:kklt}).
 We first note that as there is no axion decay constant $f$ in this model, the only two parameters are $N_\text{pivot}$ and $W_0$.
 Note, however, that the values of $f_e \approx f_{eH}$ we obtain from Eqs.~(\ref{eq:feFromPotential}, \ref{eq:feFromDynamicSlowRollParameters}) still satisfy Eq.~(\ref{eq:feExperimentalConstraint}).
-It is also interesting to note that inflation is guaranteed to occur in this model as long as $\rho_0$ is large enough, and for all parameter sets considered we obtained $r$ and $n_s$ consistent with experimental constraints Eq.~(\ref{data}).
+It is also interesting to note that inflation is guaranteed to occur in this model as long as $\rho_\text{init}$ is large enough, and for all parameter sets considered we obtained $r$ and $n_s$ consistent with experimental constraints Eq.~(\ref{data}).
 
 \section{Inflation in Large Volume Scenario (LVS) \label{sec:LVS}}
 Next we consider the Large Volume Scenario (LVS)~\cite{Balasubramanian:2005zx} where the K\"ahler potential has the form
