@@ -48,7 +48,10 @@ generateInputs[parameterDistributions_, seed_, n_] :=
 (*Simulation*)
 
 
-simulate[lagrangian_, inputs_] := Module[{hash, filename, results, counter},
+minSubhorizonEfoldings = 5;
+
+
+simulate[lagrangian_, inputs_, options_] := Module[{hash, filename, results, counter},
 	hash = Hash[{DownValues[simulate], lagrangian, inputs}];
 	filename = FileNameJoin[{cacheDirectory, IntegerString[hash, 16] <> ".wxf"}];
 	If[FileExistsQ[filename],
@@ -62,31 +65,44 @@ simulate[lagrangian_, inputs_] := Module[{hash, filename, results, counter},
 			result = If[
 				ExperimentallyConsistentInflationQ[
 					lagrangian[#][bm[t], t],
-					{bm[t], #["f"] #["fieldInitialOverF"], 0}, t, #["pivotEfoldings"]],
+					{bm[t], #["f"] #["fieldInitialOverF"], 0},
+					t,
+					#["pivotEfoldings"],
+					options[#]] &&
+				InflationEfoldingsCount[
+					lagrangian[#][bm[t], t],
+					{bm[t], #["f"] #["fieldInitialOverF"], 0},
+					t,
+					options[#]] >=
+							#["pivotEfoldings"] + minSubhorizonEfoldings,
 				Join[
 					#,
 					Association @ Thread[
-						{"fDynamic", "fStatic", "r", "exitField"} -> InflationValue[
-							lagrangian[#][bm[t], t],
-							{bm[t], #["f"] #["fieldInitialOverF"], 0},
-							t,
-							#["pivotEfoldings"],
-							{InflationProperty[
-								"EffectiveAxionDecayConstant",
-								"HorizonExit",
-								Method -> "FromHubbleParameter"],
-							 InflationProperty[
-								"EffectiveAxionDecayConstant",
-								"HorizonExit",
-								Method -> "FromPotential"],
-							 InflationProperty[
-								"TensorToScalarRatio",
-								"HorizonExit",
-								Method -> "FromHubbleParameter"],
-							 InflationProperty[
-								"Field",
-								"HorizonExit"]}]]
-				],
+						{"fDynamic", "fStatic", "r", "exitField", "endField"} ->
+							InflationValue[
+								lagrangian[#][bm[t], t],
+								{bm[t], #["f"] #["fieldInitialOverF"], 0},
+								t,
+								#["pivotEfoldings"],
+								{InflationProperty[
+									"EffectiveAxionDecayConstant",
+									"HorizonExit",
+									Method -> "FromHubbleParameter"],
+								 InflationProperty[
+									"EffectiveAxionDecayConstant",
+									"HorizonExit",
+									Method -> "FromPotential"],
+								 InflationProperty[
+									"TensorToScalarRatio",
+									"HorizonExit",
+									Method -> "FromHubbleParameter"],
+								 InflationProperty[
+									"Field",
+									"HorizonExit"],
+								 InflationProperty[
+									"Field",
+									"End"]},
+								options[#]]]],
 				Nothing];
 				c = ++counter;
 				If[Quotient[100 c, Length[inputs]] >
@@ -124,46 +140,64 @@ $label["fStaticUnits"] = subscriptLabel[italicLabel["f"], italicLabel["e"]];
 $label["fStatic"] = ratioLabel[$label["fStaticUnits"], planckMassLabel];
 $label["fDynamic"] =
 	ratioLabel[subscriptLabel[italicLabel["f"], italicLabel["eH"]], planckMassLabel];
-$label["exitFieldUnits"] = subscriptLabel[italicLabel["\[CapitalDelta]b"], plainLabel["-"]];
-$label["exitField"] = ratioLabel[$label["exitFieldUnits"], planckMassLabel];
+$label["fieldRange", field_] := rowLabel[{italicLabel["\[CapitalDelta]"], field}];
+$label["fieldRangeUnitless", field_] :=
+	ratioLabel[$label["fieldRange", field], planckMassLabel];
+$label["pivotEfoldings"] = subscriptLabel[italicLabel["N"], plainLabel["pivot"]];
 
 
-makeFigure[model_, name_, lagrangian_, output_, OptionsPattern[]] :=
+figureName[name_String] := name <> ".pdf"
+figureName[{f_, p1_String, p2_String, args___}] := p1 <> "_" <> p2 <> ".pdf"
+figureName[{name_String, args___}] := name <> ".pdf"
+
+
+makeFigure[specs_, name_, output_, OptionsPattern[]] :=
 	Export[
 		FileNameJoin[{
 			figuresDirectory,
-			model <> "_" <>
-				If[StringQ[name], name, name[[2]] <> "_" <> name[[3]]] <> ".pdf"}],
+			specs["name"] <> "_" <> figureName[name]}],
 		Show[
-			plot[name, lagrangian, output],
+			plot[name, specs, output],
 			ImageSize -> OptionValue["imageSize"],
 			LabelStyle -> Directive[FontFamily -> OptionValue["fontFamily"]]]]
 
 
-plot["potentialRange", lagrangian_, output_] := ListPlot[
+plot[{"potentialRange", min_, max_, step_}, specs_, output_] := ListPlot[
 	ParallelTable[{bf, #[
 		Evaluate[With[{f = #[["f"]]},
-			lagrangian[#][f bf, t] / lagrangian[#][f \[Pi] Sqrt[2], t]] & /@ output]]},
-	{bf, -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.02}] & /@ {Min, Max},
+			specs["lagrangian"][#][f bf, t] /
+				specs["lagrangian"][#][f \[Pi] Sqrt[2], t]] & /@ output]]},
+	{bf, min, max, step}] & /@ {Min, Max},
 	Axes -> False,
 	Frame -> True,
 	FrameLabel -> {
-		"\!\(\*FormBox[\(\*SubscriptBox[\(b\), \(-\)]/f\), TraditionalForm]\)",
-		"\!\(\*FormBox[\(V/\*SubscriptBox[\(V\), \(max\)]\), TraditionalForm]\)"},
+		label[ratioLabel[specs["fieldLabel"], italicLabel["f"]]],
+		label[$label["fieldRangeUnitless", specs["fieldLabel"]]]},
 	PlotStyle -> ColorData[97, 1],
 	Joined -> True,
-	Filling -> {1 -> {2}}]
+	Filling -> {1 -> {2}},
+	PlotRange -> All]
 
 
-plot[{func_, p1_, p2_}, lagrangian_, output_] := func[
+plot[{"potential", parameters_, min_, max_}, specs_, output_] := Plot[
+	-specs["lagrangian"][parameters][b, t], {b, min, max},
+	PlotRange -> All,
+	Frame -> True,
+	FrameLabel -> {
+		label[ratioLabel[specs["fieldLabel"], planckMassLabel]],
+		label[ratioLabel[
+			italicLabel["V"], subscriptLabel[italicLabel["V"], plainLabel["0"]]]]}]
+
+
+plot[{func_, p1_, p2_}, specs_, output_] := func[
 	output[[All, {p1, p2}]],
 	PlotRange -> All,
 	Frame -> True,
 	FrameLabel -> label /@ {p1, p2}]
 
 
-plot["fStatic_fDynamic", lagrangian_, output_] := With[
-	{pointsPlot = plot[{ListPlot, "fStatic", "fDynamic"}, lagrangian, output]},
+plot["fStatic_fDynamic", specs_, output_] := With[
+	{pointsPlot = plot[{ListPlot, "fStatic", "fDynamic"}, specs["lagrangian"], output]},
 	Show[
 		Plot[
 			x,
@@ -175,15 +209,17 @@ plot["fStatic_fDynamic", lagrangian_, output_] := With[
 		pointsPlot]]
 
 
-plot["exitField_fStatic_ratio", lagrangian_, output_] := ListPlot[
+plot["fieldRange_fStatic_ratio", specs_, output_] := ListPlot[
 	Transpose[{
-		output[[All, "exitField"]] / output[[All, "fStatic"]],
-		output[[All, "exitField"]]}],
+		Abs[output[[All, "exitField"]] - output[[All, "endField"]]] /
+			output[[All, "fStatic"]],
+		Abs[output[[All, "exitField"]] - output[[All, "endField"]]]}],
 	PlotRange -> All,
 	Frame -> True,
 	FrameLabel -> {
-		traditionalLabel[ratioLabel[$label["exitFieldUnits"], $label["fStaticUnits"]]],
-		label["exitField"]}]
+		label[ratioLabel[
+			$label["fieldRange", specs["fieldLabel"]], $label["fStaticUnits"]]],
+		label[$label["fieldRangeUnitless", specs["fieldLabel"]]]}]
 
 
 (* ::Subsection:: *)
@@ -232,13 +268,13 @@ evaluateModel[modelSpecs_] := Module[{inputs, results},
 	inputs = generateInputs[
 		modelSpecs["parameterDistributions"],
 		"NP.coherent." <> modelSpecs["name"],
-		modelSpecs["pointCount"]];
+		Round[modelSpecs["pointCount"] pointCountMultiplier]];
 	Print[modelSpecs["name"] <> ": simulating inflation..."];
-	results = simulate[modelSpecs["lagrangian"], inputs];
+	results = simulate[
+		modelSpecs["lagrangian"], inputs, Lookup[modelSpecs, "evolutionOptions", {} &]];
 	Print["Found ", Length @ results, " points."];
 	Print[modelSpecs["name"] <> ": generating figures..."];
-	makeFigure[modelSpecs["name"], #, modelSpecs["lagrangian"], results] & /@
-		modelSpecs["figures"];
+	makeFigure[modelSpecs, #, results] & /@ modelSpecs["figures"];
 	Print[modelSpecs["name"] <> ": generating captions..."];
 	makeCaption[modelSpecs, results];
 	Print[modelSpecs["name"] <> ": done."];
@@ -273,18 +309,22 @@ supersymmetryLagrangian[f_, G_, B_: 1][bm_, t_] := 1/2 D[bm, t]^2 - 4 f^4 B^2 (
 )
 
 
+bMinusFieldLabel = subscriptLabel[italicLabel["b"], plainLabel["-"]]
+
+
 supersymmetrySpecs = <|
 	"name" -> "supersymmetry",
 	"lagrangian" -> (supersymmetryLagrangian[#["f"], {0, 0, 0, 1, #["G5"]}] &),
-	"pointCount" -> 20000 pointCountMultiplier,
+	"pointCount" -> 20000,
 	"parameterDistributions" -> Join[genericParameterDistributions, <|
 		"G5" -> UniformDistribution[{-0.88931, -0.88920}]|>],
 	"figures" -> {
 		{ListPlot, "f", "r"},
-		"exitField_fStatic_ratio",
+		"fieldRange_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
-		"potentialRange"},
+		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05}},
+	"fieldLabel" -> bMinusFieldLabel,
 	"caption" -> "Simulation results for the global supersymmetry model " <>
 		"Eq.~(\\ref{eq:supersymmetry:Vslow}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
@@ -295,16 +335,8 @@ supersymmetrySpecs = <|
 		"We set $B = 1$, as it only affects the time scale of inflation, but not " <>
 		"the values of $n_s$, $r$, and $f_e$. " <>
 		"Finally, $f / M_\\text{P} \\sim <*distribution[\"f\"]*>$, " <>
-		"$b_{-, 0} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
+		"$b_{-, \\text{init}} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
 		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
-
-
-If[Head[supersymmetrySpecs["parameterDistributions"]["G5"]] =!= UniformDistribution,
-	Print[
-		"G5 in supersymmetry is not uniformly distributed, however the ",
-		"figure caption says that it is. Compilation is aborted."];
-	Quit[];
-];
 
 
 (* ::Section:: *)
@@ -331,16 +363,17 @@ supergravitySpecs = <|
 	"name" -> "supergravity",
 	"lagrangian" ->
 		(supergravityLagrangian[#["f"], {1, 2, 3}, {1, #["A2"], #["A3"]}] &),
-	"pointCount" -> 70000 pointCountMultiplier,
+	"pointCount" -> 70000,
 	"parameterDistributions" -> Join[genericParameterDistributions, <|
 		"A2" -> UniformDistribution[{0.080, 0.085}],
 		"A3" -> UniformDistribution[{0.0030, 0.0037}]|>],
 	"figures" -> {
 		{ListPlot, "f", "r"},
-		"exitField_fStatic_ratio",
+		"fieldRange_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
-		"potentialRange"},
+		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05}},
+	"fieldLabel" -> bMinusFieldLabel,
 	"caption" -> "Simulation results for the supergravity model " <>
 		"Eq.~(\\ref{eq:supergravity:Vslow3}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
@@ -349,7 +382,7 @@ supergravitySpecs = <|
 		"$A_2 \\sim <*distribution[\"A2\", {4, 3}]*>$, " <>
 		"$A_3 \\sim <*distribution[\"A3\", {5, 4}]*>$, " <>
 		"$f / M_\\text{P} \\sim <*distribution[\"f\"]*>$, " <>
-		"$b_{-, 0} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
+		"$b_{-, \\text{init}} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
 		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
 
 
