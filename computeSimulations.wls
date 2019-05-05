@@ -387,62 +387,10 @@ supergravitySpecs = <|
 
 
 (* ::Section:: *)
-(*KKLT*)
-
-
-kkltPotential[\[Gamma]_, A_, W0_][\[Rho]_] := With[{\[Tau] = Exp[Sqrt[2 / 3] \[Rho]]},
-	A Exp[-2 \[Gamma] \[Tau]] \[Gamma] (3 Exp[\[Gamma] \[Tau]] W0 + A (3 + \[Gamma] \[Tau])) / (6 \[Tau]^2)]
-
-
-kkltLagrangianNormalized[\[Gamma]_, A_, W0_][\[Rho]_, t_] := With[
-	{minValue = 3 W0^2 \[Gamma]^3 / (
-		4 ProductLog[-1, 3 W0 / (2 A Exp[3 / 2])]^2
-		(3 + 2 ProductLog[-1, 3 W0 / (2 A Exp[3 / 2])]))},
-	1 / 2 D[\[Rho], t]^2 -
-		1 / (-minValue) (kkltPotential[\[Gamma], A, W0][\[Rho]] - minValue)]
-
-
-kkltSpecs = <|
-	"name" -> "kklt",
-	"lagrangian" -> (kkltLagrangianNormalized[\[Pi], -1, 10^#["logW0"]] &),
-	"pointCount" -> 1000,
-	"parameterDistributions" -> <|
-		"logW0" -> UniformDistribution[{-14, -10}],
-		"f" -> UniformDistribution[{1, 1}],
-		"fieldInitialOverF" -> UniformDistribution[{3.32, 3.32}],
-		"pivotEfoldings" -> UniformDistribution[{50, 60}]|>,
-	"evolutionOptions" -> ({"FieldFinal" ->
-		Sqrt[3/2] Log[-((3+2 ProductLog[-1,(3 10^#["logW0"])/(-2 E^(3/2))])/(2 \[Pi]))]} &),
-	"figures" -> {
-		{ListPlot, "pivotEfoldings", "r"},
-		"fieldRange_fStatic_ratio",
-		{ListPlot, "pivotEfoldings", "fStatic"},
-		"fStatic_fDynamic",
-		{"potential", <|"logW0" -> -12|>, 2.76, 3.4}},
-	"fieldLabel" -> italicLabel["\[Rho]"],
-	"caption" -> "Simulation results for KKLT " <>
-		"Eq.~(\\ref{eq:KKLT:Vslow}). " <>
-		"Simulation consisted of a total of `totalPoints` points, all of which " <>
-		"consistent with experimental data on $r$ and $n_s$. " <>
-		"Here $A = M_\\text{P}^3$, " <>
-		"$\\log_{10}\\left(W_0 / M_\\text{P}^3\\right) = " <>
-			"<*distribution[\"logW0\"]*>$, " <>
-		"$\\rho_\\text{init} = 3.32 M_\\text{P}$, " <>
-		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
-
-
-If[kkltSpecs["parameterDistributions"]["fieldInitialOverF"] =!=
-		UniformDistribution[{3.32, 3.32}],
-	Print["Initial field in KKLT is hardcoded to the wrong value."];
-	Quit[1];
-];
-
-
-(* ::Section:: *)
 (*Evaluation*)
 
 
-evaluateModel /@ {supersymmetrySpecs, supergravitySpecs, kkltSpecs};
+evaluateModel /@ {supersymmetrySpecs, supergravitySpecs};
 
 
 Print["All done."];
