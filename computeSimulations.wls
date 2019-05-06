@@ -477,6 +477,50 @@ evaluateModel[<|
 
 
 (* ::Section:: *)
+(*LVS*)
+
+
+lvsLagrangian[\[Eta]_, h11_, h12_, S1_, W0_, As_, \[Gamma]s_, Ab_, \[Gamma]b_, \[Tau]s0_, \[Theta]s0_, \[Tau]b0_][\[Theta]b_, t_] :=
+    Module[{\[ScriptCapitalV], \[Chi], \[Xi], \[Alpha], d, q, c, cs, cb, csb, cbb},
+  \[ScriptCapitalV] = \[Eta] (\[Tau]b0^(3 / 2) - \[Tau]s0^(3 / 2));
+  \[Chi] = h11 - h12;
+  \[Xi] = -Zeta[3] \[Chi] / (16 \[Pi]^3);
+  \[Alpha] = 1/2 \[Xi] S1^(3 / 2);
+  q = Length[Ab];
+  d = S1 (\[ScriptCapitalV] + \[Alpha])^2 (2 \[ScriptCapitalV] - \[Alpha]);
+  c = 1 / d (
+    3 / 2 \[Alpha] W0^2
+    + Exp[-2 \[Gamma]s \[Tau]s0] As^2 (
+      4 (
+        \[Gamma]s \[Tau]s0
+        + 1 / 3 \[Gamma]s^2 (\[Tau]s0^2 + 2 \[Tau]s0^(1 / 2) \[Tau]b0^(3 / 2) - \[Alpha] \[Tau]s0^(1 / 2) / \[Eta])
+      ) (\[ScriptCapitalV] + \[Alpha]) + 3 / 2 \[Alpha])
+    + Sum[Exp[-2 \[Gamma]b[[n]] \[Tau]b0] Ab[[n]]^2 (
+      4 (
+        \[Gamma]b[[n]] \[Tau]b0
+        + 1 / 3 \[Gamma]b[[n]]^2 (
+          \[Tau]b0^2 + 2 \[Tau]b0^(1 / 2) \[Tau]s0^(3 / 2) + \[Alpha] \[Tau]b0^(1 / 2) / \[Eta])
+      ) (\[ScriptCapitalV] + \[Alpha]) + 3 / 2 \[Alpha]), {n, q}]);
+  cs = 1 / d (4 \[Gamma]s \[Tau]s0 (\[ScriptCapitalV] + \[Alpha]) + 3 \[Alpha]) Exp[-\[Gamma]s \[Tau]s0] W0 As;
+  cb[n_] := 1 / d (4 \[Gamma]b[[n]] \[Tau]b0 (\[ScriptCapitalV] + \[Alpha]) + 3 \[Alpha]) Exp[-\[Gamma]b[[n]] \[Tau]b0] W0 Ab[[n]];
+  csb[n_] := 1 / d (4 (\[Gamma]s \[Tau]s0 + \[Gamma]b[[n]] \[Tau]b0 + 2 \[Gamma]s \[Gamma]b[[n]] \[Tau]s0 \[Tau]b0) (\[ScriptCapitalV] + \[Alpha]) + 3 \[Alpha])
+    Exp[-\[Gamma]s \[Tau]s0 - \[Tau]b0 \[Gamma]b[[n]]] As Ab[[n]];
+  cbb[n_, m_] := (1 / d) Exp[-(\[Gamma]b[[n]] + \[Gamma]b[[m]]) \[Tau]b0] Ab[[n]] Ab[[m]] (
+    4 (
+      (\[Gamma]b[[n]] + \[Gamma]b[[m]]) \[Tau]b0
+      + (2 / 3) \[Gamma]b[[n]] \[Gamma]b[[m]] (
+        \[Tau]b0^2 + 2 \[Tau]s0^(3 / 2) \[Tau]b0^(1 / 2) + \[Alpha] \[Tau]b0^(1 / 2) / \[Eta])
+    ) (\[ScriptCapitalV] + \[Alpha])
+    + 3 \[Alpha]);
+  c
+  + cs Cos[\[Gamma]s \[Theta]s0]
+  + Sum[cb[n] Cos[\[Gamma]b[[n]] \[Theta]b], {n, q}]
+  + Sum[csb[n] Cos[\[Gamma]s \[Theta]s0 - \[Gamma]b[[n]] \[Theta]b], {n, q}]
+  + Sum[cbb[n, m] Cos[(\[Gamma]b[[n]] - \[Gamma]b[[m]]) \[Theta]b], {n, q}, {m, n + 1, q}]
+]
+
+
+(* ::Section:: *)
 (*DBI*)
 
 
