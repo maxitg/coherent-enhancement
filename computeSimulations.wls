@@ -144,6 +144,8 @@ $label["fieldRange", field_] := rowLabel[{italicLabel["\[CapitalDelta]"], field}
 $label["fieldRangeUnitless", field_] :=
 	ratioLabel[$label["fieldRange", field], planckMassLabel];
 $label["pivotEfoldings"] = subscriptLabel[italicLabel["N"], plainLabel["pivot"]];
+$label["VNormalized"] = ratioLabel[
+	italicLabel["V"], subscriptLabel[italicLabel["V"], plainLabel["max"]]];
 
 
 figureName[name_String] := name <> ".pdf"
@@ -172,7 +174,7 @@ plot[{"potentialRange", min_, max_, step_}, specs_, output_] := ListPlot[
 	Frame -> True,
 	FrameLabel -> {
 		label[ratioLabel[specs["fieldLabel"], italicLabel["f"]]],
-		label[$label["fieldRangeUnitless", specs["fieldLabel"]]]},
+		label[$label["VNormalized"]]},
 	PlotStyle -> ColorData[97, 1],
 	Joined -> True,
 	Filling -> {1 -> {2}},
@@ -185,8 +187,7 @@ plot[{"potential", parameters_, min_, max_}, specs_, output_] := Plot[
 	Frame -> True,
 	FrameLabel -> {
 		label[ratioLabel[specs["fieldLabel"], planckMassLabel]],
-		label[ratioLabel[
-			italicLabel["V"], subscriptLabel[italicLabel["V"], plainLabel["0"]]]]}]
+		label[$label["VNormalized"]]}]
 
 
 plot[{func_, p1_, p2_}, specs_, output_] := func[
