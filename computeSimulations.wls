@@ -51,63 +51,65 @@ generateInputs[parameterDistributions_, seed_, n_] :=
 minSubhorizonEfoldings = 5;
 
 
-simulate[lagrangian_, inputs_, options_] := Module[{hash, filename, results, counter},
-	hash = Hash[{DownValues[simulate], lagrangian, inputs}];
+simulate[lagrangian_, initialConditions_, inputs_, options_] := Module[
+		{hash, filename, results, counter},
+	hash = Hash[{PacletInformation["InflationSimulator"], DownValues[simulate],
+			lagrangian,
+			(lagrangian[MapIndexed[#2[[1, 1]] &, inputs[[1]]]]
+				@@ Through[initialConditions[[All, 1]][t]])[t],
+			initialConditions, inputs, options}];
 	filename = FileNameJoin[{cacheDirectory, IntegerString[hash, 16] <> ".wxf"}];
 	If[FileExistsQ[filename],
+		(* read cache *)
 		Print["Using cached simulation results"];
 		Import[filename, "WXF"],
+		(* no cache, compute from scratch *)
 		counter = 0;
 		SetSharedVariable[counter];
 		SetSharedFunction[Print];
 		SetOptions[$Output, FormatType -> OutputForm];
-		results = ParallelMap[Module[{result, c},
+		results = ParallelMap[Module[{L, evolution, result, c, exitValues},
+			ClearSystemCache[];
+			L = (lagrangian[#] @@ Through[initialConditions[[All, 1]][t]])[t];
+			evolution = InflationEvolution[L, initialConditions /. #, t, options];
 			result = If[
-				ExperimentallyConsistentInflationQ[
-					lagrangian[#][bm[t], t],
-					{bm[t], #["f"] #["fieldInitialOverF"], 0},
-					t,
-					#["pivotEfoldings"],
-					options[#]] &&
-				InflationEfoldingsCount[
-					lagrangian[#][bm[t], t],
-					{bm[t], #["f"] #["fieldInitialOverF"], 0},
-					t,
-					options[#]] >=
-							#["pivotEfoldings"] + minSubhorizonEfoldings,
+				evolution["TotalEfoldings"] >=
+						#["pivotEfoldings"] + minSubhorizonEfoldings &&
+					ExperimentallyConsistentInflationQ[
+						L, evolution, t, #["pivotEfoldings"]],
 				Join[
 					#,
 					Association @ Thread[
-						{"fDynamic", "fStatic", "r", "exitField", "endField"} ->
-							InflationValue[
-								lagrangian[#][bm[t], t],
-								{bm[t], #["f"] #["fieldInitialOverF"], 0},
-								t,
-								#["pivotEfoldings"],
-								{InflationProperty[
-									"EffectiveAxionDecayConstant",
-									"HorizonExit",
-									Method -> "FromHubbleParameter"],
-								 InflationProperty[
-									"EffectiveAxionDecayConstant",
-									"HorizonExit",
-									Method -> "FromPotential"],
-								 InflationProperty[
-									"TensorToScalarRatio",
-									"HorizonExit",
-									Method -> "FromHubbleParameter"],
-								 InflationProperty[
-									"Field",
+						{"fDynamic", "r", "exitFields", "endFields", "fStatic"} ->
+							Join[
+								exitValues = InflationValue[
+									L,
+									evolution,
+									t,
+									#["pivotEfoldings"],
+									{"EffectiveAxionDecayConstant",
+										"TensorToScalarRatio",
+										initialConditions[[All, 1]]},
 									"HorizonExit"],
-								 InflationProperty[
-									"Field",
-									"End"]},
-								options[#]]]],
+								InflationValue[
+									L,
+									evolution,
+									t,
+									#["pivotEfoldings"],
+									{initialConditions[[All, 1]]},
+									"End"],
+								InflatonLagrangianValue[
+									L,
+									Transpose[
+										{initialConditions[[All, 1]],
+											exitValues[[3]]}],
+									t,
+									{"EffectiveAxionDecayConstant"}]]]],
 				Nothing];
 				c = ++counter;
 				If[Quotient[100 c, Length[inputs]] >
 						Quotient[100 (c - 1), Length[inputs]],
-					Print[Quotient[100 c, Length[inputs]], "% done..."]];
+					Print[Quotient[100 c, Length[inputs]], "%..."]];
 			result] &, inputs];
 		Export[filename, results, "WXF"];
 		results
@@ -153,7 +155,8 @@ figureName[{f_, p1_String, p2_String, args___}] := p1 <> "_" <> p2 <> ".pdf"
 figureName[{name_String, args___}] := name <> ".pdf"
 
 
-makeFigure[specs_, name_, output_, OptionsPattern[]] :=
+makeFigure[specs_, name_, output_, OptionsPattern[]] := (
+	Print[figureName[name], "..."];
 	Export[
 		FileNameJoin[{
 			figuresDirectory,
@@ -161,19 +164,22 @@ makeFigure[specs_, name_, output_, OptionsPattern[]] :=
 		Show[
 			plot[name, specs, output],
 			ImageSize -> OptionValue["imageSize"],
-			LabelStyle -> Directive[FontFamily -> OptionValue["fontFamily"]]]]
+			LabelStyle -> Directive[FontFamily -> OptionValue["fontFamily"]]]])
 
 
 plot[{"potentialRange", min_, max_, step_}, specs_, output_] := ListPlot[
+	If[Length[specs["initialConditions"]] != 1,
+		Print["potentialRange can only be plotted for single field models."];
+		Quit[]];
 	ParallelTable[{bf, #[
 		Evaluate[With[{f = #[["f"]]},
-			specs["lagrangian"][#][f bf, t] /
-				specs["lagrangian"][#][f \[Pi] Sqrt[2], t]] & /@ output]]},
+			specs["lagrangian"][#][f bf][t] /
+				specs["lagrangian"][#][f \[Pi] Sqrt[2]][t]] & /@ output]]},
 	{bf, min, max, step}] & /@ {Min, Max},
 	Axes -> False,
 	Frame -> True,
 	FrameLabel -> {
-		label[ratioLabel[specs["fieldLabel"], italicLabel["f"]]],
+		label[ratioLabel[specs["fieldLabels"][[1]], italicLabel["f"]]],
 		label[$label["VNormalized"]]},
 	PlotStyle -> ColorData[97, 1],
 	Joined -> True,
@@ -182,11 +188,14 @@ plot[{"potentialRange", min_, max_, step_}, specs_, output_] := ListPlot[
 
 
 plot[{"potential", parameters_, min_, max_}, specs_, output_] := Plot[
-	-specs["lagrangian"][parameters][b, t], {b, min, max},
+	If[Length[specs["initialConditions"]] != 1,
+		Print["potentialRange can only be plotted for single field models."];
+		Quit[]];
+	-specs["lagrangian"][parameters][b][t], {b, min, max},
 	PlotRange -> All,
 	Frame -> True,
 	FrameLabel -> {
-		label[ratioLabel[specs["fieldLabel"], planckMassLabel]],
+		label[ratioLabel[specs["fieldLabels"][[1]], planckMassLabel]],
 		label[$label["VNormalized"]]}]
 
 
@@ -212,15 +221,16 @@ plot["fStatic_fDynamic", specs_, output_] := With[
 
 plot["fieldRange_fStatic_ratio", specs_, output_] := ListPlot[
 	Transpose[{
-		Abs[output[[All, "exitField"]] - output[[All, "endField"]]] /
+		Norm /@ (output[[All, "exitFields"]] - output[[All, "endFields"]]) /
 			output[[All, "fStatic"]],
-		Abs[output[[All, "exitField"]] - output[[All, "endField"]]]}],
+		Norm /@ (output[[All, "exitFields"]] - output[[All, "endFields"]])}],
 	PlotRange -> All,
 	Frame -> True,
 	FrameLabel -> {
 		label[ratioLabel[
-			$label["fieldRange", specs["fieldLabel"]], $label["fStaticUnits"]]],
-		label[$label["fieldRangeUnitless", specs["fieldLabel"]]]}]
+			$label["fieldRange", #], $label["fStaticUnits"]]],
+		label[$label["fieldRangeUnitless", #]]} &
+			@ If[Length[specs["fieldLabels"]] == 1, specs["fieldLabels"][[1]], "\[Phi]"]]
 
 
 (* ::Subsection:: *)
@@ -264,15 +274,19 @@ makeCaption[specs_, results_] := Export[
 (*Evaluator*)
 
 
-evaluateModel[modelSpecs_] := Module[{inputs, results},
+evaluateModel[modelSpecs_] := Module[{inputs, results, time},
 	Print[modelSpecs["name"] <> ": generating inputs..."];
 	inputs = generateInputs[
 		modelSpecs["parameterDistributions"],
 		"NP.coherent." <> modelSpecs["name"],
 		Round[modelSpecs["pointCount"] pointCountMultiplier]];
 	Print[modelSpecs["name"] <> ": simulating inflation..."];
-	results = simulate[
-		modelSpecs["lagrangian"], inputs, Lookup[modelSpecs, "evolutionOptions", {} &]];
+	{time, results} = AbsoluteTiming[simulate[
+		modelSpecs["lagrangian"],
+		modelSpecs["initialConditions"],
+		inputs,
+		Lookup[modelSpecs, "evolutionOptions", {}]]];
+	Print["Done in ", time, " seconds."];
 	Print["Found ", Length @ results, " points."];
 	Print[modelSpecs["name"] <> ": generating figures..."];
 	makeFigure[modelSpecs, #, results] & /@ modelSpecs["figures"];
@@ -299,7 +313,7 @@ genericParameterDistributions = <|
 (*Supersymmetry*)
 
 
-supersymmetryLagrangian[f_, G_, B_: 1][bm_, t_] := 1/2 D[bm, t]^2 - 4 f^4 B^2 (
+supersymmetryLagrangian[f_, G_, B_: 1][bm_][t_] := 1/2 D[bm, t]^2 - 4 f^4 B^2 (
 	Sum[
 		l G[[l]] r G[[r]] (1 - Cos[r / Sqrt[2] bm / f]),
 		{l, Length[G]}, {r, Length[G]}
@@ -310,13 +324,15 @@ supersymmetryLagrangian[f_, G_, B_: 1][bm_, t_] := 1/2 D[bm, t]^2 - 4 f^4 B^2 (
 )
 
 
-bMinusFieldLabel = subscriptLabel[italicLabel["b"], plainLabel["-"]]
+bMinusFieldLabel = subscriptLabel[italicLabel["b"], plainLabel["-"]];
 
 
 supersymmetrySpecs = <|
 	"name" -> "supersymmetry",
 	"lagrangian" -> (supersymmetryLagrangian[#["f"], {0, 0, 0, 1, #["G5"]}] &),
+	"initialConditions" -> {{bm, "fieldInitialOverF" "f", 0}},
 	"pointCount" -> 20000,
+	"evolutionOptions" -> {"FinalDensityPrecisionGoal" -> 6},
 	"parameterDistributions" -> Join[genericParameterDistributions, <|
 		"G5" -> UniformDistribution[{-0.88931, -0.88920}]|>],
 	"figures" -> {
@@ -325,7 +341,7 @@ supersymmetrySpecs = <|
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05}},
-	"fieldLabel" -> bMinusFieldLabel,
+	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
 	"caption" -> "Simulation results for the global supersymmetry model " <>
 		"Eq.~(\\ref{eq:supersymmetry:Vslow}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
@@ -344,7 +360,7 @@ supersymmetrySpecs = <|
 (*Supergravity*)
 
 
-supergravityLagrangian[f_, \[Gamma]_, A_][bm_, t_] := 1/2 D[bm, t]^2 - 4 Exp[2 f^2] Sum[
+supergravityLagrangian[f_, \[Gamma]_, A_][bm_][t_] := 1/2 D[bm, t]^2 - 4 Exp[2 f^2] Sum[
 	Exp[n + m] A[[n]] A[[m]] (
 		\[Gamma][[n]] \[Gamma][[m]] / f^2 (
 			1
@@ -364,7 +380,9 @@ supergravitySpecs = <|
 	"name" -> "supergravity",
 	"lagrangian" ->
 		(supergravityLagrangian[#["f"], {1, 2, 3}, {1, #["A2"], #["A3"]}] &),
+	"initialConditions" -> {{bm, "fieldInitialOverF" "f", 0}},
 	"pointCount" -> 70000,
+	"evolutionOptions" -> {"FinalDensityPrecisionGoal" -> 2},
 	"parameterDistributions" -> Join[genericParameterDistributions, <|
 		"A2" -> UniformDistribution[{0.080, 0.085}],
 		"A3" -> UniformDistribution[{0.0030, 0.0037}]|>],
@@ -374,7 +392,7 @@ supergravitySpecs = <|
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05}},
-	"fieldLabel" -> bMinusFieldLabel,
+	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
 	"caption" -> "Simulation results for the supergravity model " <>
 		"Eq.~(\\ref{eq:supergravity:Vslow3}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
