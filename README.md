@@ -5,7 +5,7 @@ Models of axion inflation based on a single cosine potential require the axion d
 
 * LaTeX distrubution including `tlmgr`;
 * LaTeX packages that can be installed by running `provision.sh`;
-* [Wolfram Mathematica 11.3+](http://www.wolfram.com/mathematica/?source=nav) including Wolfram Script;
+* [Wolfram Mathematica 12.0+](http://www.wolfram.com/mathematica/?source=nav) including Wolfram Script;
 * [Latin Modern Roman fonts](http://www.gust.org.pl/projects/e-foundry/latin-modern).
 
 ## Build Steps
