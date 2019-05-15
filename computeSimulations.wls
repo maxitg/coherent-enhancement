@@ -51,24 +51,40 @@ generateInputs[parameterDistributions_, seed_, n_] :=
 minSubhorizonEfoldings = 5;
 
 
-simulate[lagrangian_, initialConditions_, inputs_, options_] := Module[
-		{hash, filename, results, counter},
-	hash = Hash[{PacletInformation["InflationSimulator"], DownValues[simulate],
-			lagrangian,
-			(lagrangian[MapIndexed[#2[[1, 1]] &, inputs[[1]]]]
-				@@ Through[initialConditions[[All, 1]][t]])[t],
-			initialConditions, inputs, options}];
+Attributes[cachedResult] = {HoldRest};
+
+
+cachedResult[hashExpression_, function_] := Module[
+		{hash, filename, result},
+	hash = Hash[hashExpression];
 	filename = FileNameJoin[{cacheDirectory, IntegerString[hash, 16] <> ".wxf"}];
 	If[FileExistsQ[filename],
 		(* read cache *)
-		Print["Using cached simulation results"];
+		Print["Using cached results"];
 		Import[filename, "WXF"],
 		(* no cache, compute from scratch *)
+		result = function;
+		Export[filename, result, "WXF"];
+		result
+	]
+]
+
+
+simulate[lagrangian_, initialConditions_, inputs_, options_] := cachedResult[
+	{PacletInformation["InflationSimulator"],
+		DownValues[simulate],
+		lagrangian,
+		(lagrangian[MapIndexed[#2[[1, 1]] &, inputs[[1]]]]
+			@@ Through[initialConditions[[All, 1]][t]])[t],
+		initialConditions,
+		inputs,
+		options},
+	Module[{counter},
 		counter = 0;
 		SetSharedVariable[counter];
 		SetSharedFunction[Print];
 		SetOptions[$Output, FormatType -> OutputForm];
-		results = ParallelMap[Module[{L, evolution, result, c, exitValues},
+		ParallelMap[Module[{L, evolution, result, c, exitValues},
 			ClearSystemCache[];
 			L = (lagrangian[#] @@ Through[initialConditions[[All, 1]][t]])[t];
 			evolution = InflationEvolution[L, initialConditions /. #, t, options];
@@ -105,11 +121,8 @@ simulate[lagrangian_, initialConditions_, inputs_, options_] := Module[
 				If[Quotient[100 c, Length[inputs]] >
 						Quotient[100 (c - 1), Length[inputs]],
 					Print[Quotient[100 c, Length[inputs]], "%..."]];
-			result] &, inputs];
-		Export[filename, results, "WXF"];
-		results
-	]
-];
+			result] &, inputs]
+		]]
 
 
 (* ::Subsection:: *)
@@ -480,44 +493,114 @@ evaluateModel[<|
 (*LVS*)
 
 
-lvsLagrangian[\[Eta]_, h11_, h12_, S1_, W0_, As_, \[Gamma]s_, Ab_, \[Gamma]b_, \[Tau]s0_, \[Theta]s0_, \[Tau]b0_][\[Theta]b_, t_] :=
-    Module[{\[ScriptCapitalV], \[Chi], \[Xi], \[Alpha], d, q, c, cs, cb, csb, cbb},
-  \[ScriptCapitalV] = \[Eta] (\[Tau]b0^(3 / 2) - \[Tau]s0^(3 / 2));
-  \[Chi] = h11 - h12;
-  \[Xi] = -Zeta[3] \[Chi] / (16 \[Pi]^3);
-  \[Alpha] = 1/2 \[Xi] S1^(3 / 2);
-  q = Length[Ab];
-  d = S1 (\[ScriptCapitalV] + \[Alpha])^2 (2 \[ScriptCapitalV] - \[Alpha]);
-  c = 1 / d (
-    3 / 2 \[Alpha] W0^2
-    + Exp[-2 \[Gamma]s \[Tau]s0] As^2 (
-      4 (
-        \[Gamma]s \[Tau]s0
-        + 1 / 3 \[Gamma]s^2 (\[Tau]s0^2 + 2 \[Tau]s0^(1 / 2) \[Tau]b0^(3 / 2) - \[Alpha] \[Tau]s0^(1 / 2) / \[Eta])
-      ) (\[ScriptCapitalV] + \[Alpha]) + 3 / 2 \[Alpha])
-    + Sum[Exp[-2 \[Gamma]b[[n]] \[Tau]b0] Ab[[n]]^2 (
-      4 (
-        \[Gamma]b[[n]] \[Tau]b0
-        + 1 / 3 \[Gamma]b[[n]]^2 (
-          \[Tau]b0^2 + 2 \[Tau]b0^(1 / 2) \[Tau]s0^(3 / 2) + \[Alpha] \[Tau]b0^(1 / 2) / \[Eta])
-      ) (\[ScriptCapitalV] + \[Alpha]) + 3 / 2 \[Alpha]), {n, q}]);
-  cs = 1 / d (4 \[Gamma]s \[Tau]s0 (\[ScriptCapitalV] + \[Alpha]) + 3 \[Alpha]) Exp[-\[Gamma]s \[Tau]s0] W0 As;
-  cb[n_] := 1 / d (4 \[Gamma]b[[n]] \[Tau]b0 (\[ScriptCapitalV] + \[Alpha]) + 3 \[Alpha]) Exp[-\[Gamma]b[[n]] \[Tau]b0] W0 Ab[[n]];
-  csb[n_] := 1 / d (4 (\[Gamma]s \[Tau]s0 + \[Gamma]b[[n]] \[Tau]b0 + 2 \[Gamma]s \[Gamma]b[[n]] \[Tau]s0 \[Tau]b0) (\[ScriptCapitalV] + \[Alpha]) + 3 \[Alpha])
-    Exp[-\[Gamma]s \[Tau]s0 - \[Tau]b0 \[Gamma]b[[n]]] As Ab[[n]];
-  cbb[n_, m_] := (1 / d) Exp[-(\[Gamma]b[[n]] + \[Gamma]b[[m]]) \[Tau]b0] Ab[[n]] Ab[[m]] (
-    4 (
-      (\[Gamma]b[[n]] + \[Gamma]b[[m]]) \[Tau]b0
-      + (2 / 3) \[Gamma]b[[n]] \[Gamma]b[[m]] (
-        \[Tau]b0^2 + 2 \[Tau]s0^(3 / 2) \[Tau]b0^(1 / 2) + \[Alpha] \[Tau]b0^(1 / 2) / \[Eta])
-    ) (\[ScriptCapitalV] + \[Alpha])
-    + 3 \[Alpha]);
-  c
-  + cs Cos[\[Gamma]s \[Theta]s0]
-  + Sum[cb[n] Cos[\[Gamma]b[[n]] \[Theta]b], {n, q}]
-  + Sum[csb[n] Cos[\[Gamma]s \[Theta]s0 - \[Gamma]b[[n]] \[Theta]b], {n, q}]
-  + Sum[cbb[n, m] Cos[(\[Gamma]b[[n]] - \[Gamma]b[[m]]) \[Theta]b], {n, q}, {m, n + 1, q}]
+(* ::Subsection:: *)
+(*Generation of potential from Kahler potential*)
+
+
+(* ::Text:: *)
+(*The code below applies for any supergravity theory with a Kahler potential and a superpotential.*)
+
+
+Derivative[n_][Conjugate][___] := 0
+
+
+fieldMetric[kahlerPotential_, fields_] :=
+  Table[D[kahlerPotential, a, ab], {a, fields}, {ab, Conjugate /@ fields}]
+
+
+inverseFieldMetric[args___] := Inverse[fieldMetric[args]]
+
+
+contractedFieldMetric[kahlerPotential_, fields_] := (
+  D[kahlerPotential, {fields}]
+    . inverseFieldMetric[kahlerPotential, fields]
+    . D[kahlerPotential, {Conjugate /@ fields}])
+
+
+covariantD[kahlerPotential_, superpotential_, field_] :=
+  D[superpotential, field] + D[kahlerPotential, field] superpotential
+
+
+kineticEnergy[kahlerPotential_, fieldsExpansion_, time_] := Simplify[
+  D[fieldsExpansion[[All, 1]], time]
+    . fieldMetric[kahlerPotential, fieldsExpansion[[All, 1]]]
+    . Conjugate /@ D[fieldsExpansion[[All, 1]], time]
+      /. Join[fieldsExpansion, D[fieldsExpansion, time]]
+      /. Conjugate[x_] :> x]
+
+
+potentialSimplify[fieldsExpansion_][potential_] :=
+  Simplify @ Expand[Expand[potential]
+    /. fieldsExpansion
+    /. Conjugate[x_] :> x
+    /. Exp[e_] :> ComplexExpand[Exp[e]]]
+
+
+potential[kahlerPotential_, superpotential_, fieldsExpansion_] := Module[{
+    fields, inverseMetricExplicit, metricContracted, expKahler,
+    superpotentialConjugate},
+  fields = fieldsExpansion[[All, 1]];
+  inverseMetricExplicit = Simplify[
+    Simplify[inverseFieldMetric[kahlerPotential, fields]]
+      /. fieldsExpansion
+      /. Conjugate[x_] :> x];
+  metricContracted = Simplify[
+    contractedFieldMetric[kahlerPotential, fields]
+      /. fieldsExpansion
+      /. Conjugate[x_] :> x];
+  expKahler = Simplify[Exp[kahlerPotential]
+    /. fieldsExpansion
+    /. Conjugate[x_] :> x];
+  superpotentialConjugate = superpotential /. Thread[fields -> Conjugate /@ fields];
+  Simplify[expKahler (
+    potentialSimplify[fieldsExpansion][D[superpotential, {fields}]
+        . inverseMetricExplicit
+        . D[superpotentialConjugate, {Conjugate /@ fields}]]
+      + potentialSimplify[fieldsExpansion][D[kahlerPotential, {fields}]
+        . inverseMetricExplicit
+        . D[superpotentialConjugate, {Conjugate /@ fields}]
+        * superpotential
+      + D[kahlerPotential, {Conjugate /@ fields}]
+        . inverseMetricExplicit
+        . D[superpotential, {fields}]
+        * superpotentialConjugate]
+      + potentialSimplify[fieldsExpansion][metricContracted
+        * superpotential
+        * superpotentialConjugate]
+      - potentialSimplify[fieldsExpansion][3
+        * superpotential
+        * superpotentialConjugate])]
 ]
+
+
+lagrangian[kahlerPotential_, superpotential_, fieldsExpansion_, time_] := cachedResult[
+  {DownValues /@ {
+      fieldMetric, inverseFieldMetric, contractedFieldMetric, covariantD,
+      kineticEnergy, potentialSimplify, potential, lagrangian},
+    kahlerPotential, superpotential, fieldsExpansion, time},
+  kineticEnergy[kahlerPotential, fieldsExpansion, time]
+    - potential[kahlerPotential, superpotential, fieldsExpansion]]
+
+
+(* ::Subsubsection:: *)
+(*LVS potential*)
+
+
+Print["Deriving LVS lagrangian..."];
+
+
+lvsLagrangian[
+    \[Eta]_, h11_, h12_, S1_, W0_, As_, \[Gamma]s_, {Ab1_, Ab2_, Ab3_}, {\[Gamma]b1_, \[Gamma]b2_, \[Gamma]b3_}][
+      \[Tau]s_, \[Theta]s_, \[Tau]b_, \[Theta]b_][
+        t_] =
+  lagrangian[
+    -Log[2 S1] - 2 Log[
+      \[Eta] ((Tb[t] + Tb[t]\[Conjugate])^(3/2)
+        - (Ts[t] + Ts[t]\[Conjugate])^(3/2)) / 2^(3/2)
+        - 1/2 S1^(3/2) Zeta[3] (h11 - h12) / (8 \[Pi]^3)],
+    W0 + {Ab1, Ab2, Ab3}.Exp[-{\[Gamma]b1, \[Gamma]b2, \[Gamma]b3} Tb[t]] + As Exp[-\[Gamma]s Ts[t]],
+    {Tb[t] -> I \[Theta]b[t] + \[Tau]b[t], Ts[t] -> I \[Theta]s[t] + \[Tau]s[t]},
+    t];
 
 
 (* ::Section:: *)
