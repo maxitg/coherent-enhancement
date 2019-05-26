@@ -236,6 +236,39 @@ plot["fieldRange_fStatic_ratio", specs_, output_] := ListPlot[
 			@ If[Length[specs["fieldLabels"]] == 1, specs["fieldLabels"][[1]], "\[Phi]"]]
 
 
+plot[{"density", sortingFunction_}, specs_, output_] := Module[{
+		chosenExample, L, time, evolution, densityFunction, initialDensity},
+	chosenExample = First @ SortBy[output, sortingFunction];
+	Print["Using example: ", chosenExample];
+	L = (specs["lagrangian"][#]
+			@@ Through[specs["initialConditions"][[All, 1]][time]])[time] &
+		@ chosenExample;
+	evolution = InflationEvolution[
+		L,
+		specs["initialConditions"] /. chosenExample,
+		time,
+		Lookup[specs, "evolutionOptions", {}]];
+	densityFunction =
+		InflatonDensity[L, Through[specs[["initialConditions"]][[All, 1]][time]], time]
+			/. evolution;
+	initialDensity = densityFunction /. time -> 0;
+	ParametricPlot[
+		Evaluate[{
+			evolution["Efoldings"][time] - evolution["TotalEfoldings"],
+			densityFunction / initialDensity}],
+		{time, 0, evolution["IntegrationTime"]},
+		PlotRange -> All,
+		Frame -> True,
+		AspectRatio -> 1 / GoldenRatio,
+		PlotPoints -> 1000,
+		FrameLabel -> {
+			label[italicLabel["N"]],
+			label[ratioLabel[
+				italicLabel["\[Rho]"],
+				subscriptLabel[italicLabel["\[Rho]"], plainLabel["0"]]]]}]
+]
+
+
 (* ::Subsection:: *)
 (*Figure captions*)
 
@@ -346,7 +379,8 @@ evaluateModel[<|
 		"fieldRange_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
-		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05}},
+		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
+		{"density", -#["r"] &}},
 	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
 	"caption" -> "Simulation results for the global supersymmetry model " <>
 		"Eq.~(\\ref{eq:supersymmetry:Vslow}). " <>
@@ -400,7 +434,8 @@ evaluateModel[<|
 		"fieldRange_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
-		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05}},
+		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
+		{"density", -#["r"] &}},
 	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
 	"caption" -> "Simulation results for the supergravity model " <>
 		"Eq.~(\\ref{eq:supergravity:Vslow3}). " <>
