@@ -136,7 +136,8 @@ planckMassLabel = subscriptLabel[italicLabel["M"], plainLabel["P"]];
 label[x_] := traditionalLabel[If[Head[$label[x]] === $label, x, $label[x]]]
 
 
-$label["r"] = italicLabel["r"];
+$label["r"] = $label["TensorToScalarRatio"] = italicLabel["r"];
+$label["ScalarSpectralIndex"] = subscriptLabel[italicLabel["n"], italicLabel["s"]];
 $label["f"] = ratioLabel[italicLabel["f"], planckMassLabel];
 $label["fStaticUnits"] = subscriptLabel[italicLabel["f"], italicLabel["e"]];
 $label["fStatic"] = ratioLabel[$label["fStaticUnits"], planckMassLabel];
@@ -148,6 +149,8 @@ $label["fieldRangeUnitless", field_] :=
 $label["pivotEfoldings"] = subscriptLabel[italicLabel["N"], plainLabel["pivot"]];
 $label["VNormalized"] = ratioLabel[
 	italicLabel["V"], subscriptLabel[italicLabel["V"], plainLabel["max"]]];
+$label["NonGaussianityAmplitude"] = subscriptLabel[italicLabel["f"], italicLabel["NL"]];
+$label["Alpha1"] = subscriptLabel[italicLabel["\[Alpha]"], plainLabel["1"]];
 
 
 figureName[name_String] := name <> ".pdf"
@@ -313,6 +316,9 @@ genericParameterDistributions = <|
 (*Supersymmetry*)
 
 
+Print["Starting supersymmetry..."];
+
+
 supersymmetryLagrangian[f_, G_, B_: 1][bm_][t_] := 1/2 D[bm, t]^2 - 4 f^4 B^2 (
 	Sum[
 		l G[[l]] r G[[r]] (1 - Cos[r / Sqrt[2] bm / f]),
@@ -327,7 +333,7 @@ supersymmetryLagrangian[f_, G_, B_: 1][bm_][t_] := 1/2 D[bm, t]^2 - 4 f^4 B^2 (
 bMinusFieldLabel = subscriptLabel[italicLabel["b"], plainLabel["-"]];
 
 
-supersymmetrySpecs = <|
+evaluateModel[<|
 	"name" -> "supersymmetry",
 	"lagrangian" -> (supersymmetryLagrangian[#["f"], {0, 0, 0, 1, #["G5"]}] &),
 	"initialConditions" -> {{bm, "fieldInitialOverF" "f", 0}},
@@ -353,11 +359,14 @@ supersymmetrySpecs = <|
 		"the values of $n_s$, $r$, and $f_e$. " <>
 		"Finally, $f / M_\\text{P} \\sim <*distribution[\"f\"]*>$, " <>
 		"$b_{-, \\text{init}} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
-		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
+		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>];
 
 
 (* ::Section:: *)
 (*Supergravity*)
+
+
+Print["Starting supergravity..."]
 
 
 supergravityLagrangian[f_, \[Gamma]_, A_][bm_][t_] := 1/2 D[bm, t]^2 - 4 Exp[2 f^2] Sum[
@@ -376,7 +385,7 @@ supergravityLagrangian[f_, \[Gamma]_, A_][bm_][t_] := 1/2 D[bm, t]^2 - 4 Exp[2 f
 	{n, Length[\[Gamma]]}, {m, Length[\[Gamma]]}]
 
 
-supergravitySpecs = <|
+evaluateModel[<|
 	"name" -> "supergravity",
 	"lagrangian" ->
 		(supergravityLagrangian[#["f"], {1, 2, 3}, {1, #["A2"], #["A3"]}] &),
@@ -402,14 +411,95 @@ supergravitySpecs = <|
 		"$A_3 \\sim <*distribution[\"A3\", {5, 4}]*>$, " <>
 		"$f / M_\\text{P} \\sim <*distribution[\"f\"]*>$, " <>
 		"$b_{-, \\text{init}} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
-		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>;
+		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>];
+
+
+(* ::Section:: *)
+(*DBI*)
+
+
+Print["Starting DBI..."];
+
+
+Print["DBI: Reading simulation results..."];
+
+
+dbiData = Import["data/dbi.wxf"];
+dbiConsistent = Select[
+	ExperimentallyConsistentInflationQ[#["ScalarSpectralIndex"], #["TensorToScalarRatio"]]
+		&& #["f"] <= 1
+		&& #["TotalEfoldingsCount"] - #["PivotEfoldingsCount"] >= 5 &] @ dbiData;
+
+
+Print["DBI: Computing effective axion decay constant..."];
+
+
+dbiConsistentWithFDynamic = Join[#, <|"fDynamic" -> 1 / Sqrt[
+	1 - #["ScalarSpectralIndex"] - #["TensorToScalarRatio"] / 4]|>] & /@ dbiConsistent;
+
+
+Print["DBI: generating figures..."];
+
+
+aMinusFieldLabel = subscriptLabel[italicLabel["a"], plainLabel["-"]];
+
+
+dbiSpecs = <|
+	"name" -> "DBI",
+	"pointCount" -> Length[dbiConsistent],
+	"figures" -> {
+		{ListPlot, "ScalarSpectralIndex", "TensorToScalarRatio"},
+		{ListLogLogPlot, "Alpha1", "NonGaussianityAmplitude"},
+		{ListPlot, "f", "fDynamic"}},
+	"fieldLabels" -> <|bm -> aMinusFieldLabel|>,
+	"caption" -> "Simulation results for the DBI model " <>
+		"Eq.~(\\ref{eq:dbi:lagrangian}). " <>
+		"Simulation consisted of the same $0.5 \\times 10^6$ points as " <>
+		"Fig.~(1) of~\\cite{Nath:2018xxe}, " <>
+		"out of which `totalPoints` " <>
+		"displayed are consistent with experimental data on $r$ and $n_s$. " <>
+		"Points are distributed according to the following: " <>
+		"$\\alpha_1 \\sim X_{0, \\infty}$, $\\alpha_2 = \\alpha_3 = 0$ " <>
+		"$T = 10^{-12} M_\\text{P}^4$, " <>
+		"$f \\sim X_{0, \\infty} M_\\text{P}$, " <>
+		"$\\tilde\\beta \\sim X_{0, \\infty}$, " <>
+		"$m = 6$, " <>
+		"${\\cal{G}}_1 = {\\cal{G}}_2 = {\\cal{G}}_3 = 0$, ${\\cal{G}}_4 = 1$, " <>
+		"${\\cal{G}}_5 \\sim {\\cal{G}}_6 \\sim " <>
+		"\\mathcal{U}\\left\\{-1, 1\\right\\} \\times X_{0, \\infty}$, " <>
+		"$N_{\\rm pivot} \\sim \\mathcal{U}\\left(50, 60\\right)$, " <>
+		"$a_{-, 0} \\sim \\mathcal{U}\\left(0, 2\\pi\\right) \\times f$, " <>
+		"$\\dot a_{-, 0} \\sim \\mathcal{U}\\left(-1, 1\\right) " <>
+		"\\times \\left(2 \\sqrt{T}/\\left(\\sqrt{2} \\sqrt{\\alpha_1} + " <>
+		"2\\right)^{1/2}\\right)$ " <>
+		"where $X_{0, \\infty} = \\mathcal{U}\\left\\{X_{0, 1}, " <>
+		"1 / X_{0, 1}\\right\\}$, " <>
+		"$X_{0, 1} = \\mathcal{U}\\left(0, 1\\right)$, " <>
+		"$\\mathcal{U}$ refers to a uniform distribution, " <>
+		"and the distribution of $\\dot a_{-, 0}$ is chosen such that " <>
+		"the expression under the square root in Eq.~(\\ref{eq:dbi:lagrangian}) " <>
+		"is positive. " <>
+		"Points are further filtered such that " <>
+		"the mass of the inflaton $m_{a_-} < 0.1 M_\\text{P}$. " <>
+		"Note that despite no fine-tuning being present in the distribution above, " <>
+		"a significant fraction of points is consistent with " <>
+		"experimental constraints."|>;
+
+
+makeFigure[dbiSpecs, #, dbiConsistentWithFDynamic] & /@ dbiSpecs[["figures"]];
+
+
+Print["DBI: generating captions..."]
+
+
+makeCaption[dbiSpecs, dbiConsistentWithFDynamic];
+
+
+Print["DBI: done."];
 
 
 (* ::Section:: *)
 (*Evaluation*)
-
-
-evaluateModel /@ {supersymmetrySpecs, supergravitySpecs};
 
 
 Print["All done."];
