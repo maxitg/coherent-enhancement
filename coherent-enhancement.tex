@@ -734,7 +734,24 @@ However, we will use Eqs.~(\ref{eq:slowRollParametersDynamic}) which are indepen
 
 To demonstrate the validity of our procedure, we sample the parameter space of the model Eq.~(\ref{eq:dbi:lagrangian}) by setting $T = 1$, $\mathcal{G}_1 = \mathcal{G}_2 = \mathcal{G}_3 = 0$, $\mathcal{G}_4 = 1$, and varying $\mathcal{G}_5$, $\mathcal{G}_6$, $\alpha_1$, $f$, $\tilde\beta$, and the pivot e-foldings count $N_\text{pivot}$.
 This corresponds to Fig.~(1) of~\cite{Nath:2018xxe}.
-We then select parameter choices than produced at least $N_\text{pivot}$ number of e-foldings, and plot the true axion decay constant $f$ vs. the effective axion decay constant $f_e$ on Fig.~(\ref{fig:DBI:parameters}).
+We then select parameter choices than produced at least $N_\text{pivot}$ number of e-foldings, and plot the true axion decay constant $f$ vs. the effective axion decay constant $f_e$ on Fig.~(\ref{fig:DBI}).
+
+\begin{figure}
+  \centering
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/DBI_ScalarSpectralIndex_TensorToScalarRatio.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/DBI_Alpha1_NonGaussianityAmplitude.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/DBI_f_fDynamic.pdf}
+  \end{subfigure}
+  \caption{\protect\input{figures/DBI.txt}
+    Top left panel is a plot of the ratio $r$ of the tensor to scalar power spectrum vs the scalar spectral index $n_s$.
+    Top right panel shows the values of non-Gaussianity parameter $f_{NL}^\text{equil}$ as a function of $\alpha_1$.
+    Bottom panel shows that the values of the effective axion decay constant $f_{eH}$ are independent of the true axion decay constant $f$.} \label{fig:DBI}
+\end{figure}
 
 % TODO(maxitg): Simulation part needs to be added here.
 
