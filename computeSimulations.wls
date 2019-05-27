@@ -246,9 +246,16 @@ plot["ns_r", specs_, output_] := Module[{
 			EdgeForm[ColorData[97, 1]],
 			Polygon @ Import["data/PlanckConstraints-TT_TE_EE_lowP-95CL.csv"][[2 ;; ]]}],
 		pointsPlot,
+		(* https://mathematica.stackexchange.com/a/29833 *)
+		With[{d = .2},
+			Graphics[{
+				White,
+				FilledCurve[{
+				{Line[ImageScaled /@ {
+						{-d, -d}, {-d, 1 + d}, {1 + d, 1 + d}, {1 + d, -d}}]},
+				{Line[Scaled /@ {{0, 0}, {0, 1}, {1, 1}, {1, 0}}]}}]}]],
 		AspectRatio -> 1 / GoldenRatio,
 		PlotRange -> {{minNs, maxNs}, {minR, maxR}},
-		PlotRangePadding -> 0,
 		Frame -> True,
 		FrameLabel -> label /@ {"ns", "r"}]]
 
