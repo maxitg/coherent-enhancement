@@ -244,22 +244,6 @@ plot["ns_r", specs_, output_] := Module[{
 		FrameLabel -> label /@ {"ns", "r"}]]
 
 
-plot["fStatic_fDynamic", specs_, output_] := With[
-	{pointsPlot = plot[
-		{ListPlot, "fStatic", "fDynamic"},
-		specs["lagrangian"],
-		Select[#["consistentQ"] &][output]]},
-	Show[
-		Plot[
-			x,
-			{x, 0, 10},
-			PlotStyle -> Black,
-			Frame -> True,
-			FrameLabel -> {label["fStatic"], label["fDynamic"]},
-			Evaluate @ AbsoluteOptions[pointsPlot, PlotRange]],
-		pointsPlot]]
-
-
 plot[{"density", sortingFunction_}, specs_, output_] := Module[{
 		chosenExample, L, time, evolution, densityFunction, initialDensity},
 	chosenExample = First @ SortBy[Select[#["consistentQ"] &][output], sortingFunction];
@@ -331,6 +315,17 @@ makeCaption[specs_, results_] := Export[
 				"points" -> Length @ Select[#["consistentQ"] &] @ results|>]]
 
 
+makeFStaticFDynamicComparisonText[specs_, results_] := With[{
+	consistentResults = Select[#["consistentQ"] &][results]},
+	Export[
+		FileNameJoin[{figuresDirectory, specs["name"] <> "fRelativeDifferenceMax.txt"}],
+		ToString[Ceiling[100 Max[Abs[
+				1 - consistentResults[[All, "fDynamic"]]
+					/ consistentResults[[All, "fStatic"]]]]]]
+			<> "\\%"]
+]
+
+
 (* ::Subsection:: *)
 (*Evaluator*)
 
@@ -352,6 +347,7 @@ evaluateModel[modelSpecs_] := Module[{inputs, results, time},
 	Print[modelSpecs["name"] <> ": generating figures..."];
 	makeFigure[modelSpecs, #, results] & /@ modelSpecs["figures"];
 	Print[modelSpecs["name"] <> ": generating captions..."];
+	makeFStaticFDynamicComparisonText[modelSpecs, results];
 	makeCaption[modelSpecs, results];
 	Print[modelSpecs["name"] <> ": done."];
 ]
@@ -407,7 +403,6 @@ evaluateModel[<|
 	"figures" -> {
 		"ns_r",
 		{ListPlot, "f", "fStatic"},
-		"fStatic_fDynamic",
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
 		{"density", -#["r"] &}},
 	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
@@ -462,7 +457,6 @@ evaluateModel[<|
 	"figures" -> {
 		"ns_r",
 		{ListPlot, "f", "fStatic"},
-		"fStatic_fDynamic",
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
 		{"density", -#["r"] &}},
 	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
