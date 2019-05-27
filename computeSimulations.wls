@@ -79,13 +79,7 @@ simulate[lagrangian_, initialConditions_, inputs_, options_] := Module[
 				Join[
 					#,
 					Association @ Thread[
-						{"fDynamic",
-								"r",
-								"ns",
-								"exitFields",
-								"endFields",
-								"fStatic",
-								"consistentQ"} ->
+						{"fDynamic", "r", "ns", "exitFields", "fStatic", "consistentQ"} ->
 							Join[
 								exitValues = InflationValue[
 									L,
@@ -97,13 +91,6 @@ simulate[lagrangian_, initialConditions_, inputs_, options_] := Module[
 										"ScalarSpectralIndex",
 										initialConditions[[All, 1]]},
 									"HorizonExit"],
-								InflationValue[
-									L,
-									evolution,
-									t,
-									#["pivotEfoldings"],
-									{initialConditions[[All, 1]]},
-									"End"],
 								InflatonLagrangianValue[
 									L,
 									Transpose[
@@ -152,9 +139,6 @@ $label["fStaticUnits"] = subscriptLabel[italicLabel["f"], italicLabel["e"]];
 $label["fStatic"] = ratioLabel[$label["fStaticUnits"], planckMassLabel];
 $label["fDynamic"] =
 	ratioLabel[subscriptLabel[italicLabel["f"], italicLabel["eH"]], planckMassLabel];
-$label["fieldRange", field_] := rowLabel[{italicLabel["\[CapitalDelta]"], field}];
-$label["fieldRangeUnitless", field_] :=
-	ratioLabel[$label["fieldRange", field], planckMassLabel];
 $label["pivotEfoldings"] = subscriptLabel[italicLabel["N"], plainLabel["pivot"]];
 $label["VNormalized"] = ratioLabel[
 	italicLabel["V"], subscriptLabel[italicLabel["V"], plainLabel["max"]]];
@@ -274,28 +258,6 @@ plot["fStatic_fDynamic", specs_, output_] := With[
 			FrameLabel -> {label["fStatic"], label["fDynamic"]},
 			Evaluate @ AbsoluteOptions[pointsPlot, PlotRange]],
 		pointsPlot]]
-
-
-plot["fieldRange_fStatic_ratio", specs_, output_] := Module[{consistentOutput},
-	consistentOutput = Select[#["consistentQ"] &][output];
-	ListPlot[
-		Transpose[{
-			Norm /@ (consistentOutput[[All, "exitFields"]]
-					- consistentOutput[[All, "endFields"]]) /
-				consistentOutput[[All, "fStatic"]],
-			Norm /@ (consistentOutput[[All, "exitFields"]]
-					- consistentOutput[[All, "endFields"]])}],
-		PlotRange -> All,
-		PlotStyle -> ColorData[97, 3],
-		Frame -> True,
-		FrameLabel -> {
-			label[ratioLabel[
-				$label["fieldRange", #], $label["fStaticUnits"]]],
-			label[$label["fieldRangeUnitless", #]]} &
-				@ If[
-					Length[specs["fieldLabels"]] == 1,
-					specs["fieldLabels"][[1]],
-					"\[Phi]"]]]
 
 
 plot[{"density", sortingFunction_}, specs_, output_] := Module[{
@@ -444,7 +406,6 @@ evaluateModel[<|
 		"G5" -> UniformDistribution[{-0.88931, -0.88920}]|>],
 	"figures" -> {
 		"ns_r",
-		"fieldRange_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
@@ -500,7 +461,6 @@ evaluateModel[<|
 		"A3" -> UniformDistribution[{0.0030, 0.0037}]|>],
 	"figures" -> {
 		"ns_r",
-		"fieldRange_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
