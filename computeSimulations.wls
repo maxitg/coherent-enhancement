@@ -222,25 +222,35 @@ plot[{func_, p1_, p2_}, specs_, output_] := func[
 
 plot["ns_r", specs_, output_] := Module[{
 		consistentOutput, inconsistentOutput, func, consistentRange,
-		minNs, minR, maxNs, maxR},
+		minNs, minR, maxNs, maxR, pointsPlot},
 	{consistentOutput, inconsistentOutput} = Table[
 		Select[func @ #["consistentQ"] &][output][[All, {"ns", "r"}]],
 		{func, {Identity, Not}}];
 	{consistentRange["ns"], consistentRange["r"]} =
 		- Subtract @@ MinMax[consistentOutput[[All, #]]] & /@ {"ns", "r"};
-	{minNs, minR} = Max[
-		Min[consistentOutput[[All, #]]] - 0.5 consistentRange[#],
-		Min[inconsistentOutput[[All, #]]]] & /@ {"ns", "r"};
+	minNs = Max[
+		Min[consistentOutput[[All, "ns"]]] - 0.5 consistentRange["ns"],
+		Min[inconsistentOutput[[All, "ns"]]]];
+	minR = 0;
 	{maxNs, maxR} = Min[
 		Max[consistentOutput[[All, #]]] + 0.5 consistentRange[#],
 		Max[inconsistentOutput[[All, #]]]] & /@ {"ns", "r"};
-ListPlot[
-	{Select[!#["consistentQ"] &][output][[All, {"ns", "r"}]],
-		Select[#["consistentQ"] &][output][[All, {"ns", "r"}]]},
-	PlotRange -> {{minNs, maxNs}, {minR, maxR}},
-	PlotStyle -> {ColorData[97, 4], ColorData[97, 3]},
-	Frame -> True,
-	FrameLabel -> label /@ {"ns", "r"}]]
+	pointsPlot = ListPlot[
+		Select[minNs <= #[[1]] <= maxNs && minR <= #[[2]] <= maxR &] /@
+			{Select[!#["consistentQ"] &][output][[All, {"ns", "r"}]],
+				Select[#["consistentQ"] &][output][[All, {"ns", "r"}]]},
+		PlotStyle -> {ColorData[97, 4], ColorData[97, 3]}];
+	Show[
+		Graphics[{
+			Append[Lighter @ ColorData[97, 1], 0.5],
+			EdgeForm[ColorData[97, 1]],
+			Polygon @ Import["data/PlanckConstraints-TT_TE_EE_lowP-95CL.csv"][[2 ;; ]]}],
+		pointsPlot,
+		AspectRatio -> 1 / GoldenRatio,
+		PlotRange -> {{minNs, maxNs}, {minR, maxR}},
+		PlotRangePadding -> 0,
+		Frame -> True,
+		FrameLabel -> label /@ {"ns", "r"}]]
 
 
 plot["fStatic_fDynamic", specs_, output_] := With[
