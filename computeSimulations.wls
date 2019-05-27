@@ -244,22 +244,6 @@ plot["ns_r", specs_, output_] := Module[{
 		FrameLabel -> label /@ {"ns", "r"}]]
 
 
-plot["fStatic_fDynamic", specs_, output_] := With[
-	{pointsPlot = plot[
-		{ListPlot, "fStatic", "fDynamic"},
-		specs["lagrangian"],
-		Select[#["consistentQ"] &][output]]},
-	Show[
-		Plot[
-			x,
-			{x, 0, 10},
-			PlotStyle -> Black,
-			Frame -> True,
-			FrameLabel -> {label["fStatic"], label["fDynamic"]},
-			Evaluate @ AbsoluteOptions[pointsPlot, PlotRange]],
-		pointsPlot]]
-
-
 plot[{"density", sortingFunction_}, specs_, output_] := Module[{
 		chosenExample, L, time, evolution, densityFunction, initialDensity},
 	chosenExample = First @ SortBy[Select[#["consistentQ"] &][output], sortingFunction];
@@ -407,7 +391,6 @@ evaluateModel[<|
 	"figures" -> {
 		"ns_r",
 		{ListPlot, "f", "fStatic"},
-		"fStatic_fDynamic",
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
 		{"density", -#["r"] &}},
 	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
@@ -462,7 +445,6 @@ evaluateModel[<|
 	"figures" -> {
 		"ns_r",
 		{ListPlot, "f", "fStatic"},
-		"fStatic_fDynamic",
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
 		{"density", -#["r"] &}},
 	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
