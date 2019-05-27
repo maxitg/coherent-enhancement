@@ -46,7 +46,7 @@ In each case, all the moduli are stabilized and the inflationary model consisten
 As is well known many of the problems associated with Big Bang cosmology which include
 the flatness problem, the horizon problem, and the monopole problem are resolved by inflation~\cite{Guth:1980zm, Starobinsky:1980te, Linde:1981mu, Albrecht:1982wi, Sato:1980yn, Linde:1983gd}.
 Quantum fluctuations at the time of horizon exit carry significant information regarding specifics of the inflationary model~\cite{Mukhanov:1981xt, Hawking:1982cz, Starobinsky:1982ee, Guth:1982ec, Bardeen:1983qw, Cheung:2007st} which can be extracted from cosmic microwave background (CMB) radiation anisotropy.
-The data from the Planck experiment~\cite{Adam:2015rua, Ade:2015lrj, Array:2015xqh} has helped constrain inflation models excluding some and narrowing down the parameter space of others.
+The data from the Planck experiment~\cite{Akrami:2018vks, Akrami:2018odb, Array:2015xqh} has helped constrain inflation models excluding some and narrowing down the parameter space of others.
 One such model is so-called natural inflation based on a $U(1)$ shift symmetry which is described by a simple potential~\cite{Freese:1990rb, Adams:1992bn} $V\left(a\right) = \Lambda^4 \left(1 - \cos\left(\frac{b}{f}\right)\right)$, where $a$ is the axion field and $f$ is the axion decay constant.
 In this case, consistency with Planck data requires the axion decay constant to be significantly greater than the Planck mass $M_\text{P}$.
 However, an axion decay constant larger than the Planck mass is undesirable since a global symmetry is not preserved by quantum gravity unless it has a gauge origin.
@@ -55,7 +55,7 @@ It turns out that the reduction of the decay constant poses a problem, and sever
 
 A procedure for resolving the axion decay constant problem was proposed in~\cite{Nath:2017ihp}.
 One element of this analysis relies on a decomposition of the potential into a fast-roll and a slow-roll parts where the slow roll is controlled only by the inflaton field while the remaining fields enter in fast roll and are not relevant for inflation~\cite{Nath:2017ihp} (for a review of inflation in supersymmetric theories see, e.g.,~\cite{Nath:2016qzm}).
-An analysis within this model shows that one can obtain spectral indices as well as the ratio of the tensor to the scalar power spectrum consistent with the Planck data~\cite{Adam:2015rua, Ade:2015lrj, Array:2015xqh}.
+An analysis within this model shows that one can obtain spectral indices as well as the ratio of the tensor to the scalar power spectrum consistent with the Planck data~\cite{Akrami:2018vks, Akrami:2018odb, Array:2015xqh}.
 
 The outline of the rest of the paper is as follows.
 In section \ref{sec:Alignment} we give a brief introduction to the alignment mechanism.
@@ -73,7 +73,7 @@ An early work using QCD axions is the so-called natural inflation where the infl
 \end{equation}
 and $f$ is the axion decay constant.
 For a QCD axion $10^9 < f < 10^{12}$ GeV~\cite{Svrcek:2006yi}.
-For inflation one requires $f > 7 M_\text{P}$~\cite{Ade:2015lrj}.
+For inflation one requires $f > 7 M_\text{P}$~\cite{Akrami:2018odb}.
 However, $f > M_\text{P}$ is undesirable since global symmetry is not preserved by quantum gravity unless it has a gauge origin.
 Further, string theory prefers $f$ in the range $\left(10^{16} - 10^{18}\right)$ GeV~\cite{Svrcek:2006yi}.
 Thus to get a successful natural inflation is difficult.
@@ -298,7 +298,7 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
 \begin{figure}
   \centering
   \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/supersymmetry_f_r.pdf}
+    \includegraphics[width = \textwidth]{figures/supersymmetry_ns_r.pdf}
   \end{subfigure}
   \begin{subfigure}{0.45 \textwidth}
     \includegraphics[width = \textwidth]{figures/supersymmetry_fieldRange_fStatic_ratio.pdf}
@@ -316,7 +316,8 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
     \includegraphics[width = \textwidth]{figures/supersymmetry_potentialRange.pdf}
   \end{subfigure}
   \caption{\protect\input{figures/supersymmetry.txt}
-    Top left panel shows tensor-to-scalar ratios we obtained.
+    Top left panel shows tensor-to-scalar ratios vs. scalar spectral indices we obtained.
+    Blue region encloses the values consistent with Planck 2018 TT,TE,EE+lowE+lensing+BK14+BAO data at $95\%$ CL.
     Top right panel demonstrates that the differences between the values of the field at horizon exit and at the end of inflation are always smaller than the effective decay constant $f_e$.
     Below, the panel on the left demonstrates the coherent enhancement of the decay constant, and the right panel compares effective decay constants computed from the potential and from the Hubble parameter, black line corresponds to $f_{eH} = f_e$.
     Bottom left panel shows the evolution of density $\rho$ as a function of the number of e-foldings $N$ until the end of inflation for an example with the largest tensor-to-scalar ratio $r$ in our sample.
@@ -331,7 +332,7 @@ In order to verify consistency with experiment and evaluate $f_e$, we use Inflat
 For these simulations we begin by sampling a number of parameter sets as described in the caption of Fig.~(\ref{fig:supersymmetry}).
 We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
 We set initial field velocity $\dot b_{-, \text{init}} = 0$, and check that at least $N_\text{pivot} + N_\text{subhorizont}$ e-foldings are produced, where $N_\text{subhorizon} = 5$ is added to ensure velocity converges to its quasi-stationary value before horizon exit.
-Finally, if we have sufficient e-foldings, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}, \ref{eq:slowRollParametersDynamicFromStatic}, \ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Ade:2015lrj}.
+Finally, if we have sufficient e-foldings, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}, \ref{eq:slowRollParametersDynamicFromStatic}, \ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Akrami:2018odb}.
 If so, we evaluate $f_e$ and $f_{eH}$ at horizon exit using Eqs.~(\ref{eq:feFromPotential}, \ref{eq:feFromDynamicSlowRollParameters}).
 The results of this process can be seen on Fig.~(\ref{fig:supersymmetry}).
 
@@ -474,7 +475,7 @@ Note, the Lyth bound~\cite{Lyth:1996im} for slow-roll inflation is satisfied in 
 \begin{figure}
   \centering
   \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/supergravity_f_r.pdf}
+    \includegraphics[width = \textwidth]{figures/supergravity_ns_r.pdf}
   \end{subfigure}
   \begin{subfigure}{0.45 \textwidth}
     \includegraphics[width = \textwidth]{figures/supergravity_fieldRange_fStatic_ratio.pdf}
@@ -747,7 +748,7 @@ We then select parameter choices than produced at least $N_\text{pivot}$ number 
 \begin{figure}
   \centering
   \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/DBI_ScalarSpectralIndex_TensorToScalarRatio.pdf}
+    \includegraphics[width = \textwidth]{figures/DBI_ns_r.pdf}
   \end{subfigure}
   \begin{subfigure}{0.45 \textwidth}
     \includegraphics[width = \textwidth]{figures/DBI_Alpha1_NonGaussianityAmplitude.pdf}

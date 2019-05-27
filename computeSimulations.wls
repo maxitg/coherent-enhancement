@@ -75,12 +75,17 @@ simulate[lagrangian_, initialConditions_, inputs_, options_] := Module[
 			result = If[
 				evolution["TotalEfoldings"] >=
 						#["pivotEfoldings"] + minSubhorizonEfoldings &&
-					ExperimentallyConsistentInflationQ[
-						L, evolution, t, #["pivotEfoldings"]],
+					evolution["FinalDensitySign"] == 0,
 				Join[
 					#,
 					Association @ Thread[
-						{"fDynamic", "r", "exitFields", "endFields", "fStatic"} ->
+						{"fDynamic",
+								"r",
+								"ns",
+								"exitFields",
+								"endFields",
+								"fStatic",
+								"consistentQ"} ->
 							Join[
 								exitValues = InflationValue[
 									L,
@@ -89,6 +94,7 @@ simulate[lagrangian_, initialConditions_, inputs_, options_] := Module[
 									#["pivotEfoldings"],
 									{"EffectiveAxionDecayConstant",
 										"TensorToScalarRatio",
+										"ScalarSpectralIndex",
 										initialConditions[[All, 1]]},
 									"HorizonExit"],
 								InflationValue[
@@ -102,9 +108,11 @@ simulate[lagrangian_, initialConditions_, inputs_, options_] := Module[
 									L,
 									Transpose[
 										{initialConditions[[All, 1]],
-											exitValues[[3]]}],
+											exitValues[[4]]}],
 									t,
-									{"EffectiveAxionDecayConstant"}]]]],
+									{"EffectiveAxionDecayConstant"}],
+								{ExperimentallyConsistentInflationQ[
+									L, evolution, t, #["pivotEfoldings"]]}]]],
 				Nothing];
 				c = ++counter;
 				If[Quotient[100 c, Length[inputs]] >
@@ -137,7 +145,8 @@ label[x_] := traditionalLabel[If[Head[$label[x]] === $label, x, $label[x]]]
 
 
 $label["r"] = $label["TensorToScalarRatio"] = italicLabel["r"];
-$label["ScalarSpectralIndex"] = subscriptLabel[italicLabel["n"], italicLabel["s"]];
+$label["ns"] = $label["ScalarSpectralIndex"] =
+	subscriptLabel[italicLabel["n"], italicLabel["s"]];
 $label["f"] = ratioLabel[italicLabel["f"], planckMassLabel];
 $label["fStaticUnits"] = subscriptLabel[italicLabel["f"], italicLabel["e"]];
 $label["fStatic"] = ratioLabel[$label["fStaticUnits"], planckMassLabel];
@@ -177,7 +186,8 @@ plot[{"potentialRange", min_, max_, step_}, specs_, output_] := ListPlot[
 	ParallelTable[{bf, #[
 		Evaluate[With[{f = #[["f"]]},
 			specs["lagrangian"][#][f bf][t] /
-				specs["lagrangian"][#][f \[Pi] Sqrt[2]][t]] & /@ output]]},
+				specs["lagrangian"][#][f \[Pi] Sqrt[2]][t]] &
+					/@ Select[#["consistentQ"] &] @ output]]},
 	{bf, min, max, step}] & /@ {Min, Max},
 	Axes -> False,
 	Frame -> True,
@@ -203,14 +213,58 @@ plot[{"potential", parameters_, min_, max_}, specs_, output_] := Plot[
 
 
 plot[{func_, p1_, p2_}, specs_, output_] := func[
-	output[[All, {p1, p2}]],
+	Select[#["consistentQ"] &][output][[All, {p1, p2}]],
 	PlotRange -> All,
+	PlotStyle -> ColorData[97, 3],
 	Frame -> True,
 	FrameLabel -> label /@ {p1, p2}]
 
 
+plot["ns_r", specs_, output_] := Module[{
+		consistentOutput, inconsistentOutput, func, consistentRange,
+		minNs, minR, maxNs, maxR, pointsPlot},
+	{consistentOutput, inconsistentOutput} = Table[
+		Select[func @ #["consistentQ"] &][output][[All, {"ns", "r"}]],
+		{func, {Identity, Not}}];
+	{consistentRange["ns"], consistentRange["r"]} =
+		- Subtract @@ MinMax[consistentOutput[[All, #]]] & /@ {"ns", "r"};
+	minNs = Max[
+		Min[consistentOutput[[All, "ns"]]] - 0.5 consistentRange["ns"],
+		Min[inconsistentOutput[[All, "ns"]]]];
+	minR = 0;
+	{maxNs, maxR} = Min[
+		Max[consistentOutput[[All, #]]] + 0.5 consistentRange[#],
+		Max[inconsistentOutput[[All, #]]]] & /@ {"ns", "r"};
+	pointsPlot = ListPlot[
+		Select[minNs <= #[[1]] <= maxNs && minR <= #[[2]] <= maxR &] /@
+			{Select[!#["consistentQ"] &][output][[All, {"ns", "r"}]],
+				Select[#["consistentQ"] &][output][[All, {"ns", "r"}]]},
+		PlotStyle -> {ColorData[97, 4], ColorData[97, 3]}];
+	Show[
+		Graphics[{
+			Append[Lighter @ ColorData[97, 1], 0.5],
+			EdgeForm[ColorData[97, 1]],
+			Polygon @ Import["data/PlanckConstraints-TT_TE_EE_lowP-95CL.csv"][[2 ;; ]]}],
+		pointsPlot,
+		(* https://mathematica.stackexchange.com/a/29833 *)
+		With[{d = .2},
+			Graphics[{
+				White,
+				FilledCurve[{
+				{Line[ImageScaled /@ {
+						{-d, -d}, {-d, 1 + d}, {1 + d, 1 + d}, {1 + d, -d}}]},
+				{Line[Scaled /@ {{0, 0}, {0, 1}, {1, 1}, {1, 0}}]}}]}]],
+		AspectRatio -> 1 / GoldenRatio,
+		PlotRange -> {{minNs, maxNs}, {minR, maxR}},
+		Frame -> True,
+		FrameLabel -> label /@ {"ns", "r"}]]
+
+
 plot["fStatic_fDynamic", specs_, output_] := With[
-	{pointsPlot = plot[{ListPlot, "fStatic", "fDynamic"}, specs["lagrangian"], output]},
+	{pointsPlot = plot[
+		{ListPlot, "fStatic", "fDynamic"},
+		specs["lagrangian"],
+		Select[#["consistentQ"] &][output]]},
 	Show[
 		Plot[
 			x,
@@ -222,23 +276,31 @@ plot["fStatic_fDynamic", specs_, output_] := With[
 		pointsPlot]]
 
 
-plot["fieldRange_fStatic_ratio", specs_, output_] := ListPlot[
-	Transpose[{
-		Norm /@ (output[[All, "exitFields"]] - output[[All, "endFields"]]) /
-			output[[All, "fStatic"]],
-		Norm /@ (output[[All, "exitFields"]] - output[[All, "endFields"]])}],
-	PlotRange -> All,
-	Frame -> True,
-	FrameLabel -> {
-		label[ratioLabel[
-			$label["fieldRange", #], $label["fStaticUnits"]]],
-		label[$label["fieldRangeUnitless", #]]} &
-			@ If[Length[specs["fieldLabels"]] == 1, specs["fieldLabels"][[1]], "\[Phi]"]]
+plot["fieldRange_fStatic_ratio", specs_, output_] := Module[{consistentOutput},
+	consistentOutput = Select[#["consistentQ"] &][output];
+	ListPlot[
+		Transpose[{
+			Norm /@ (consistentOutput[[All, "exitFields"]]
+					- consistentOutput[[All, "endFields"]]) /
+				consistentOutput[[All, "fStatic"]],
+			Norm /@ (consistentOutput[[All, "exitFields"]]
+					- consistentOutput[[All, "endFields"]])}],
+		PlotRange -> All,
+		PlotStyle -> ColorData[97, 3],
+		Frame -> True,
+		FrameLabel -> {
+			label[ratioLabel[
+				$label["fieldRange", #], $label["fStaticUnits"]]],
+			label[$label["fieldRangeUnitless", #]]} &
+				@ If[
+					Length[specs["fieldLabels"]] == 1,
+					specs["fieldLabels"][[1]],
+					"\[Phi]"]]]
 
 
 plot[{"density", sortingFunction_}, specs_, output_] := Module[{
 		chosenExample, L, time, evolution, densityFunction, initialDensity},
-	chosenExample = First @ SortBy[output, sortingFunction];
+	chosenExample = First @ SortBy[Select[#["consistentQ"] &][output], sortingFunction];
 	Print["Using example: ", chosenExample];
 	L = (specs["lagrangian"][#]
 			@@ Through[specs["initialConditions"][[All, 1]][time]])[time] &
@@ -303,7 +365,8 @@ makeCaption[specs_, results_] := Export[
 		specs["caption"],
 		InsertionFunction -> (ToString[
 				# /. distribution[args___] :> distributionToTeX[specs, args]] &)][
-			<|"totalPoints" -> specs["pointCount"], "points" -> Length @ results|>]]
+			<|"totalPoints" -> Round[specs["pointCount"] pointCountMultiplier],
+				"points" -> Length @ Select[#["consistentQ"] &] @ results|>]]
 
 
 (* ::Subsection:: *)
@@ -380,7 +443,7 @@ evaluateModel[<|
 	"parameterDistributions" -> Join[genericParameterDistributions, <|
 		"G5" -> UniformDistribution[{-0.88931, -0.88920}]|>],
 	"figures" -> {
-		{ListPlot, "f", "r"},
+		"ns_r",
 		"fieldRange_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
@@ -390,7 +453,8 @@ evaluateModel[<|
 	"caption" -> "Simulation results for the global supersymmetry model " <>
 		"Eq.~(\\ref{eq:supersymmetry:Vslow}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
-		"`points` shown are consistent with experimental data on $r$ and $n_s$. " <>
+		"`points` shown in green are consistent " <>
+		"with experimental data on $r$ and $n_s$. " <>
 		"Here $q = 5$, $G_1 = G_2 = G_3 = 0$, $G_4 = 1$, " <>
 		"$G_5 \\sim <*distribution[\"G5\", {6, 5}]*>$, " <>
 		"where $\\mathcal{U}$ refers to a uniform distribution. " <>
@@ -435,7 +499,7 @@ evaluateModel[<|
 		"A2" -> UniformDistribution[{0.080, 0.085}],
 		"A3" -> UniformDistribution[{0.0030, 0.0037}]|>],
 	"figures" -> {
-		{ListPlot, "f", "r"},
+		"ns_r",
 		"fieldRange_fStatic_ratio",
 		{ListPlot, "f", "fStatic"},
 		"fStatic_fDynamic",
@@ -445,7 +509,8 @@ evaluateModel[<|
 	"caption" -> "Simulation results for the supergravity model " <>
 		"Eq.~(\\ref{eq:supergravity:Vslow3}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
-		"`points` shown are consistent with experimental data on $r$ and $n_s$. " <>
+		"`points` shown in green are consistent " <>
+		"with experimental data on $r$ and $n_s$. " <>
 		"Here $A_1 = 1$, " <>
 		"$A_2 \\sim <*distribution[\"A2\", {4, 3}]*>$, " <>
 		"$A_3 \\sim <*distribution[\"A3\", {5, 4}]*>$, " <>
@@ -465,17 +530,19 @@ Print["DBI: Reading simulation results..."];
 
 
 dbiData = Import["data/dbi.wxf"];
-dbiConsistent = Select[
-	ExperimentallyConsistentInflationQ[#["ScalarSpectralIndex"], #["TensorToScalarRatio"]]
-		&& #["f"] <= 1
-		&& #["TotalEfoldingsCount"] - #["PivotEfoldingsCount"] >= 5 &] @ dbiData;
+dbiFiltered = Join[
+		#,
+		<|"consistentQ" -> ExperimentallyConsistentInflationQ[#["ns"], #["r"]]|>] & /@
+	Select[
+		#["f"] <= 1
+			&& #["TotalEfoldingsCount"] - #["PivotEfoldingsCount"] >= 5 &] @ dbiData;
 
 
 Print["DBI: Computing effective axion decay constant..."];
 
 
-dbiConsistentWithFDynamic = Join[#, <|"fDynamic" -> 1 / Sqrt[
-	1 - #["ScalarSpectralIndex"] - #["TensorToScalarRatio"] / 4]|>] & /@ dbiConsistent;
+dbiFilteredWithFDynamic = Join[#, <|"fDynamic" -> 1 / Sqrt[
+	1 - #["ns"] - #["r"] / 4]|>] & /@ dbiFiltered;
 
 
 Print["DBI: generating figures..."];
@@ -486,9 +553,9 @@ aMinusFieldLabel = subscriptLabel[italicLabel["a"], plainLabel["-"]];
 
 dbiSpecs = <|
 	"name" -> "DBI",
-	"pointCount" -> Length[dbiConsistent],
+	"pointCount" -> Length[dbiFilteredWithFDynamic],
 	"figures" -> {
-		{ListPlot, "ScalarSpectralIndex", "TensorToScalarRatio"},
+		"ns_r",
 		{ListLogLogPlot, "Alpha1", "NonGaussianityAmplitude"},
 		{ListPlot, "f", "fDynamic"}},
 	"fieldLabels" -> <|bm -> aMinusFieldLabel|>,
@@ -496,8 +563,8 @@ dbiSpecs = <|
 		"Eq.~(\\ref{eq:dbi:lagrangian}). " <>
 		"Simulation consisted of the same $0.5 \\times 10^6$ points as " <>
 		"Fig.~(1) of~\\cite{Nath:2018xxe}, " <>
-		"out of which `totalPoints` " <>
-		"displayed are consistent with experimental data on $r$ and $n_s$. " <>
+		"out of which `totalPoints` shown in green " <>
+		"are consistent with experimental data on $r$ and $n_s$. " <>
 		"Points are distributed according to the following: " <>
 		"$\\alpha_1 \\sim X_{0, \\infty}$, $\\alpha_2 = \\alpha_3 = 0$ " <>
 		"$T = 10^{-12} M_\\text{P}^4$, " <>
@@ -526,13 +593,13 @@ dbiSpecs = <|
 		"experimental constraints."|>;
 
 
-makeFigure[dbiSpecs, #, dbiConsistentWithFDynamic] & /@ dbiSpecs[["figures"]];
+makeFigure[dbiSpecs, #, dbiFilteredWithFDynamic] & /@ dbiSpecs[["figures"]];
 
 
 Print["DBI: generating captions..."]
 
 
-makeCaption[dbiSpecs, dbiConsistentWithFDynamic];
+makeCaption[dbiSpecs, dbiFilteredWithFDynamic];
 
 
 Print["DBI: done."];
