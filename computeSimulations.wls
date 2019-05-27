@@ -358,7 +358,7 @@ makeCaption[specs_, results_] := Export[
 		specs["caption"],
 		InsertionFunction -> (ToString[
 				# /. distribution[args___] :> distributionToTeX[specs, args]] &)][
-			<|"totalPoints" -> specs["pointCount"],
+			<|"totalPoints" -> Round[specs["pointCount"] pointCountMultiplier],
 				"points" -> Length @ Select[#["consistentQ"] &] @ results|>]]
 
 
@@ -441,7 +441,8 @@ evaluateModel[<|
 	"caption" -> "Simulation results for the global supersymmetry model " <>
 		"Eq.~(\\ref{eq:supersymmetry:Vslow}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
-		"`points` shown are consistent with experimental data on $r$ and $n_s$. " <>
+		"`points` shown in green are consistent " <>
+		"with experimental data on $r$ and $n_s$. " <>
 		"Here $q = 5$, $G_1 = G_2 = G_3 = 0$, $G_4 = 1$, " <>
 		"$G_5 \\sim <*distribution[\"G5\", {6, 5}]*>$, " <>
 		"where $\\mathcal{U}$ refers to a uniform distribution. " <>
@@ -496,7 +497,8 @@ evaluateModel[<|
 	"caption" -> "Simulation results for the supergravity model " <>
 		"Eq.~(\\ref{eq:supergravity:Vslow3}). " <>
 		"Simulation consisted of a total of `totalPoints` points, out of which " <>
-		"`points` shown are consistent with experimental data on $r$ and $n_s$. " <>
+		"`points` shown in green are consistent " <>
+		"with experimental data on $r$ and $n_s$. " <>
 		"Here $A_1 = 1$, " <>
 		"$A_2 \\sim <*distribution[\"A2\", {4, 3}]*>$, " <>
 		"$A_3 \\sim <*distribution[\"A3\", {5, 4}]*>$, " <>
@@ -549,8 +551,8 @@ dbiSpecs = <|
 		"Eq.~(\\ref{eq:dbi:lagrangian}). " <>
 		"Simulation consisted of the same $0.5 \\times 10^6$ points as " <>
 		"Fig.~(1) of~\\cite{Nath:2018xxe}, " <>
-		"out of which `totalPoints` " <>
-		"displayed are consistent with experimental data on $r$ and $n_s$. " <>
+		"out of which `totalPoints` shown in green " <>
+		"are consistent with experimental data on $r$ and $n_s$. " <>
 		"Points are distributed according to the following: " <>
 		"$\\alpha_1 \\sim X_{0, \\infty}$, $\\alpha_2 = \\alpha_3 = 0$ " <>
 		"$T = 10^{-12} M_\\text{P}^4$, " <>
