@@ -173,7 +173,7 @@ makeFigure[specs_, name_, output_, OptionsPattern[]] := (
 plot[{"potentialRange", min_, max_, step_}, specs_, output_] := ListPlot[
 	If[Length[specs["initialConditions"]] != 1,
 		Print["potentialRange can only be plotted for single field models."];
-		Quit[]];
+		Quit[-1]];
 	ParallelTable[{bf, #[
 		Evaluate[With[{f = #[["f"]]},
 			specs["lagrangian"][#][f bf][t] /
@@ -193,7 +193,7 @@ plot[{"potentialRange", min_, max_, step_}, specs_, output_] := ListPlot[
 plot[{"potential", parameters_, min_, max_}, specs_, output_] := Plot[
 	If[Length[specs["initialConditions"]] != 1,
 		Print["potentialRange can only be plotted for single field models."];
-		Quit[]];
+		Quit[-1]];
 	-specs["lagrangian"][parameters][b][t], {b, min, max},
 	PlotRange -> All,
 	Frame -> True,
@@ -336,7 +336,12 @@ evaluateModel[modelSpecs_] := Module[{inputs, results, time},
 (*Global parameters*)
 
 
-pointCountMultiplier = 1;
+pointCountMultiplier = If[Length[$ScriptCommandLine] >= 2,
+	ToExpression @ $ScriptCommandLine[[2]],
+	1];
+If[!NumericQ[pointCountMultiplier],
+	Print["pointCountMultiplier must be a numeric value."];
+	Quit[-1];]
 
 
 genericParameterDistributions = <|
