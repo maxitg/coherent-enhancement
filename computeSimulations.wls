@@ -480,6 +480,54 @@ evaluateModel[<|
 Print["Starting DBI..."];
 
 
+dbi$maxADot[T_, \[Alpha]1_] :=
+	Module[{\[Alpha]1i}, Limit[2 T^(1/2) Sqrt[(Sqrt[2 \[Alpha]1i] - 2) / (2 \[Alpha]1i - 4)], \[Alpha]1i -> \[Alpha]1]]
+
+
+dbi$\[ScriptCapitalT][T_, \[Alpha]1_, ad_] := 1/2 (1 + Sqrt[1 - 4 ad^2 / T + 2 (2 - \[Alpha]1) ad^4 / T^2])
+
+
+dbi$k[\[Beta]_, f_, G_List, a_] := \[Beta] Sqrt[Sum[
+	m n G[[m]] G[[n]] (1 - Cos[a m / f] - Cos[a n / f] + Cos[a (m - n) / f]),
+	{m, Length[G]},
+	{n, Length[G]}]]
+
+
+dbi$\[ScriptCapitalF][T_, \[Alpha]1_, k_, \[ScriptCapitalT]_, ad_, s_] := s Power[
+	-s 1 / (2 \[Alpha]1) k (\[ScriptCapitalT] - ad^2 / T)
+		+ Sqrt[
+			1 / (4 \[Alpha]1^2) k^2 (\[ScriptCapitalT] - ad^2 / T)^2
+				+ 1 / (27 \[Alpha]1^3) (\[ScriptCapitalT] + (\[Alpha]1 - 1) ad^2 / T)^3],
+	1 / 3]
+
+
+dbi$\[ScriptCapitalL][T_, \[Alpha]1_, \[ScriptCapitalT]_, k_, \[ScriptCapitalF]Plus_, \[ScriptCapitalF]Minus_, ad_] := T (
+	1
+		- Sqrt[1 - 4 ad^2 / T + 2 (2 - \[Alpha]1) ad^4 / T^2]
+		+ 2 \[ScriptCapitalF]Plus^2
+		+ 2 \[ScriptCapitalF]Minus^2
+		- 4 / (3 \[Alpha]1) (\[ScriptCapitalT] + (\[Alpha]1 - 1) ad^2 / T)
+		+ 4 k (\[ScriptCapitalF]Plus + \[ScriptCapitalF]Minus)
+		+ \[Alpha]1 / (\[ScriptCapitalT] - ad^2 / T) (
+			2 (\[ScriptCapitalF]Plus^2 + \[ScriptCapitalF]Minus^2 - 2 / (3 \[Alpha]1) (\[ScriptCapitalT] + (\[Alpha]1 - 1) ad^2 / T)) ad^2 / T
+				+ \[ScriptCapitalF]Plus^4
+				+ \[ScriptCapitalF]Minus^4
+				+ 2 / (3 \[Alpha]1^2) (\[ScriptCapitalT] + (\[Alpha]1 - 1) ad^2 / T)^2
+				- 4 / (3 \[Alpha]1) (\[ScriptCapitalT] + (\[Alpha]1 - 1) ad^2 / T) (\[ScriptCapitalF]Plus^2 + \[ScriptCapitalF]Minus^2)))
+
+
+dbiLagrangian[T_, \[Alpha]1_, f_, \[Beta]_, G_][am_][t_] := Module[
+		{\[ScriptCapitalT], a, ad, k, \[ScriptCapitalF]Plus, \[ScriptCapitalF]Minus},
+	ad = D[am, t] / 2;
+	a = am / 2;
+	\[ScriptCapitalT] = dbi$\[ScriptCapitalT][T, \[Alpha]1, ad];
+	k = dbi$k[\[Beta], f, G, a];
+	\[ScriptCapitalF]Plus = dbi$\[ScriptCapitalF][T, \[Alpha]1, k, \[ScriptCapitalT], ad, +1];
+	\[ScriptCapitalF]Minus = dbi$\[ScriptCapitalF][T, \[Alpha]1, k, \[ScriptCapitalT], ad, -1];
+	dbi$\[ScriptCapitalL][T, \[Alpha]1, \[ScriptCapitalT], k, \[ScriptCapitalF]Plus, \[ScriptCapitalF]Minus, ad]
+]
+
+
 Print["DBI: Reading simulation results..."];
 
 
@@ -507,12 +555,17 @@ aMinusFieldLabel = subscriptLabel[italicLabel["a"], plainLabel["-"]];
 
 dbiSpecs = <|
 	"name" -> "DBI",
+	"lagrangian" ->
+		(dbiLagrangian[#["T"], #["Alpha1"], #["f"], #["\[Beta]"], #["G"]] &),
+	"initialConditions" -> {{am, "FieldInitial", "FieldTimeDerivativeInitial"}},
 	"pointCount" -> Length[dbiFilteredWithFDynamic],
+	"evolutionOptions" -> {"FinalDensityPrecisionGoal" -> 2},
 	"figures" -> {
 		"ns_r",
 		{ListLogLogPlot, "Alpha1", "NonGaussianityAmplitude"},
-		{ListPlot, "f", "fDynamic"}},
-	"fieldLabels" -> <|bm -> aMinusFieldLabel|>,
+		{ListPlot, "f", "fDynamic"},
+		{"density", -#["TensorToScalarRatio"] &}},
+	"fieldLabels" -> <|am -> aMinusFieldLabel|>,
 	"caption" -> "Simulation results for the DBI model " <>
 		"Eq.~(\\ref{eq:dbi:lagrangian}). " <>
 		"Simulation consisted of the same $0.5 \\times 10^6$ points as " <>
