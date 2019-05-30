@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{amsmath} % math
+\usepackage{amssymb} % additional math symbols
 \usepackage{color} % support for color
 \usepackage{hyperref} % turn citations into links
 \usepackage[letterpaper,margin=1in,bottom=1in]{geometry} % margins
@@ -304,17 +305,12 @@ Using the above assumptions the potential of Eq.~(\ref{eq:supersymmetry:VslowGen
     \includegraphics[width = \textwidth]{figures/supersymmetry_f_fStatic.pdf}
   \end{subfigure}
   \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/supersymmetry_density.pdf}
-  \end{subfigure}
-  \begin{subfigure}{0.45 \textwidth}
     \includegraphics[width = \textwidth]{figures/supersymmetry_potentialRange.pdf}
   \end{subfigure}
   \caption{\protect\input{figures/supersymmetry.txt}
     Top left panel shows tensor-to-scalar ratios vs. scalar spectral indices we obtained.
     Blue region encloses the values consistent with Planck 2018 TT,TE,EE+lowE+lensing+BK14+BAO data at $95\%$ CL.
     Top right panel demonstrates the coherent enhancement of the decay constant.
-    Below, left panel shows the evolution of density $\rho$ as a function of the number of e-foldings $N$ until the end of inflation for an example with the largest tensor-to-scalar ratio $r$ in our sample.
-    One can see density is close to being constant at horizon exit, which implies $r \ll 1$.
     Bottom right panel shows the superimposed slow-roll potentials~Eq.(\ref{eq:supersymmetry:Vslow}) as functions of $b_-$ for all values of $G_5$ considered.
     Note that because the field is normalized by $f$ and because $G_5$ is fine-tuned, potentials for all considered input parameters look almost identical.
     Also note that the field change during inflation $\Delta b_- < f \le M_\text{P}$.
@@ -475,9 +471,6 @@ In this model, we find $\left|f_e - f_{eH}\right| / f_e \le \protect\input{figur
   \end{subfigure}
   \begin{subfigure}{0.45 \textwidth}
     \includegraphics[width = \textwidth]{figures/supergravity_f_fStatic.pdf}
-  \end{subfigure}
-  \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/supergravity_density.pdf}
   \end{subfigure}
   \begin{subfigure}{0.45 \textwidth}
     \includegraphics[width = \textwidth]{figures/supergravity_potentialRange.pdf}
@@ -717,6 +710,7 @@ and where
       1
     + \sqrt{1 - \frac{{\dot b}_-^2}{T} + \frac{\left(2 - \alpha_1\right){\dot b}_-^4}{8 T^2}}
   \right)\,,\\
+  \label{eq:dbi:beta}
   k &= \tilde\beta \sqrt{\sum_{m, n} m n \mathcal{G}_m \mathcal{G}_n \left(
       1
     - \cos\left(\frac{b_- m}{\sqrt{2} f}\right)
@@ -746,17 +740,67 @@ We then select parameter choices than produced at least $N_\text{pivot}$ number 
   \begin{subfigure}{0.45 \textwidth}
     \includegraphics[width = \textwidth]{figures/DBI_f_fDynamic.pdf}
   \end{subfigure}
-  \begin{subfigure}{0.45 \textwidth}
-    \includegraphics[width = \textwidth]{figures/DBI_density.pdf}
-  \end{subfigure}
   \caption{\protect\input{figures/DBI.txt}
     Top left panel is a plot of the ratio $r$ of the tensor to scalar power spectrum vs the scalar spectral index $n_s$.
     Top right panel shows the values of non-Gaussianity parameter $f_{NL}^\text{equil}$ as a function of $\alpha_1$.
-    Bottom left panel shows that the values of the effective axion decay constant $f_{eH}$ are independent of the true axion decay constant $f$.
-    Bottom right panel shows the density evolution for an example with the largest value of $r$ in our simulation, it specifically demonstrates that the density in this model does not stay constant during horizon exit unlike Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}), which leads to the values of $r$ close to the experimental limit.} \label{fig:DBI}
+    Bottom panel shows that the values of the effective axion decay constant $f_{eH}$ are independent of the true axion decay constant $f$.} \label{fig:DBI}
 \end{figure}
 
 % TODO(maxitg): Simulation part needs to be added here.
+
+\section{Tensor-to-scalar power spectra ratios in single-field models \label{sec:r}}
+It is interesting to observe that the values of the tensor-to-scalar ratio $r \ll 1$ in global supersymmetry Fig.~(\ref{fig:supersymmetry}) and supergravity Fig.~(\ref{fig:supergravity}) models we considered, but is close to experimental limit $r \approx 0.1$ for some points in the DBI model Fig.~(\ref{fig:DBI}).
+
+To see why, consider first an arbitrary single-field inflation model with canonical kinetic energy.
+For the number of e-foldings we have:
+\begin{equation} \label{eq:efoldingsGeneral}
+  N = \frac{1}{M_\text{P}} \int \sqrt{\rho / 3}\,dt
+    = \frac{1}{M_\text{P}} \int \sqrt{\rho / 3}\,\frac{d\phi}{\dot \phi}\,,
+\end{equation}
+where $\rho$ is the density of the inflaton field $\phi$.
+
+In slow-roll approximation $\ddot \phi \approx 0$, and ${\dot \phi}^2 \ll V\left(\phi\right)$, then using equations of motion we obtain
+\begin{equation} \label{eq:efoldingsCanonical}
+  N = - \frac{1}{M_\text{P}^2} \int \frac{V\left(\phi\right)}{V^\prime\left(\phi\right)} d\phi
+    \approx - \frac{\Delta \phi}{M_\text{P} \sqrt{2 \epsilon}}\,,
+\end{equation}
+where we used the definition of the slow-roll parameter $\epsilon$, see Eq.~(\ref{eq:epsEtaFromPotential}).
+
+\begin{figure}
+  \centering
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supersymmetry_density.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/supergravity_density.pdf}
+  \end{subfigure}
+  \begin{subfigure}{0.45 \textwidth}
+    \includegraphics[width = \textwidth]{figures/DBI_density.pdf}
+  \end{subfigure}
+  \caption{
+    Evolution of density as a function of the number of e-foldings until the end of inflation for global supersymmetry (top left panel), supergravity (top right panel) and DBI (bottom panel) models.
+    Examples with the largest values of the ratio $r$ of tensor-to-scalar power spectra are chosen in each case.
+    Here $\rho_0$ is the density at the beginning of the simulation, and the number of e-foldings is shown negative for convenience as $N - N_\text{total} < 0$.
+    Note the change in density is more uniform in the case of DBI, which explains higher values of $r$.
+  } \label{fig:density}
+\end{figure}
+
+If we now require $\Delta \phi < M_\text{P}$, which for types of models we consider implies $f \lesssim M_\text{P}$, we get
+\begin{equation}
+  r < \frac{8 \Delta \phi^2}{M_\text{P}^2 N^2} \lesssim 0.003\,,
+\end{equation}
+which is what we see in Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}).
+Note also $\Delta\phi$ is larger in the supergravity model, which is consistent with it also producing larger values of $r$.
+The density in that case stays nearly constant at horizon exit since
+\begin{equation}
+  \epsilon \approx \epsilon_H \propto \dot H \propto \dot\rho\,,
+\end{equation}
+which can be seen in the top panels of Fig.~(\ref{fig:density}).
+
+In the case of DBI, however, Eq.~(\ref{eq:efoldingsCanonical}) is not valid, rather, $\dot\phi$ in the denominator of Eq.~(\ref{eq:efoldingsGeneral}) is suppressed by the kinetic term in Eq.~(\ref{eq:dbi:lagrangian} as $\rho \rightarrow \infty$ for $\phi = b_- \rightarrow b_{-, \text{max}} \sim \sqrt{T} / M_\text{P}$.
+It is then possible to obtain a large number of e-foldings by increasing $\rho$, which can be done for example by having $\tilde\beta \gg 1$ in Eq.~(\ref{eq:dbi:beta}).
+Since small $\rho^\prime\left(\phi\right)$ is no longer necessary, it is possible to get the values of $r$ as high as the experimental limit.
+One can indeed see from the bottom panel of Fig.~(\ref{fig:density}) that the density changes more uniformly in the case of DBI compared to other models.
 
 \section{Conclusion \label{sec:Conclusion}}
 One of the possible candidates for inflation is an axion.
