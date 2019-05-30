@@ -270,7 +270,10 @@ plot[{"density", sortingFunction_}, specs_, output_] := Module[{
 		AspectRatio -> 1 / GoldenRatio,
 		PlotPoints -> 1000,
 		FrameLabel -> {
-			label[italicLabel["N"]],
+			label[rowLabel[{
+				italicLabel["N"],
+				"\"-\"",
+				subscriptLabel[italicLabel["N"], plainLabel["total"]]}]],
 			label[ratioLabel[
 				italicLabel["\[Rho]"],
 				subscriptLabel[italicLabel["\[Rho]"], plainLabel["0"]]]]}]
