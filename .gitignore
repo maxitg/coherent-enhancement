@@ -1,8 +1,9 @@
 ## macOS files
 *.DS_Store
 
-## Compiled pdf
+## Compiled paper
 *.pdf
+*.tar.gz
 
 ## Figures
 /figures/
