@@ -409,9 +409,9 @@ evaluateModel[<|
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
 		{"density", -#["r"] &}},
 	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
-	"caption" -> "Simulation results for the global supersymmetry model " <>
+	"caption" -> "Simulation for the global supersymmetry model " <>
 		"Eq.~(\\ref{eq:supersymmetry:Vslow}). " <>
-		"Simulation consisted of a total of `totalPoints` points, out of which " <>
+		"Simulation consists of a total of `totalPoints` points, out of which " <>
 		"`points` shown in green are consistent " <>
 		"with experimental data on $r$ and $n_s$. " <>
 		"Here $q = 5$, $G_1 = G_2 = G_3 = 0$, $G_4 = 1$, " <>
@@ -463,9 +463,10 @@ evaluateModel[<|
 		{"potentialRange", -0.1 Pi Sqrt[2], 1.1 Pi Sqrt[2], 0.05},
 		{"density", -#["r"] &}},
 	"fieldLabels" -> <|bm -> bMinusFieldLabel|>,
-	"caption" -> "Simulation results for the supergravity model " <>
-		"Eq.~(\\ref{eq:supergravity:Vslow3}). " <>
-		"Simulation consisted of a total of `totalPoints` points, out of which " <>
+	"caption" -> "Simulation for the supergravity model " <>
+		"Eq.~(\\ref{eq:supergravity:Vslow3}) and " <>
+		"Eq.~(\\ref{eq:supergravity:Vslow3Coefficients}). " <>
+		"Simulation consists of a total of `totalPoints` points, out of which " <>
 		"`points` shown in green are consistent " <>
 		"with experimental data on $r$ and $n_s$. " <>
 		"Here $A_1 = 1$, " <>
@@ -569,14 +570,14 @@ dbiSpecs = <|
 		{ListPlot, "f", "fDynamic"},
 		{"density", -#["TensorToScalarRatio"] &}},
 	"fieldLabels" -> <|am -> aMinusFieldLabel|>,
-	"caption" -> "Simulation results for the DBI model " <>
+	"caption" -> "Simulation for the DBI model " <>
 		"Eq.~(\\ref{eq:dbi:lagrangian}). " <>
-		"Simulation consisted of the same $0.5 \\times 10^6$ points as " <>
+		"Simulation consists of $0.5 \\times 10^6$ points as " <>
 		"Fig.~(1) of~\\cite{Nath:2018xxe}, " <>
 		"out of which `totalPoints` shown in green " <>
 		"are consistent with experimental data on $r$ and $n_s$. " <>
 		"Points are distributed according to the following: " <>
-		"$\\alpha_1 \\sim X_{0, \\infty}$, $\\alpha_2 = \\alpha_3 = 0$ " <>
+		"$\\alpha_1 \\sim X_{0, \\infty}$, " <>
 		"$T = 10^{-12} M_\\text{P}^4$, " <>
 		"$f \\sim X_{0, \\infty} M_\\text{P}$, " <>
 		"$\\tilde\\beta \\sim X_{0, \\infty}$, " <>
