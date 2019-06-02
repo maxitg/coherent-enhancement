@@ -137,7 +137,11 @@ Thus we consider a canonical Lagrangian of the form
   \mathcal{L}\left(\phi, \dot{\phi}\right) = \frac{1}{2}{\dot{\phi}}^2 - V\left(\phi\right)\,.
 \end{equation}
 
-Assuming the kinetic term is canonically normalized in each case, it is sufficient to have $V\left(\phi\right) \approx V_{e}\left(\phi\right)$ where $V_{e}\left(\phi\right)$ is given by Eq.~(\ref{eq:naturalInflationPotential}) at $\phi \approx \phi_0$ to have similar evolution of the field and the scale factor near $\phi \sim \phi_0$.
+Assuming the kinetic term is canonically normalized in each case, it is sufficient to have $V\left(\phi\right) \approx V_{e}\left(\phi\right)$ at $\phi \approx \phi_0$ where
+\begin{equation} \label{eq:naturalInflationPotential}
+  V_e\left(\phi\right) = \Lambda^4 \left(1 - \cos\left(\frac{\phi}{f}\right)\right)\,,
+\end{equation}
+to have similar evolution of the field and the scale factor near $\phi \sim \phi_0$.
 Using this observation, we can express the parameters of natural inflation $\Lambda$ and $f_e$ in terms of various order derivatives of $V\left(\phi\right)$.
 To do that, first, expand $V_{e}$ near $\phi_0$ to the second order so that
 \begin{equation} \label{eq:naturalInflationSeries}
@@ -773,7 +777,7 @@ where we used the definition of the slow-roll parameter $\epsilon$, see Eq.~(\re
     Top right panel: Same as the left panel except it is for the supergravity case.
     Bottom panel: The same as the top left panel except it is for the DBI case.
     The figure explains the reason why $r$ can be much larger for DBI relative to models where slow roll is controlled by flat potentials.
-    From Eq.~(\ref{rhodot-density}) we see that $\epsilon_H$ and thus $r$ is proportional to $\dot \rho$.
+    From Eq.~(\ref{eq:rFromDDensityDN}) we see that $\epsilon_H$ and thus $r$ is proportional to $d\rho / dN$.
     In the top panels $\rho / \rho_0$ is essentially flat near the horizon exist which is in the interval which occurs at $-60 < N - N_\text{total} < -50$ and leads to $r \sim O\left(10^{-4}\right)$ while for the DBI case in the bottom panel $\rho / \rho_0$ has a significant curvature and $r$ can be as large as $\sim 0.1$.
   } \label{fig:density}
 \end{figure}
@@ -784,7 +788,7 @@ If we now require $\Delta \phi < M_\text{P}$, which for types of models we consi
 and the analysis of Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}) is consistent with it.
 The reason for the smallness of $r$ for Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}) can be understood by looking at the evolution of the density $\rho$ of the inflaton field as a function of e-foldings.
 Thus for the case when sound velocity $c_s \sim 1$, $r$ can be approximated as follows
-\begin{equation}
+\begin{equation} \label{eq:rFromDDensityDN}
   r \approx 16 \epsilon_H
           = - 16 \frac{\dot H}{H^2}
           = - \frac{128 \sqrt{3} \dot\rho M_\text{P}}{\rho^{3 / 2}}
@@ -1225,6 +1229,27 @@ This research was supported in part by the NSF Grant PHY-1620575.
   Phys.\ Lett.\ B {\bf 650}, 313 (2007)
   doi:10.1016/j.physletb.2007.05.041
   [hep-th/0703248 [HEP-TH]].
+
+\bibitem{Brown:2015lia}
+  J.~Brown, W.~Cottrell, G.~Shiu and P.~Soler,
+  %``On Axionic Field Ranges, Loopholes and the Weak Gravity Conjecture,''
+  JHEP {\bf 1604}, 017 (2016)
+  doi:10.1007/JHEP04(2016)017
+  [arXiv:1504.00659 [hep-th]].
+
+\bibitem{delaFuente:2014aca}
+  A.~de la Fuente, P.~Saraswat and R.~Sundrum,
+  %``Natural Inflation and Quantum Gravity,''
+  Phys.\ Rev.\ Lett.\  {\bf 114}, no. 15, 151303 (2015)
+  doi:10.1103/PhysRevLett.114.151303
+  [arXiv:1412.3457 [hep-th]].
+
+\bibitem{Blumenhagen:2014gta}
+  R.~Blumenhagen and E.~Plauschinn,
+  %``Towards Universal Axion Inflation and Reheating in String Theory,''
+  Phys.\ Lett.\ B {\bf 736}, 482 (2014)
+  doi:10.1016/j.physletb.2014.08.007
+  [arXiv:1404.3542 [hep-th]].
 
 \end{thebibliography}
 
