@@ -245,13 +245,13 @@ To distinguish the effective decay constant computed in this way from $f_e$ that
 Specifically, we can define dynamic slow-roll parameters
 \begin{equation} \label{eq:slowRollParametersDynamic}
   \epsilon_H = -\frac{\dot H}{H^2}\,,
-  ~~~ \eta_H = -\frac{\dot{\epsilon_H}}{\epsilon_H H}\,,
-  ~~~ \sigma_H = -\frac{1}{H} \frac{d}{dt} \ln c_s\,,
+  ~~~ \eta_H = \frac{\dot{\epsilon_H}}{\epsilon_H H}\,,
+  ~~~ \sigma_H = \frac{1}{H} \frac{d}{dt} \ln c_s\,,
 \end{equation}
 where $c_s$ is the speed of sound in the medium where $c_s^2 = p_{,\beta} / \rho_{,\beta}$, $\beta = \dot\phi^2$, where $p$ is the pressure and $\rho$ the density.
 In this case spectral indices are given by~\cite{Garriga:1999vw, Spalinski:2007qy}
 \begin{equation}
-      n_s = 1 - 2 \epsilon_H + \eta_H + \sigma_H,
+      n_s = 1 - 2 \epsilon_H - \eta_H - \sigma_H,
   ~~~ n_t = - 2\epsilon_H\,.
 \end{equation}
 
@@ -816,12 +816,12 @@ Thus for the case when sound velocity $c_s \sim 1$, one can obtain the slow-roll
 \begin{equation}
   \begin{aligned}
     \epsilon_H &= -\frac{1}{2 \rho} \frac{d\rho}{dN}\,,\\
-    \eta_H &= \frac{1}{\rho} \frac{d\rho}{dN} - \frac{d^2\rho}{dN^2} / \frac{d\rho}{dN}\,.
+    \eta_H &= -\frac{1}{\rho} \frac{d\rho}{dN} + \left.\frac{d^2\rho}{dN^2} \middle/ \frac{d\rho}{dN}\right.\,.
   \end{aligned}
 \end{equation}
 Further, the enhancement factor $f_{eH}$ is given by
 \begin{equation}
-  f_{eH} = M_{Pl} \left/ \sqrt{2 \frac{\frac{d\rho}{dN}}{\rho} - \left.\frac{d^2\rho}{dN^2} \middle/ \frac{d\rho}{dN}\right.}\right.\,.
+  f_{eH} = M_{Pl} \sqrt{\left.\frac{d\rho}{dN} \middle/ \frac{d^2\rho}{dN^2}\right.}\,.
 \end{equation}
 Similarly the spectral index $n_s$ and the ratio $r$ of the tensor to scalar power spectrum are given by
 \begin{equation} \label{eq:rFromDDensityDN}
