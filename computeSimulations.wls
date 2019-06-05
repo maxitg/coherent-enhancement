@@ -419,7 +419,7 @@ evaluateModel[<|
 		"where $\\mathcal{U}$ refers to a uniform distribution. " <>
 		"We set $B = 1$, as it only affects the time scale of inflation, but not " <>
 		"the values of $n_s$, $r$, and $f_e$. " <>
-		"Finally, $f / M_\\text{P} \\sim <*distribution[\"f\"]*>$, " <>
+		"Finally, $f / M_{Pl} \\sim <*distribution[\"f\"]*>$, " <>
 		"$b_{-, \\text{init}} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
 		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>];
 
@@ -472,7 +472,7 @@ evaluateModel[<|
 		"Here $A_1 = 1$, " <>
 		"$A_2 \\sim <*distribution[\"A2\", {4, 3}]*>$, " <>
 		"$A_3 \\sim <*distribution[\"A3\", {5, 4}]*>$, " <>
-		"$f / M_\\text{P} \\sim <*distribution[\"f\"]*>$, " <>
+		"$f / M_{Pl} \\sim <*distribution[\"f\"]*>$, " <>
 		"$b_{-, \\text{init}} / f \\sim <*distribution[\"fieldInitialOverF\"]*>$, " <>
 		"$N_\\text{pivot} \\sim <*distribution[\"pivotEfoldings\"]*>$."|>];
 
@@ -578,8 +578,8 @@ dbiSpecs = <|
 		"are consistent with experimental data on $r$ and $n_s$. " <>
 		"Points are distributed according to the following: " <>
 		"$\\alpha_1 \\sim X_{0, \\infty}$, " <>
-		"$T = 10^{-12} M_\\text{P}^4$, " <>
-		"$f \\sim X_{0, \\infty} M_\\text{P}$, " <>
+		"$T = 10^{-12} M_{Pl}^4$, " <>
+		"$f \\sim X_{0, \\infty} M_{Pl}$, " <>
 		"$\\tilde\\beta \\sim X_{0, \\infty}$, " <>
 		"$m = 6$, " <>
 		"${\\cal{G}}_1 = {\\cal{G}}_2 = {\\cal{G}}_3 = 0$, ${\\cal{G}}_4 = 1$, " <>
@@ -598,7 +598,7 @@ dbiSpecs = <|
 		"the expression under the square root in Eq.~(\\ref{eq:dbi:lagrangian}) " <>
 		"is positive. " <>
 		"Points are further filtered such that " <>
-		"the mass of the inflaton $m_{a_-} < 0.1 M_\\text{P}$. " <>
+		"the mass of the inflaton $m_{a_-} < 0.1 M_{Pl}$. " <>
 		"Note that despite no fine-tuning being present in the distribution above, " <>
 		"a significant fraction of points is consistent with " <>
 		"experimental constraints."|>;
