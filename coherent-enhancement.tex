@@ -222,7 +222,7 @@ Specifically, we can define the dynamic slow-roll parameters
 \end{equation}
 where $c_s$ is the speed of sound in the medium where $c_s^2 = p_{,\beta} / \rho_{,\beta}$, $\beta = \dot\phi^2$ where $p$ is the pressure and $\rho$ the density.
 In this case spectral indices are given by~\cite{Garriga:1999vw, Spalinski:2007qy}
-\begin{equation}
+\begin{equation} \label{eq:observablesFromDynamicSlowRoll}
       n_s = 1 - 2 \epsilon_H - \eta_H - \sigma_H,
   ~~~ n_t = - 2\epsilon_H\,.
 \end{equation}
@@ -726,7 +726,7 @@ We note that while the prediction of $f^{\text{equil}}_{\text{NL}}$ as given by 
 The bottom panel of Fig.~(\ref{fig:DBI}) gives a plot of $f_{eH} / M_{Pl}$ vs $f / M_{Pl}$.
 One finds that $f_{eH} / M_{Pl} \gg 1$ while $f / M_{Pl} < 1$ consistent with WGC.
 
-\section{Size of the tensor-to-scalar power spectra ratio $r$ in single-field models \label{sec:r}}
+\section{Slow-roll parameters in terms of density and size of the tensor-to-scalar power spectra ratio $r$ in single-field models \label{sec:r}}
 It is interesting to observe that the tensor-to-scalar ratio $r$ in the effective single field models of global supersymmetry in Fig.~(\ref{fig:supersymmetry}) and of supergravity in Fig.~(\ref{fig:supergravity}) is $O\left(10^{-4}\right)$, while for the DBI case Fig.~(\ref{fig:DBI}) it is much larger than that and for some parameter points it can be as large as the experimental upper limit $r = 0.07$.
 To see how this is possible, we consider first an arbitrary single-field inflation model with canonical kinetic energy.
 Here for the number of e-foldings we have
@@ -779,18 +779,26 @@ The reason for the smallness of $r$ in Figs.~(\ref{fig:supersymmetry}, \ref{fig:
 
 However, Eq.~(\ref{eq:Deltaphi}) is not applicable to DBI-flation and k-flation~\cite{Garriga:1999vw}.
 Here we need to look at the evolution of the density $\rho$ of the inflaton field as a function of e-foldings.
-Thus for the case when sound speed $c_s \sim 1$, one can obtain the slow-roll parameters in terms of density and its derivatives with respect to the number of e-foldings so that
+Thus for the case when sound speed $c_s \sim 1$, one can obtain the slow-roll parameters in terms of density and its derivatives with respect to the number of e-foldings by using the Friedmann equation
+\begin{equation}
+  H = \dot N = \frac{1}{M_{Pl}}\sqrt{\frac{\rho}{3}}
+\end{equation}
+and
+\begin{equation}
+  \dot \rho = \frac{d\rho}{dN} \dot{N}
+\end{equation}
+together with Eq.~(\ref{eq:slowRollParametersDynamic}) so that
 \begin{equation}
   \begin{aligned}
     \epsilon_H &= -\frac{1}{2 \rho} \frac{d\rho}{dN}\,,\\
     \eta_H &= -\frac{1}{\rho} \frac{d\rho}{dN} + \left.\frac{d^2\rho}{dN^2} \middle/ \frac{d\rho}{dN}\right.\,.
   \end{aligned}
 \end{equation}
-Further, the enhancement factor $f_{eH}$ is given by
+Further, the enhancement factor $f_{eH}$ can be determined from Eq.~(\ref{eq:feFromDynamicSlowRollParameters}) as
 \begin{equation}
   f_{eH} = M_{Pl} \sqrt{\left.\frac{d\rho}{dN} \middle/ \frac{d^2\rho}{dN^2}\right.}\,.
 \end{equation}
-Similarly the spectral index $n_s$ and the ratio $r$ of the tensor to scalar power spectrum are given by
+Similarly the spectral index $n_s$ and the ratio $r$ of the tensor to scalar power spectrum can be computed using Eq.~(\ref{eq:observablesFromDynamicSlowRoll}) as
 \begin{equation} \label{eq:rFromDDensityDN}
   \begin{aligned}
     n_s &= 1 + \frac{2}{\rho} \frac{d\rho}{dN} - \left.\frac{d^2\rho}{dN^2} \middle/ \frac{d\rho}{dN}\right.\,,\\
