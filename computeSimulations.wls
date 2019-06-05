@@ -127,7 +127,7 @@ italicLabel[l_] := "\(\*StyleBox[\"" <> l <> "\", FontSlant -> \"Italic\"]\)"
 subscriptLabel[m_, s_] := "\(\*SubscriptBox[" <> m <> ", " <> s <> "]\)"
 rowLabel[el_List] := "\(\*RowBox[{" <> StringRiffle[el, ", "] <> "}]\)"
 ratioLabel[l1_, l2_] := rowLabel[{l1, "\"/\"", l2}]
-planckMassLabel = subscriptLabel[italicLabel["M"], plainLabel["P"]];
+planckMassLabel = subscriptLabel[italicLabel["M"], italicLabel["Pl"]];
 label[x_] := traditionalLabel[If[Head[$label[x]] === $label, x, $label[x]]]
 
 
