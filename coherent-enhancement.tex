@@ -1,5 +1,3 @@
-
-    
 \documentclass[12pt]{article}
 \pdfoutput=1
 
@@ -13,7 +11,7 @@
 \usepackage[numbers, sort & compress]{natbib} % cleanup citations
 \usepackage{parskip} % add vertical space between paragraphs
 \usepackage[section]{placeins} % keep figures inside their sections
-\newcommand{\xrr}[1]{{\color{red}{#1}}}
+
 \author{
   Pran Nath\footnote{Email: p.nath@northeastern.edu}~\ and
   Maksim Piskunov\footnote{Email: m.piskunov@northeastern.edu}\\~\\
@@ -22,8 +20,7 @@
 }
 
 \title{
-  Enhancement 
-   of the Axion Decay Constant in Inflation and the Weak Gravity Conjecture
+  Enhancement of the Axion Decay Constant in Inflation and the Weak Gravity Conjecture
 }
 
 \begin{document}
@@ -37,41 +34,32 @@ It is then pertinent to ask if one can construct axion inflation models in confo
 In this work we assume that WGC holds for the microscopic Lagrangian so that $f < M_{Pl}$.
 However, inflation is controlled by an effective Lagrangian much below the Planck scale where the inflaton is an effective axionic field associated with an effective decay constant $f_e$ which could be very different from $f$.
 In this work we propose a Coherent Enhancement Mechanism (CEM) for slow roll inflation controlled by flat potentials which can produce $f_e \gg M_{Pl}$ while $f < M_{Pl}$.
-{In the analysis}
- we consider a landscape of chiral fields charged under a $U\left(1\right)$ global shift symmetry and consider breaking of the $U\left(1\right)$ symmetry by instanton type symmetry breaking terms.
+In the analysis we consider a landscape of chiral fields charged under a $U\left(1\right)$ global shift symmetry and consider breaking of the $U\left(1\right)$ symmetry by instanton type symmetry breaking terms.
 In the broken phase there is one light pseudo-Nambu-Goldstone-Boson (pNGB) which acts as the inflaton.
 We show that with an appropriate choice of symmetry breaking terms the inflaton potential is a superposition of many cosines and the condition that they produce a flat potential allows one to enhance $f_e$ so that $f_e / M_{Pl} \gg 1$.
 We discuss the utility of this mechanism for a variety of inflaton models originating in supersymmetry and supergravity.
-The Coherent Enhancement Mechanism
-allows one to reduce an inflation model with an arbitrary potential to an effective model of natural inflation, i.e. with a single cosine, by expanding the potential near a field point where horizon exist occurs, and matching the expansion coefficients to those of natural inflation.
+The Coherent Enhancement Mechanism allows one to reduce an inflation model with an arbitrary potential to an effective model of natural inflation, i.e. with a single cosine, by expanding the potential near a field point where horizon exist occurs, and matching the expansion coefficients to those of natural inflation.
 We demonstrate that this approach can predict the number of e-foldings in a given inflation model without the need for numerical simulation.
 Further we show that the effective decay constant $f_e$ can be directly related to the spectral indices so that $f_e = M_{Pl} / \sqrt{1 - n_s - r / 4}$ where $n_s$ is the spectral index for curvature perturbations and $r$ is the ratio of the power spectrum of tensor perturbations and curvature perturbations.
 The current data on $n_s$ and $r$ constrains the effective axion decay constant so that $4.9 \leq f_e / M_{Pl} \leq 10.0$ at $95\%$ CL.
 Thus an important result of the analysis is that the effective axion decay constant has an upper limit of $\sim 10 M_{Pl}$ in axion cosmology for any potential-based model which produces successful inflation.
-For the Dirac-Born-Infeld inflation
- and more generally k-flation
- CEM is not applicable. 
- Nonetheless in this case also we show that successful inflation can occur with $f < M_\text{P}$. 
-Further, one can define a more general effective axion decay constant in terms of inflation density rather than just the potential which 
-valid for models where inflation is
- inflation is controlled potential  and and valid for 
- DBI-flation and more generally for k-flation.
-In the models considered in this work, all the moduli are stabilized and the inflation model in each case is consistent with astrophysical observations with $f_e > M_{Pl}$ and the axion decay constant of the microscopic theory  $f < M_{Pl}$ consistent with the
-Weak Gravity Conjecture.
+For the Dirac-Born-Infeld inflation and more generally k-flation CEM is not applicable.
+Nonetheless in this case also we show that successful inflation can occur with $f < M_{Pl}$.
+Further, one can define a more general effective axion decay constant in terms of inflation density rather than just the potential which valid for models where inflation is inflation is controlled potential and and valid for DBI-flation and more generally for k-flation.
+In the models considered in this work, all the moduli are stabilized and the inflation model in each case is consistent with astrophysical observations with $f_e > M_{Pl}$ and the axion decay constant of the microscopic theory $f < M_{Pl}$ consistent with the Weak Gravity Conjecture.
 \footnote{Source code: \url{https://github.com/maxitg/coherent-enhancement}}
 \newpage
 
 \section{Introduction \label{sec:Introduction}}
 As is well known many of the problems associated with Big Bang cosmology which include
-the flatness problem, the horizon problem, and the monopole problem are resolved by inflation~\cite{Guth:1980zm, Starobinsky:1980te, Linde:1981mu, Albrecht:1982wi,Linde:1983gd}.
+the flatness problem, the horizon problem, and the monopole problem are resolved by inflation~\cite{Guth:1980zm, Starobinsky:1980te, Linde:1981mu, Albrecht:1982wi, Linde:1983gd}.
 Quantum fluctuations at the time of horizon exit carry significant information regarding specifics of the inflation model~\cite{Mukhanov:1981xt, Hawking:1982cz, Starobinsky:1982ee, Guth:1982ec, Bardeen:1983qw, Cheung:2007st} which can be extracted from cosmic microwave background (CMB) radiation anisotropy.
 The data from the Planck experiment~\cite{Akrami:2018vks, Akrami:2018odb, Array:2015xqh} has helped constrain inflation models excluding some and narrowing down the parameter space of others.
 One such model is so-called natural inflation based on a $U(1)$ shift symmetry which is described by a simple potential~\cite{Freese:1990rb, Adams:1992bn} $V\left(a\right) = \Lambda^4 \left(1 - \cos\left(\frac{b}{f}\right)\right)$, where $a$ is the axion field and $f$ is the axion decay constant.
 In this case, consistency with Planck data requires the axion decay constant to be significantly greater than the Planck mass $M_{Pl}$.
 However, an axion decay constant larger than the Planck mass is undesirable since a global symmetry is not preserved by quantum gravity unless it has a gauge origin.
 Additionally string theory prefers the axion decay constant to lie below $M_{Pl}$~\cite{Banks:2003sx, Svrcek:2006yi}.
-These results are codified in WGC~\cite{ArkaniHamed:2006dz}
-which requires $f < M_{Pl}$.
+These results are codified in WGC~\cite{ArkaniHamed:2006dz} which requires $f < M_{Pl}$.
 It is then relevant to ask if in general axion inflation models can be constructed consistent with the WGC constraint.
 
 In this work we show that one can in fact construct axionic inflation models consistent with the WGC constraint.
@@ -81,37 +69,26 @@ Such a situation occurs if one considers a landscape of chiral fields each of wh
 In this case the inflaton is an effective axion field which is a linear combination of many axion fields and is associated with an effective axion decay constant which can be very different from the axion decay constant of the microscopic theory.
 Several suggestions along this line exist such as the alignment mechanism~\cite{Kim:2004rp, Long:2014dta}.
 There is a significant amount of literature associated with this topic, see, e.g.,~\cite{Rudelius:2015xta, Rudelius:2014wla, Bachlechner:2014gfa, Choi:2014rja, delaFuente:2014aca, Blumenhagen:2014gta, Hebecker:2015rya, Conlon:2016aea, Montero:2015ofa, Junghans:2015hba}.
-Here we propose a new mechanism, i.e., the Coherent Enhancement Mechanism (CEM),
-where slow roll is governed a  flat potential which allows the effective decay constant $f_e >> M_{Pl}$ while the primary decay constant 
-$f < M_{Pl}$ consistent with WGC~\cite{Nath:2017ihp}.
-The proposed mechanism applies to supersymmetric and supergravity theories (for a review  see, e.g.,~\cite{Nath:2016qzm}).
+Here we propose a new mechanism, i.e., the Coherent Enhancement Mechanism (CEM), where slow roll is governed a flat potential which allows the effective decay constant $f_e \gg M_{Pl}$ while the primary decay constant $f < M_{Pl}$ consistent with WGC~\cite{Nath:2017ihp}.
+The proposed mechanism applies to supersymmetric and supergravity theories (for a review see, e.g.,~\cite{Nath:2016qzm}).
 For Dirac-Born-Infeld-infation CEM does not work.
 However, it is shown that DBI can produce successful inflation with $f < M_{Pl}$.
 Thus an analysis within these models shows that one can obtain spectral indices as well as the ratio of the tensor to the scalar power spectrum consistent with the Planck data~\cite{Akrami:2018vks, Akrami:2018odb, Array:2015xqh} and consistent with WGC.
 
 The outline of the rest of the paper is as follows.
 In section \ref{sec:WeakGravityConjecture} we give a brief discussion of the Weak Gravity Conjecture.
-In section \ref{sec:CoherentEnhancement} we discuss the Coherent Enhancement Mechanism
- when the potential consists of a superposition of cosines which is typically the case for axionic potentials.
-In section \ref{sec:Supersymmetry} we discuss inflation 
- in globally supersymmetric models, and in section \ref{sec:Supergravity} for supergravity models  and their consistency with WGC.
- In section \ref{sec:DBI}, we discuss the Dirac-Born-Infeld case, in which inflation is not controlled by the potential alone but by the full Lagrangian.
+In section \ref{sec:CoherentEnhancement} we discuss the Coherent Enhancement Mechanism when the potential consists of a superposition of cosines which is typically the case for axionic potentials.
+In section \ref{sec:Supersymmetry} we discuss inflation in globally supersymmetric models, and in section \ref{sec:Supergravity} for supergravity models and their consistency with WGC.
+In section \ref{sec:DBI}, we discuss the Dirac-Born-Infeld case, in which inflation is not controlled by the potential alone but by the full Lagrangian.
 However, an effective decay constant $f_{eH}$ can still be defined based on inflation dynamics.
-In section \ref{sec:r}, we discuss the reason why 
-the ratio $r$ of tensor-to-scalar power spectra is $O(10^{-4})$ for single field inflation for models with a flat potential while it can be
-much larger in DBI-flation up to $O(0.1)$.
+In section \ref{sec:r}, we discuss the reason why the ratio $r$ of tensor-to-scalar power spectra is $O\left(10^{-4}\right)$ for single field inflation for models with a flat potential while it can be much larger in DBI-flation up to $O\left(0.1\right)$.
 Conclusions are given in section \ref{sec:Conclusion}.
 Some relevant papers related to this work can be found in \cite{BlancoPillado:2006he, Conlon:2005jm, Ben-Dayan:2014lca, Gao:2014uha}.
 
-\section{The  Weak Gravity Conjecture
-and axion inflation \label{sec:WeakGravityConjecture}}
-In its simplest form the
-Weak Gravity Conjecture
-considers the coupling of an abelian gauge field with gravity and states that this system must contain a particle of charge $q$ and mass $m$ so that~\cite{ArkaniHamed:2006dz} $\frac{q}{m} > \frac{1}{M_{Pl}}$, 
-where $M_{Pl}$ is the reduce Planck mass defined by $M_{Pl}= (8\pi G_N)^{-1/2}$ and $G_N$ is Newton's constant. 
+\section{The Weak Gravity Conjecture and axion inflation \label{sec:WeakGravityConjecture}}
+In its simplest form the Weak Gravity Conjecture considers the coupling of an abelian gauge field with gravity and states that this system must contain a particle of charge $q$ and mass $m$ so that~\cite{ArkaniHamed:2006dz} $\frac{q}{m} > \frac{1}{M_{Pl}}$, where $M_{Pl}$ is the reduce Planck mass defined by $M_{Pl} = \left(8 \pi G_N\right)^{-1 / 2}$ and $G_N$ is Newton's constant.
 The existence of such a particle is needed to carry away the charge of a black hole to avoid the remnant problem when the black hole evaporates due to Hawking radiation.
-The above constraint is found to be consistent with string theory and thus one might argue that consistent theories of quantum gravity obey the 
-Weak Gravity Conjecture.
+The above constraint is found to be consistent with string theory and thus one might argue that consistent theories of quantum gravity obey the Weak Gravity Conjecture.
 Specifically, for example, one cannot let the charge $q$ become arbitrarily small since in that case in the limit one will have a continuous global symmetry which is forbidden by strings.
 So far the analysis concerns just the abelian gauge theories coupling with gravity.
 However, there is a generalized WGC which has implications for axions and for axionic inflation.
@@ -130,20 +107,17 @@ More specifically, the inflaton need not be a primary field in the microscopic t
 In this case the inflaton would be an axion with an effective axion decay constant which could be signicantly different from the primary one.
 This is demonstrated in the next section where we discuss the Coherent Enhancement Mechanism.
 
-\section{General analysis of  Coherent Enhancement Mechanism \label{sec:CoherentEnhancement}}
-As mentioned in section \ref{sec:Introduction}, Coherent Enhancement Mechanism
-works for slow roll inflation arising from a flat potential.
-Before discussing this mechanism we derive a relation that gives the effective axion decay constant directly in terms of the
-slow roll parameters and in terms of the experimentally measurable spectral indices and the tensor to scalar ratio $r$ of the 
-power spectrum.  
+\section{General analysis of Coherent Enhancement Mechanism \label{sec:CoherentEnhancement}}
+As mentioned in section \ref{sec:Introduction}, Coherent Enhancement Mechanism works for slow roll inflation arising from a flat potential.
+Before discussing this mechanism we derive a relation that gives the effective axion decay constant directly in terms of the slow roll parameters and in terms of the experimentally measurable spectral indices and the tensor to scalar ratio $r$ of the power spectrum.
 Thus we consider a Lagrangian of the form
 \begin{equation}
   \mathcal{L}\left(\phi, \dot{\phi}\right) = \frac{1}{2}{\dot{\phi}}^2 - V\left(\phi\right)\,.
 \end{equation}
 where the kinetic term is canonically normalized.
-{Our focus is on that  part of  $V(\phi)$ where the potential is flat leading to inflation. We are specifically interested at
-the point of horizon exist $\phi\sim \phi_0$. Here }
-it is sufficient to have $V\left(\phi\right) \approx V_{e}\left(\phi\right)$ at $\phi \approx \phi_0$ where
+Our focus is on that part of $V\left(\phi\right)$ where the potential is flat leading to inflation.
+We are specifically interested at the point of horizon exist $\phi \sim \phi_0$.
+Here it is sufficient to have $V\left(\phi\right) \approx V_{e}\left(\phi\right)$ at $\phi \approx \phi_0$ where
 \begin{equation} \label{eq:naturalInflationPotential}
   V_e\left(\phi\right) = \Lambda^4 \left(1 - \cos\left(\frac{\phi}{f_e}\right)\right)\,,
 \end{equation}
@@ -179,7 +153,7 @@ Now, identifying the expansion coefficients in Eq.~(\ref{eq:naturalInflationSeri
     {{V^\prime}^2\left(\phi_0\right) - V\left(\phi_0\right) V^{\prime\prime}\left(\phi_0\right)}\,.
 \end{equation}
 
-Further,  it is  convenient to express the effective decay constant $f_e$  in terms of slow-roll inflation parameters $\epsilon$ and $\eta$ defined as
+Further, it is convenient to express the effective decay constant $f_e$ in terms of slow-roll inflation parameters $\epsilon$ and $\eta$ defined as
 \begin{equation} \label{eq:epsEtaFromPotential}
   \epsilon =
     \frac{M_{Pl}^2}{2}
@@ -220,8 +194,7 @@ Using this data we find model-independent bounds on the effective axionic decay 
   4.9 \leq f_e / M_{Pl} \leq 10.0\, \left(95\%\, {\rm CL}\right)\,.
 \end{equation}
 
-Next, we discuss the Coherent Enhancement Mechanism
-arising from a superposition of cosine functions.
+Next, we discuss the Coherent Enhancement Mechanism arising from a superposition of cosine functions.
 As a specific simple example let us consider a potential of the form
 \begin{equation} \label{eq:cosineSumPotential}
   V = \sum_{k = 1}^n \Lambda_k^4 \left(1 - \cos\left(\frac{k\phi}{f}\right)\right)\,.
@@ -236,25 +209,24 @@ On using Eq.~(\ref{eq:feFromPotential}) we get
 One notices that there is a cancellation between the odd and even sums in the denominator in Eq.~(\ref{eq:feForCosineSum}) which leads to an enhancement and gives $f_e / f > 1$.
 Since the enhancement occurs as a consequence of the sum of several terms we call this a ``Coherent Enhancement Mechanism''.
 
-It is also interesting to note that $n_s$, $r$, and therefore $f_e$ can be directly computed from the scale factor evolution without invoking any knowledge about the potential. {This formulation is of relevance when we discuss DBI-flation where slow roll is not driven by the 
-potential alone but by the entire Lagrangian.}
+It is also interesting to note that $n_s$, $r$, and therefore $f_e$ can be directly computed from the scale factor evolution without invoking any knowledge about the potential.
+This formulation is of relevance when we discuss DBI-flation where slow roll is not driven by the potential alone but by the entire Lagrangian.
 To distinguish the effective decay constant computed in this way from $f_e$ that is computed from potential, we will call it $f_{eH}$.
 
 Specifically, we can define the dynamic slow-roll parameters
 \begin{equation} \label{eq:slowRollParametersDynamic}
   \epsilon_H = -\frac{\dot H}{H^2}\,,
-  ~~~ \eta_H = -\frac{\dot{\epsilon_H}}{\epsilon_H H}\,,
-  ~~~ \sigma_H = -\frac{1}{H} \frac{d}{dt} \ln c_s\,,
+  ~~~ \eta_H = \frac{\dot{\epsilon_H}}{\epsilon_H H}\,,
+  ~~~ \sigma_H = \frac{1}{H} \frac{d}{dt} \ln c_s\,,
 \end{equation}
-where $c_s$ is the speed of sound in the medium {where $c_s^2= p_{,\beta}/\rho_{,\eta}$, $\beta= \dot \phi^2$
-where $p$ is the pressure and $\rho$ the density. }
+where $c_s$ is the speed of sound in the medium where $c_s^2 = p_{,\beta} / \rho_{,\beta}$, $\beta = \dot\phi^2$ where $p$ is the pressure and $\rho$ the density.
 In this case spectral indices are given by~\cite{Garriga:1999vw, Spalinski:2007qy}
 \begin{equation}
-      n_s = 1 - 2 \epsilon_H + \eta_H + \sigma_H,
+      n_s = 1 - 2 \epsilon_H - \eta_H - \sigma_H,
   ~~~ n_t = - 2\epsilon_H\,.
 \end{equation}
 
-For the case when the  dependence  of the parameters on sound speed $c_s$   is relatively small one has
+For the case when the dependence of the parameters on sound speed $c_s$ is relatively small one has
 \begin{equation} \label{eq:slowRollParametersDynamicFromStatic}
   \epsilon_H = \epsilon\,,
   ~~~ \eta_H = -2 \eta + 4 \epsilon\,,
@@ -265,8 +237,9 @@ in which case Eq.~(\ref{eq:feSlowRoll}) can be rewritten as
 \end{equation}
 
 We will show using numerical simulations that $f_e \approx f_{eH}$ for the cases of global supersymmetry and supergravity.
-For  DBI-flation CEM does not work as there is no analogue of $f_e$ since inflation in not controlled by the potential alone but by the full Lagrangian as mentioned earlier.
-However, for DBI one may still define an $f_{eH}$ as given by Eq.~(\ref{eq:feFromDynamicSlowRollParameters}) which may be compared to the true axion decay constant that enters in the DBI lagrangian. This will be discussed in further detail in  \ref{sec:DBI}.
+For DBI-flation CEM does not work as there is no analogue of $f_e$ since inflation in not controlled by the potential alone but by the full Lagrangian as mentioned earlier.
+However, for DBI one may still define an $f_{eH}$ as given by Eq.~(\ref{eq:feFromDynamicSlowRollParameters}) which may be compared to the true axion decay constant that enters in the DBI lagrangian.
+This will be discussed in further detail in \ref{sec:DBI}.
 
 \section{Global supersymmetry \label{sec:Supersymmetry}}
 In this section we consider inflation in globally supersymmetric models where slow roll  is controlled by a flat potential and CEM can operate.
@@ -329,9 +302,9 @@ where $V_\text{slow}\left(b_-\right)$ which depends only on $b_-$ enters in slow
     \includegraphics[width = \textwidth]{figures/supersymmetry_potentialRange.pdf}
   \end{subfigure}
   \caption{\protect\input{figures/supersymmetry.txt}
-    Top  panel shows tensor-to-scalar ratio vs scalar spectral index.
+    Top panel shows tensor-to-scalar ratio vs scalar spectral index.
     Blue region encloses the parameter points consistent with Planck 2018 TT,TE,EE+lowE+lensing+BK14+BAO data at $95\%$ CL.
-    Middle panel exhibits the coherent enhancement of the decay constant {where $f_e>> M_{Pl}$ while $f<M_{Pl}$}.    
+    Middle panel exhibits the coherent enhancement of the decay constant where $f_e \gg M_{Pl}$ while $f < M_{Pl}$.
     The bottom panel shows the superimposed slow-roll potentials~Eq.(\ref{eq:supersymmetry:Vslow}) as functions of $b_-$ for all values of $G_5$ considered.
     Note that because the field is normalized by $f$ and because $G_5$ is fine-tuned, potentials for all considered input parameters look almost identical.
     Inflation occurs in the flat region of the potential near $b_- / f \approx 3$.
@@ -339,6 +312,7 @@ where $V_\text{slow}\left(b_-\right)$ which depends only on $b_-$ enters in slow
     The analysis shows that axion inflation for the parameter points in the blue region is consistent with WGC as exhibited by the middle panel.
   } \label{fig:supersymmetry}
 \end{figure}
+
 Note, the values of the parameters $\mu$ and $\lambda / M$ determine the stability point $f$.
 We can equivalently however fix $f$ and solve for $\lambda / M$ in terms of $\mu$ and $f$.
 It turns out $\mu$ only appears in $V_\text{fast}$, but not in $V_\text{slow}$, for which an explicit form is given by
@@ -373,17 +347,14 @@ Here the superposition of several cosines produces local flatness where slow rol
 In order to verify consistency with experiment and evaluate $f_e$, we use Inflation Simulator\footnote{\url{https://github.com/maxitg/InflationSimulator}}.
 For these simulations we begin by sampling a number of parameter sets as described in the caption of Fig.~(\ref{fig:supersymmetry}).
 We then use the Lagrangian $\mathcal{L} = \frac{1}{2} \dot b_-^2 - V_\text{slow}\left(b_-\right)$ and Friedmann equations described in section~4 of~\cite{Nath:2018xxe} to simulate evolution of the field and the scale factor.
-We set initial field velocity $\dot b_{-, \text{init}} = 0$, and we take $N_\text{subhorizon} \geq 5$
-where $N_\text{subhorizont}=N_{\text{total}} - N_\text{pivot}$ to ensure that the results of the analysis are not affected by
-initial conditions. 
+We set initial field velocity $\dot b_{-, \text{init}} = 0$, and we take $N_\text{subhorizon} \geq 5$ where $N_\text{subhorizon} = N_\text{total} - N_\text{pivot}$ to ensure that the results of the analysis are not affected by initial conditions.
 Finally, if we have sufficient number of e-foldings, we compute the tensor-to-scalar ratio $r$, and the scalar spectral index $n_s$ at horizon exit (i.e., $N_\text{pivot}$ e-foldings before the end of inflation) using Eqs.~(\ref{eq:slowRollParametersDynamic}, \ref{eq:slowRollParametersDynamicFromStatic}, \ref{eq:observablesSlowRoll}), and check if they are consistent with experimental constraints~\cite{Akrami:2018odb}.
 If so, we evaluate $f_e$ and $f_{eH}$ at horizon exit using Eqs.~(\ref{eq:feFromPotential}, \ref{eq:feFromDynamicSlowRollParameters}).
 The result of this analysis is displayed in Fig.~(\ref{fig:supersymmetry}).
-Here one finds that while  the true decay constant $f$ is below $M_{Pl}$, the effective $f_e \approx f_{eH}$ always satisfies the   constraint \ref{eq:feExperimentalConstraint}.
-Further,  we find the relative difference between the  two effective decay constants $f_e$ and $f_{eH}$ small over the parameter space investigated, i.e., 
-$\left|f_e - f_{eH}\right| / f_e \le \protect\input{figures/supersymmetryfRelativeDifferenceMax.txt}$.
+Here one finds that while the true decay constant $f$ is below $M_{Pl}$, the effective $f_e \approx f_{eH}$ always satisfies the constraint \ref{eq:feExperimentalConstraint}.
+Further, we find the relative difference between the two effective decay constants $f_e$ and $f_{eH}$ small over the parameter space investigated, i.e., $\left|f_e - f_{eH}\right| / f_e \le \protect\input{figures/supersymmetryfRelativeDifferenceMax.txt}$.
 We note that fine tuning of $G_5$ is required to achieve coherent enhancement and experimentally-consistent inflation.
-In summary  the analysis of Fig.~(\ref{fig:supersymmetry}) shows that CEM is operative and $f_e / M_{Pl} \gg 1$ is achieved while $f < M_{Pl}$ consistent with WGC.
+In summary the analysis of Fig.~(\ref{fig:supersymmetry}) shows that CEM is operative and $f_e / M_{Pl} \gg 1$ is achieved while $f < M_{Pl}$ consistent with WGC.
 
 \section{Supergravity \label{sec:Supergravity}}
 Next we test CEM for supergravity where the scalar potential has the form~\cite{Chamseddine:1982jx, Cremmer:1982en}
@@ -480,13 +451,13 @@ where $C_k$ are given by
   \begin{aligned}
     C_1 &=   4 \left(
         2 e^2 \left(   \frac{M_{Pl}^2}{f^2} + 1 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1^2  }{M_{Pl}^6}
-      +   e^3 \left(                              3 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1 A_2}{M_{Pl}^6}\right.\\
+      +   e^3 \left(                          3 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1 A_2}{M_{Pl}^6}\right.\\
       &~~~~~~ \left.{}
       + 2 e^4 \left( 3 \frac{M_{Pl}^2}{f^2} + 5 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1 A_3}{M_{Pl}^6}
       -   e^5 \left(12 \frac{M_{Pl}^2}{f^2} + 7 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_2 A_3}{M_{Pl}^6}
     \right)\,,\\
     C_2 &=   2 \left(
-      -   e^2 \left(                              1 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1^2  }{M_{Pl}^6}
+      -   e^2 \left(                          1 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1^2  }{M_{Pl}^6}
       + 4 e^3 \left( 2 \frac{M_{Pl}^2}{f^2} + 3 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1 A_2}{M_{Pl}^6}\right.\\
       &~~~~~~ \left.{}
       + 4 e^4 \left( 4 \frac{M_{Pl}^2}{f^2} + 5 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_2^2  }{M_{Pl}^6}
@@ -495,20 +466,20 @@ where $C_k$ are given by
       + 4 e^5 \left( 6 \frac{M_{Pl}^2}{f^2} + 7 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_2 A_3}{M_{Pl}^6}
     \right)\,,\\
     C_3 &=   4 \left(
-      -   e^3 \left(                              3 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1 A_2}{M_{Pl}^6}
+      -   e^3 \left(                          3 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1 A_2}{M_{Pl}^6}
       + 2 e^4 \left( 3 \frac{M_{Pl}^2}{f^2} + 5 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1 A_3}{M_{Pl}^6}\right.\\
       &~~~~~~ \left.{}
       + 2 e^5 \left( 6 \frac{M_{Pl}^2}{f^2} + 7 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_2 A_3}{M_{Pl}^6}
       + 2 e^6 \left( 9 \frac{M_{Pl}^2}{f^2} + 9 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_3^2  }{M_{Pl}^6}
     \right)\,,\\
     C_4 &=   2 \left(
-      - 2 e^4 \left(                              5 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1 A_3}{M_{Pl}^6}
-      -   e^4 \left(                              5 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_2^2  }{M_{Pl}^6}
+      - 2 e^4 \left(                          5 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_1 A_3}{M_{Pl}^6}
+      -   e^4 \left(                          5 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_2^2  }{M_{Pl}^6}
     \right)\,,\\
     C_5 &= - 4
-          e^5 \left(                              7 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_2 A_3}{M_{Pl}^6}\,,\\
+          e^5 \left(                          7 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_2 A_3}{M_{Pl}^6}\,,\\
     C_6 &= - 2
-          e^6 \left(                              9 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_3^2  }{M_{Pl}^6}\,.
+          e^6 \left(                          9 + 4 \frac{f^2}{M_{Pl}^2}\right) \frac{A_3^2  }{M_{Pl}^6}\,.
   \end{aligned}
 \end{equation}
 As in the global supersymmetry case of section \ref{sec:Supersymmetry} here also local regions of flatness in the potential appear due to overlaps of several cosines, slow roll can occur and CEM is operative.
@@ -528,12 +499,11 @@ In this model, we find $\left|f_e - f_{eH}\right| / f_e \le \protect\input{figur
     \includegraphics[width = \textwidth]{figures/supergravity_potentialRange.pdf}
   \end{subfigure}
   \caption{\protect\input{figures/supergravity.txt}
-    Top  panel: Plot of $r$ vs $n_s$.
+    Top panel: Plot of $r$ vs $n_s$.
     The blue region contains parameter points that lie in the experimentally allowed range of $r$ and $n_s$.
     Middle panel: A plot of the effective axion decay constant $f_e / M_{Pl}$ vs $f / M_{Pl}$ for the parameter points that lie in the blue region in the left panel.
-    Bottom panel: Plot of $V / V_\text{max}$ vs $b_- / f$ for the parameter points that lie in the blue region in the top  panel.
-    As in the global supersymmetry analysis of Fig.~(\ref{fig:supersymmetry}) the supergravity analysis here shows that axion inflation for the 
-    set of  points in the blue region is consistent with WGC as exhibited by the middle panel.
+    Bottom panel: Plot of $V / V_\text{max}$ vs $b_- / f$ for the parameter points that lie in the blue region in the top panel.
+    As in the global supersymmetry analysis of Fig.~(\ref{fig:supersymmetry}) the supergravity analysis here shows that axion inflation for the set of points in the blue region is consistent with WGC as exhibited by the middle panel.
   } \label{fig:supergravity}
 \end{figure}
 
@@ -576,7 +546,7 @@ and $P$ and $Q$ are assumed to have the following forms
     \right) / T^2\,.
   \end{aligned}
 \end{equation}
-Here $T$ is a parameter of dimension 4 in mass and  can be thought of as a warp factor arising from a higher dimensional geometry.
+Here $T$ is a parameter of dimension 4 in mass and can be thought of as a warp factor arising from a higher dimensional geometry.
 We note that the Lagrangian of Eq.~(\ref{eq:DBI:lagrangianD}) is a direct generalization of the Lagrangian for the single field case which can be derived from a more basic 3-brane action (see, e.g.,~\cite{Rocek:1997hi, Tseytlin:1999dj, Sasaki:2012ka} and the references therein).
 In writing Eq.~(\ref{eq:DBI:lagrangianD}) we imposed an additional constraint which is invariance under $\Phi_1$ and $\Phi_2$ interchange.
 Finally $\mathcal{L}_F$ is given by
@@ -720,8 +690,9 @@ and where
 
 We note that the parameter $\tilde\beta$ here is redundant, and is chosen in such a way as to make $\mathcal{G}_k \sim 1$.
 The first non-zero component of $\mathcal{G}$ can also be set to $1$ to reduce redundancy.
-Further, we note that Eqs.~(\ref{eq:epsEtaFromPotential}) will not be sufficient to describe slow roll  in this case, because they do not take the form of kinetic energy into account.
-However, we will use Eqs.~(\ref{eq:slowRollParametersDynamic}) which are more general. Thus  we conjecture that while Eqs.~(\ref{eq:slowRollParametersDynamicFromStatic}) do not hold, Eq.~(\ref{eq:feFromDynamicSlowRollParameters}) can still be used to derive an effective decay constant, where Eqs.~(\ref{eq:slowRollParametersDynamic}) are used to derive $\epsilon_H$ and $\eta_H$.
+Further, we note that Eqs.~(\ref{eq:epsEtaFromPotential}) will not be sufficient to describe slow roll in this case, because they do not take the form of kinetic energy into account.
+However, we will use Eqs.~(\ref{eq:slowRollParametersDynamic}) which are more general.
+Thus we conjecture that while Eqs.~(\ref{eq:slowRollParametersDynamicFromStatic}) do not hold, Eq.~(\ref{eq:feFromDynamicSlowRollParameters}) can still be used to derive an effective decay constant, where Eqs.~(\ref{eq:slowRollParametersDynamic}) are used to derive $\epsilon_H$ and $\eta_H$.
 
 \begin{figure}
   \centering
@@ -735,18 +706,17 @@ However, we will use Eqs.~(\ref{eq:slowRollParametersDynamic}) which are more ge
     \includegraphics[width = \textwidth]{figures/DBI_f_fDynamic.pdf}
   \end{subfigure}
   \caption{\protect\input{figures/DBI.txt}
-    Top l panel is a plot of $r$  vs  $n_s$.
+    Top l panel is a plot of $r$ vs $n_s$.
     Middle panel shows the non-Gaussianity parameter $f_{NL}^\text{equil}$ as a function of $\alpha_1$ (for a discussion of $f_{NL}^\text{equil}$ see ~\cite{Nath:2018xxe}).
     Bottom panel is a plot of $f_{eH}$ vs $f$ where $f_{eH}$ is defined by Eq.~(\ref{eq:feFromDynamicSlowRollParameters}).
-    We note that all the  points in the blue of the top  panel have $f < M_{Pl}$ as exhibited in the bottom panel which ensures that DBI-flation is consistent with WGC.
+    We note that all the points in the blue of the top panel have $f < M_{Pl}$ as exhibited in the bottom panel which ensures that DBI-flation is consistent with WGC.
   } \label{fig:DBI}
 \end{figure}
 Simulation for DBI are shown on Fig.~(\ref{fig:DBI}).
 We sample the parameter space of the model Eq.~(\ref{eq:dbi:lagrangian}) by setting $T = 1$, $\mathcal{G}_1 = \mathcal{G}_2 = \mathcal{G}_3 = 0$, $\mathcal{G}_4 = 1$, and varying $\mathcal{G}_5$, $\mathcal{G}_6$, $\alpha_1$, $f$, $\tilde\beta$, and the pivot e-foldings count $N_\text{pivot}$.
-Here we use the data of Fig~(1) of~\cite{Nath:2018xxe}, but with an update of the experimental constraints on $r$ and $n_s$
-as given by Planck 2018 results~\cite{Akrami:2018odb}, and compute $f_{eH}$ using Eq.~(\ref{eq:feSpectralIndices}).
+Here we use the data of Fig~(1) of~\cite{Nath:2018xxe}, but with an update of the experimental constraints on $r$ and $n_s$ as given by Planck 2018 results~\cite{Akrami:2018odb}, and compute $f_{eH}$ using Eq.~(\ref{eq:feSpectralIndices}).
 Note that even though $f_e$ cannot be defined in this model, $f_{eH}$ still satisfies Eq.~(\ref{eq:feExperimentalConstraint}).
-The top  panel of Fig.~(\ref{fig:DBI}) shows the parameter points of the DBI model which lie in the experimentally allowed domain (the blue region).
+The top panel of Fig.~(\ref{fig:DBI}) shows the parameter points of the DBI model which lie in the experimentally allowed domain (the blue region).
 The middle panel gives $f^{\text{equil}}_{\text{NL}}$ as function of $\alpha_1$.
 Recently, the Planck Collaboration~\cite{Akrami:2019izv} has analyzed the Planck full-mission cosmic microwave background (CMB) temperature and E-mode polarization maps to obtain constraints on primordial non-Gaussianity.
 Their combined temperature and polarization analysis produces the following final result on $f^{\text{equil}}_{\text{NL}}$ so that $f^{\text{equal}}_{\text{NL}} = -26 \pm 47 \left(68 \% \text{CL, statistical}\right)$.
@@ -755,7 +725,7 @@ The bottom panel of Fig.~(\ref{fig:DBI}) gives a plot of $f_{eH} / M_{Pl}$ vs $f
 One finds that $f_{eH} / M_{Pl} \gg 1$ while $f / M_{Pl} < 1$ consistent with WGC.
 
 \section{Size of the tensor-to-scalar power spectra ratio $r$ in single-field models \label{sec:r}}
-It is interesting to observe that the tensor-to-scalar ratio $r$ in the effective single field models of global supersymmetry in Fig.~(\ref{fig:supersymmetry}) and of supergravity in  Fig.~(\ref{fig:supergravity}) is $O\left(10^{-4}\right)$, while for the DBI case Fig.~(\ref{fig:DBI}) it is much larger than that and for some parameter points it can be as large as the experimental upper limit $r = 0.07$.
+It is interesting to observe that the tensor-to-scalar ratio $r$ in the effective single field models of global supersymmetry in Fig.~(\ref{fig:supersymmetry}) and of supergravity in Fig.~(\ref{fig:supergravity}) is $O\left(10^{-4}\right)$, while for the DBI case Fig.~(\ref{fig:DBI}) it is much larger than that and for some parameter points it can be as large as the experimental upper limit $r = 0.07$.
 To see how this is possible, we consider first an arbitrary single-field inflation model with canonical kinetic energy.
 Here for the number of e-foldings we have
 \begin{equation} \label{eq:efoldingsGeneral}
@@ -791,60 +761,51 @@ This leads to a relation between $r$ and $\Delta \phi$ so that
     Horizon exit occurs at $-60 < N - N_\text{total} < -50$.
     The plot is for one of the global supersymmetry parameter sets.
     Middle panel: Same as the left panel except it is for the supergravity case.
-    Bottom panel: The same as the top  panel except it is for the DBI case.
+    Bottom panel: The same as the top panel except it is for the DBI case.
     The figure explains the reason why $r$ can be much larger for DBI relative to models where slow roll is controlled by flat potentials.
-    From Eq.~(\ref{eq:rFromDDensityr}) we see that $r$ is proportional to $d\rho / dN$.
+    From Eq.~(\ref{eq:rFromDDensityDN}) we see that $r$ is proportional to $d\rho / dN$.
     In the top and middle panels $\rho / \rho_0$ is essentially flat near the horizon exist which is in the interval which occurs at $-60 < N - N_\text{total} < -50$ and leads to $r \sim O\left(10^{-4}\right)$ while for the DBI case in the bottom panel $\rho / \rho_0$ has a significant curvature and $r$ can be as large as $\sim 0.1$.
   } \label{fig:density}
 \end{figure}
-We consider now the global supersymmetry case where $\Delta\phi / f < 1$ and $f / M_{Pl} < 1$ (see Figs.~(\ref{fig:supersymmetry})) 
-and $N=[50-60]$ 
-which implies
+We consider now the global supersymmetry case where $\Delta\phi / f < 1$ and $f / M_{Pl} < 1$ (see Figs.~(\ref{fig:supersymmetry})) and $N = \left[50 - 60\right]$ which implies
 \begin{equation} \label{eq:rBound}
   r < 0.003\,.
 \end{equation}
 A similar analysis holds for the supergravity case.
-The analyses on $r$ in Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}) show that $r\sim O(10^{-4})$   is 
-consistent with the bound of Eq.~(\ref{eq:rBound}).
+The analyses on $r$ in Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}) show that $r \sim O\left(10^{-4}\right)$ is consistent with the bound of Eq.~(\ref{eq:rBound}).
 The reason for the smallness of $r$ in Figs.~(\ref{fig:supersymmetry}, \ref{fig:supergravity}) and more generally for models with flat potentials can be traced to Eq.~(\ref{eq:Deltaphi}) and the condition $\Delta\phi < M_{Pl}$.
 
 However, Eq.~(\ref{eq:Deltaphi}) is not applicable to DBI-flation and k-flation~\cite{Garriga:1999vw}.
 Here we need to look at the evolution of the density $\rho$ of the inflaton field as a function of e-foldings.
-{Thus for the case when sound speed $c_s \sim 1$, one can obtain the slow roll parameters in terms of density and
-its derivatives with respect to the number of e-foldings so that
-
-\begin{align}
-\epsilon_H&=-\frac{1}{2\rho} \frac{d\rho}{dN}\nonumber\\
-\eta_H&= - \frac{1}{\rho} \frac{d\rho}{dN}+ \frac{d^2\rho}{dN^2}/\frac{d\rho}{dN}
-\end{align}
-Further, the enhancement factor $f_{eH}$ is given by 
-\begin{align}
-f_{eH}= M_{Pl}/\sqrt{
- \frac{d^2\rho}{dN^2}/\frac{d\rho}{dN}}
-\end{align}
+Thus for the case when sound speed $c_s \sim 1$, one can obtain the slow roll parameters in terms of density and its derivatives with respect to the number of e-foldings so that
+\begin{equation}
+  \begin{aligned}
+    \epsilon_H &= -\frac{1}{2 \rho} \frac{d\rho}{dN}\,,\\
+    \eta_H &= -\frac{1}{\rho} \frac{d\rho}{dN} + \left.\frac{d^2\rho}{dN^2} \middle/ \frac{d\rho}{dN}\right.\,.
+  \end{aligned}
+\end{equation}
+Further, the enhancement factor $f_{eH}$ is given by
+\begin{equation}
+  f_{eH} = M_{Pl} \sqrt{\left.\frac{d\rho}{dN} \middle/ \frac{d^2\rho}{dN^2}\right.}\,.
+\end{equation}
 Similarly the spectral index $n_s$ and the ratio $r$ of the tensor to scalar power spectrum are given by
-\begin{align}
-n_s&= 1+ \frac{2}{\rho} \frac{d\rho}{dN}- \frac{d^2\rho}{dN^2}/\frac{d\rho}{dN} \nonumber\\
-r&= - \frac{8}{\rho} \frac{d\rho}{dN}\,.
-\label{eq:rFromDDensityr}
-\end{align}
-}
+\begin{equation} \label{eq:rFromDDensityDN}
+  \begin{aligned}
+    n_s &= 1 + \frac{2}{\rho} \frac{d\rho}{dN} - \left.\frac{d^2\rho}{dN^2} \middle/ \frac{d\rho}{dN}\right.\,,\\
+    r &= - \frac{8}{\rho} \frac{d\rho}{dN}\,.
+  \end{aligned}
+\end{equation}
 
-From the plot of $\rho / \rho_0$ as a function of $N - N_{\text{total}}$ one finds that $\frac{d\rho}{dN}$ is very small for the top
-and middle
- panels of Fig.~(\ref{fig:density}) in the domain of horizon exit, i.e., $-60 < N - N_\text{total} < -50$ and leads to $r \sim O\left(10^{-4}\right)$.
+From the plot of $\rho / \rho_0$ as a function of $N - N_{\text{total}}$ one finds that $\frac{d\rho}{dN}$ is very small for the top and middle panels of Fig.~(\ref{fig:density}) in the domain of horizon exit, i.e., $-60 < N - N_\text{total} < -50$ and leads to $r \sim O\left(10^{-4}\right)$.
 On the other hand for the DBI case $\frac{d\rho}{dN}$ is visibly much larger as can be seen by the bottom panel of Fig.~(\ref{fig:density}).
-This explains why $r$ is much larger for DBI-flation than for the case where inflation is driven by a flat potential which is the case for the top
-and the middle  panels of Fig.~(\ref{fig:density}).
+This explains why $r$ is much larger for DBI-flation than for the case where inflation is driven by a flat potential which is the case for the top and the middle panels of Fig.~(\ref{fig:density}).
 
 \section{Conclusion \label{sec:Conclusion}}
 One of the possible candidates for an inflaton is an axion.
-However, axion models with a simple cosine potential require an axion decay constant which is super-Planckian in size which is in conflict with the 
-Weak Gravity Conjecture.
-In this work  we propose a new mechanism, the Coherent Enhancement Mechanism, which allows one to produce an effective decay constant which governs inflation to be much larger than the true decay constant that enters in the microscopic Lagrangian.
-However, CEM works for the class of models where slow roll is governed by  flat potential.
-To check the validity of CEM 
-we work in a landscape of chiral superfields where the microscopic Lagrangian possesses a $U\left(1\right)$ global shift symmetry which is broken by instanton type terms.
+However, axion models with a simple cosine potential require an axion decay constant which is super-Planckian in size which is in conflict with the Weak Gravity Conjecture.
+In this work we propose a new mechanism, the Coherent Enhancement Mechanism, which allows one to produce an effective decay constant which governs inflation to be much larger than the true decay constant that enters in the microscopic Lagrangian.
+However, CEM works for the class of models where slow roll is governed by flat potential.
+To check the validity of CEM we work in a landscape of chiral superfields where the microscopic Lagrangian possesses a $U\left(1\right)$ global shift symmetry which is broken by instanton type terms.
 The inflaton is identified with the pseuso-Nambu-Goldstone boson (pNGB) which is the lightest field in the broken $U\left(1\right)$ symmetry phase.
 The proposed mechanism to enhance the effective axion decay constant associated with pNGB utilizes coherence among several cosines in the effective pNGB potential to produce a locally flat potential where slow roll can occur.
 In this work we have illustrated CEM for models based in supersymmetry and supergravity where inflation is driven by the pNGB potential.
@@ -852,14 +813,13 @@ In these analyses we show that successful inflation consistent with the cosmolog
 However, CEM is not valid for DBI-flation and more generally for k-flation.
 Here inflation is governed not just by the potential but by the full Lagrangian.
 Nonetheless our analysis shows that a successful DBI-flation can be achieved consistent with cosmological data and consistent with WGC.
-It is also seen that while for single field inflation $r \sim O\left(10^{-4}\right)$ for DBI-flation one may have $r$ as large as
-the experimental upper limit of  $r =0.0 7$.
+It is also seen that while for single field inflation $r \sim O\left(10^{-4}\right)$ for DBI-flation one may have $r$ as large as the experimental upper limit of $r = 0.07$.
 An explanation of this phenomenon is given in section \ref{sec:r}.
 We also show that the effective decay constant can be directly related to the spectral indices as exhibited by Eq.~(\ref{eq:feSpectralIndices}).
 The analysis presented in this work shows that in all the cases considered axion inflation consistent with the experimental data can be accomplished with the axion decay constant in the microscopic Lagrangian in the sub-Planckian domain in conformity with the Weak Gravity Conjecture.\\~\\~\\
 
 \textbf{Acknowledgments:}
-{Conversations with James Halverson and Cody Long are acknowledged.}
+Conversations with James Halverson and Cody Long are acknowledged.
 This research was supported in part by the NSF Grant PHY-1620575.
 
 \clearpage
@@ -982,6 +942,13 @@ This research was supported in part by the NSF Grant PHY-1620575.
   \href{https://dx.doi.org/10.1088/1126-6708/2006/06/051}{doi:10.1088/1126-6708/2006/06/051}
   \href{https://arxiv.org/abs/hep-th/0605206}{[hep-th/0605206]}.
 
+\bibitem{ArkaniHamed:2006dz}
+  N.~Arkani-Hamed, L.~Motl, A.~Nicolis and C.~Vafa,
+  %``The String landscape, black holes and gravity as the weakest force,''
+  JHEP {\bf 0706}, 060 (2007)
+  \href{https://dx.doi.org/10.1088/1126-6708/2007/06/060}{doi:10.1088/1126-6708/2007/06/060}
+  \href{https://arxiv.org/abs/hep-th/0601001}{[hep-th/0601001]}.
+
 \bibitem{Kim:2004rp}
   J.~E.~Kim, H.~P.~Nilles and M.~Peloso,
   %``Completing natural inflation,''
@@ -995,74 +962,6 @@ This research was supported in part by the NSF Grant PHY-1620575.
   Phys.\ Rev.\ D {\bf 90}, 023501 (2014)
   \href{https://dx.doi.org/10.1103/PhysRevD.90.023501}{doi:10.1103/PhysRevD.90.023501}
   \href{https://arxiv.org/abs/1404.7852}{[arXiv:1404.7852 [hep-th]]}.
-
-\bibitem{Nath:2017ihp}
-  P.~Nath and M.~Piskunov,
-  %``Evidence for Inflation in an Axion Landscape,''
-  JHEP {\bf 1803}, 121 (2018)
-  \href{https://dx.doi.org/10.1007/JHEP03(2018)121}{doi:10.1007/JHEP03(2018)121}
-  \href{https://arxiv.org/abs/1712.01357}{[arXiv:1712.01357 [hep-ph]]}.
-
-\bibitem{Nath:2016qzm}
-  P.~Nath,
-  %``Supersymmetry, Supergravity, and Unification,''
-  \href{https://dx.doi.org/10.1017/9781139048118}{doi:10.1017/9781139048118}
-
-\bibitem{BlancoPillado:2006he}
-  J.~J.~Blanco-Pillado, C.~P.~Burgess, J.~M.~Cline, C.~Escoda, M.~Gomez-Reino, R.~Kallosh, A.~D.~Linde and F.~Quevedo,
-  %``Inflating in a better racetrack,''
-  JHEP {\bf 0609}, 002 (2006)
-  \href{https://dx.doi.org/10.1088/1126-6708/2006/09/002}{doi:10.1088/1126-6708/2006/09/002}
-  \href{https://arxiv.org/abs/hep-th/0603129}{[hep-th/0603129]}.
-
-\bibitem{Conlon:2005jm}
-  J.~P.~Conlon and F.~Quevedo,
-  %``Kahler moduli inflation,''
-  JHEP {\bf 0601}, 146 (2006)
-  \href{https://dx.doi.org/10.1088/1126-6708/2006/01/146}{doi:10.1088/1126-6708/2006/01/146}
-  \href{https://arxiv.org/abs/hep-th/0509012}{[hep-th/0509012]}.
-
-\bibitem{Ben-Dayan:2014lca}
-  I.~Ben-Dayan, F.~G.~Pedro and A.~Westphal,
-  %``Towards Natural Inflation in String Theory,''
-  Phys.\ Rev.\ D {\bf 92}, no. 2, 023515 (2015)
-  \href{https://dx.doi.org/10.1103/PhysRevD.92.023515}{doi:10.1103/PhysRevD.92.023515}
-  \href{https://arxiv.org/abs/1407.2562}{[arXiv:1407.2562 [hep-th]]}.
-
-\bibitem{Gao:2014uha}
-  X.~Gao, T.~Li and P.~Shukla,
-  %``Combining Universal and Odd RR Axions for Aligned Natural Inflation,''
-  JCAP {\bf 1410}, 048 (2014)
-  \href{https://dx.doi.org/10.1088/1475-7516/2014/10/048}{doi:10.1088/1475-7516/2014/10/048}
-  \href{https://arxiv.org/abs/1406.0341}{[arXiv:1406.0341 [hep-th]]}.
-
-\bibitem{ArkaniHamed:2006dz}
-  N.~Arkani-Hamed, L.~Motl, A.~Nicolis and C.~Vafa,
-  %``The String landscape, black holes and gravity as the weakest force,''
-  JHEP {\bf 0706}, 060 (2007)
-  \href{https://dx.doi.org/10.1088/1126-6708/2007/06/060}{doi:10.1088/1126-6708/2007/06/060}
-  \href{https://arxiv.org/abs/hep-th/0601001}{[hep-th/0601001]}.
-
-\bibitem{Brown:2015iha}
-  J.~Brown, W.~Cottrell, G.~Shiu and P.~Soler,
-  %``Fencing in the Swampland: Quantum Gravity Constraints on Large Field Inflation,''
-  JHEP {\bf 1510}, 023 (2015)
-  \href{https://dx.doi.org/10.1007/JHEP10(2015)023}{doi:10.1007/JHEP10(2015)023}
-  \href{https://arxiv.org/abs/1503.04783}{[arXiv:1503.04783 [hep-th]]}.
-
-\bibitem{Brown:2015lia}
-  J.~Brown, W.~Cottrell, G.~Shiu and P.~Soler,
-  %``On Axionic Field Ranges, Loopholes and the Weak Gravity Conjecture,''
-  JHEP {\bf 1604}, 017 (2016)
-  \href{https://dx.doi.org/10.1007/JHEP04(2016)017}{doi:10.1007/JHEP04(2016)017}
-  \href{https://arxiv.org/abs/1504.00659}{[arXiv:1504.00659 [hep-th]]}.
-
-\bibitem{Heidenreich:2015wga}
-  B.~Heidenreich, M.~Reece and T.~Rudelius,
-  %``Weak Gravity Strongly Constrains Large-Field Axion Inflation,''
-  JHEP {\bf 1512}, 108 (2015)
-  \href{https://dx.doi.org/10.1007/JHEP12(2015)108}{doi:10.1007/JHEP12(2015)108}
-  \href{https://arxiv.org/abs/1506.03447}{[arXiv:1506.03447 [hep-th]]}.
 
 \bibitem{Rudelius:2015xta}
   T.~Rudelius,
@@ -1134,12 +1033,66 @@ This research was supported in part by the NSF Grant PHY-1620575.
   \href{https://dx.doi.org/10.1007/JHEP02(2016)128}{doi:10.1007/JHEP02(2016)128}
   \href{https://arxiv.org/abs/1504.03566}{[arXiv:1504.03566 [hep-th]]}.
 
-\bibitem{Kallosh:1995hi}
-  R.~Kallosh, A.~D.~Linde, D.~A.~Linde and L.~Susskind,
-  %``Gravity and global symmetries,''
-  Phys.\ Rev.\ D {\bf 52}, 912 (1995)
-  \href{https://dx.doi.org/10.1103/PhysRevD.52.912}{doi:10.1103/PhysRevD.52.912}
-  \href{https://arxiv.org/abs/hep-th/9502069}{[hep-th/9502069]}.
+\bibitem{Nath:2017ihp}
+  P.~Nath and M.~Piskunov,
+  %``Evidence for Inflation in an Axion Landscape,''
+  JHEP {\bf 1803}, 121 (2018)
+  \href{https://dx.doi.org/10.1007/JHEP03(2018)121}{doi:10.1007/JHEP03(2018)121}
+  \href{https://arxiv.org/abs/1712.01357}{[arXiv:1712.01357 [hep-ph]]}.
+
+\bibitem{Nath:2016qzm}
+  P.~Nath,
+  %``Supersymmetry, Supergravity, and Unification,''
+  \href{https://dx.doi.org/10.1017/9781139048118}{doi:10.1017/9781139048118}
+
+\bibitem{BlancoPillado:2006he}
+  J.~J.~Blanco-Pillado, C.~P.~Burgess, J.~M.~Cline, C.~Escoda, M.~Gomez-Reino, R.~Kallosh, A.~D.~Linde and F.~Quevedo,
+  %``Inflating in a better racetrack,''
+  JHEP {\bf 0609}, 002 (2006)
+  \href{https://dx.doi.org/10.1088/1126-6708/2006/09/002}{doi:10.1088/1126-6708/2006/09/002}
+  \href{https://arxiv.org/abs/hep-th/0603129}{[hep-th/0603129]}.
+
+\bibitem{Conlon:2005jm}
+  J.~P.~Conlon and F.~Quevedo,
+  %``Kahler moduli inflation,''
+  JHEP {\bf 0601}, 146 (2006)
+  \href{https://dx.doi.org/10.1088/1126-6708/2006/01/146}{doi:10.1088/1126-6708/2006/01/146}
+  \href{https://arxiv.org/abs/hep-th/0509012}{[hep-th/0509012]}.
+
+\bibitem{Ben-Dayan:2014lca}
+  I.~Ben-Dayan, F.~G.~Pedro and A.~Westphal,
+  %``Towards Natural Inflation in String Theory,''
+  Phys.\ Rev.\ D {\bf 92}, no. 2, 023515 (2015)
+  \href{https://dx.doi.org/10.1103/PhysRevD.92.023515}{doi:10.1103/PhysRevD.92.023515}
+  \href{https://arxiv.org/abs/1407.2562}{[arXiv:1407.2562 [hep-th]]}.
+
+\bibitem{Gao:2014uha}
+  X.~Gao, T.~Li and P.~Shukla,
+  %``Combining Universal and Odd RR Axions for Aligned Natural Inflation,''
+  JCAP {\bf 1410}, 048 (2014)
+  \href{https://dx.doi.org/10.1088/1475-7516/2014/10/048}{doi:10.1088/1475-7516/2014/10/048}
+  \href{https://arxiv.org/abs/1406.0341}{[arXiv:1406.0341 [hep-th]]}.
+
+\bibitem{Brown:2015iha}
+  J.~Brown, W.~Cottrell, G.~Shiu and P.~Soler,
+  %``Fencing in the Swampland: Quantum Gravity Constraints on Large Field Inflation,''
+  JHEP {\bf 1510}, 023 (2015)
+  \href{https://dx.doi.org/10.1007/JHEP10(2015)023}{doi:10.1007/JHEP10(2015)023}
+  \href{https://arxiv.org/abs/1503.04783}{[arXiv:1503.04783 [hep-th]]}.
+
+\bibitem{Brown:2015lia}
+  J.~Brown, W.~Cottrell, G.~Shiu and P.~Soler,
+  %``On Axionic Field Ranges, Loopholes and the Weak Gravity Conjecture,''
+  JHEP {\bf 1604}, 017 (2016)
+  \href{https://dx.doi.org/10.1007/JHEP04(2016)017}{doi:10.1007/JHEP04(2016)017}
+  \href{https://arxiv.org/abs/1504.00659}{[arXiv:1504.00659 [hep-th]]}.
+
+\bibitem{Heidenreich:2015wga}
+  B.~Heidenreich, M.~Reece and T.~Rudelius,
+  %``Weak Gravity Strongly Constrains Large-Field Axion Inflation,''
+  JHEP {\bf 1512}, 108 (2015)
+  \href{https://dx.doi.org/10.1007/JHEP12(2015)108}{doi:10.1007/JHEP12(2015)108}
+  \href{https://arxiv.org/abs/1506.03447}{[arXiv:1506.03447 [hep-th]]}.
 
 \bibitem{Garriga:1999vw}
   J.~Garriga and V.~F.~Mukhanov,
